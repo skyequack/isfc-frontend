@@ -18,8 +18,8 @@ export default function Home() {
               <br />Platform
             </h1>
             <p className="text-xl md:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed">
-              Streamline your catering operations, manage orders efficiently, 
-              and deliver exceptional dining experiences with our comprehensive management system.
+              Streamline your catering operations with our comprehensive management platform. 
+              From order tracking to quality control, we&apos;ve got your business covered.
             </p>
             
             <SignedOut>
@@ -31,10 +31,10 @@ export default function Home() {
                   Get Started
                 </Link>
                 <Link 
-                  href="/sign-in"
+                  href="/sign-in" 
                   className="border-2 border-orange-600 text-orange-600 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-orange-50 transition-colors"
                 >
-                  Staff Login
+                  Sign In
                 </Link>
               </div>
             </SignedOut>
@@ -42,7 +42,7 @@ export default function Home() {
             <SignedIn>
               <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
                 <Link 
-                  href="/dashboard"
+                  href="/dashboard" 
                   className="bg-orange-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-orange-700 transition-colors shadow-lg"
                 >
                   Go to Dashboard
@@ -51,103 +51,83 @@ export default function Home() {
             </SignedIn>
           </div>
 
-          {/* Quick Actions for Signed In Users */}
-          <SignedIn>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
-              <Link 
-                href="/dashboard"
-                className="group bg-white p-8 rounded-xl shadow-lg border hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
-              >
-                <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mb-4 group-hover:bg-orange-200 transition-colors">
-                  📊
-                </div>
-                <h3 className="text-xl font-semibold mb-3 text-gray-900">Dashboard</h3>
-                <p className="text-gray-600">View daily operations, revenue metrics, and performance analytics</p>
-              </Link>
-              
-              <Link 
-                href="/checklists"
-                className="group bg-white p-8 rounded-xl shadow-lg border hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
-              >
-                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4 group-hover:bg-green-200 transition-colors">
-                  📋
-                </div>
-                <h3 className="text-xl font-semibold mb-3 text-gray-900">Orders</h3>
-                <p className="text-gray-600">Manage catering orders, track delivery status, and customer requirements</p>
-              </Link>
-              
-              <Link 
-                href="/escalations"
-                className="group bg-white p-8 rounded-xl shadow-lg border hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
-              >
-                <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mb-4 group-hover:bg-red-200 transition-colors">
-                  ⚠️
-                </div>
-                <h3 className="text-xl font-semibold mb-3 text-gray-900">Issues</h3>
-                <p className="text-gray-600">Handle customer complaints, operational issues, and urgent requests</p>
-              </Link>
-            </div>
-          </SignedIn>
-
-          {/* Features Section */}
-          <div className="bg-white rounded-2xl shadow-xl p-8 md:p-12">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                Complete Catering Management
-              </h2>
-              <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-                Everything you need to run a successful catering business efficiently
-              </p>
+          {/* Feature Cards */}
+          <div className="grid md:grid-cols-3 gap-8 mb-16">
+            <div className="bg-white p-8 rounded-xl shadow-lg border border-orange-100">
+              <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mb-6">
+                <span className="text-2xl">📊</span>
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">Operations Dashboard</h3>
+              <p className="text-gray-600">View daily operations, revenue metrics, and performance analytics</p>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-              <div className="text-center">
-                <div className="w-16 h-16 bg-orange-100 rounded-xl flex items-center justify-center mx-auto mb-4">
-                  �
-                </div>
-                <h3 className="text-lg font-semibold mb-3 text-gray-900">Order Management</h3>
-                <p className="text-gray-600">Track orders from booking to delivery with real-time status updates and customer notifications</p>
+            <div className="bg-white p-8 rounded-xl shadow-lg border border-orange-100">
+              <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mb-6">
+                <span className="text-2xl">📋</span>
               </div>
-              
-              <div className="text-center">
-                <div className="w-16 h-16 bg-green-100 rounded-xl flex items-center justify-center mx-auto mb-4">
-                  🍴
-                </div>
-                <h3 className="text-lg font-semibold mb-3 text-gray-900">Menu Planning</h3>
-                <p className="text-gray-600">Create and manage seasonal menus, track inventory, and optimize food costs</p>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">Order Management</h3>
+              <p className="text-gray-600">Track orders, manage menus, and coordinate with kitchen staff</p>
+            </div>
+            
+            <div className="bg-white p-8 rounded-xl shadow-lg border border-orange-100">
+              <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mb-6">
+                <span className="text-2xl">⚠️</span>
               </div>
-              
-              <div className="text-center">
-                <div className="w-16 h-16 bg-blue-100 rounded-xl flex items-center justify-center mx-auto mb-4">
-                  �
-                </div>
-                <h3 className="text-lg font-semibold mb-3 text-gray-900">Staff Coordination</h3>
-                <p className="text-gray-600">Schedule staff, assign tasks, and coordinate event logistics seamlessly</p>
-              </div>
-              
-              <div className="text-center">
-                <div className="w-16 h-16 bg-purple-100 rounded-xl flex items-center justify-center mx-auto mb-4">
-                  �
-                </div>
-                <h3 className="text-lg font-semibold mb-3 text-gray-900">Financial Tracking</h3>
-                <p className="text-gray-600">Monitor revenue, expenses, and profitability with detailed financial reports</p>
-              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">Issue Tracking</h3>
+              <p className="text-gray-600">Monitor and resolve operational issues quickly and efficiently</p>
             </div>
           </div>
 
-          {/* Stats Section */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
-            <div className="text-center">
-              <div className="text-4xl font-bold text-orange-600 mb-2">500+</div>
-              <div className="text-gray-600">Events Catered</div>
+          <SignedIn>
+            {/* Quick Access for Signed In Users */}
+            <div className="bg-white rounded-xl shadow-lg border border-orange-200 p-8">
+              <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">Quick Access</h3>
+              <div className="grid md:grid-cols-3 gap-6">
+                <Link href="/dashboard" className="group">
+                  <div className="bg-orange-50 p-6 rounded-lg border-2 border-transparent group-hover:border-orange-300 transition-all">
+                    <div className="text-3xl mb-3">📊</div>
+                    <h4 className="font-semibold text-gray-900 group-hover:text-orange-600">Dashboard</h4>
+                    <p className="text-sm text-gray-600">Overview & Analytics</p>
+                  </div>
+                </Link>
+                <Link href="/checklists" className="group">
+                  <div className="bg-orange-50 p-6 rounded-lg border-2 border-transparent group-hover:border-orange-300 transition-all">
+                    <div className="text-3xl mb-3">📋</div>
+                    <h4 className="font-semibold text-gray-900 group-hover:text-orange-600">Orders</h4>
+                    <p className="text-sm text-gray-600">Manage Catering Orders</p>
+                  </div>
+                </Link>
+                <Link href="/escalations" className="group">
+                  <div className="bg-orange-50 p-6 rounded-lg border-2 border-transparent group-hover:border-orange-300 transition-all">
+                    <div className="text-3xl mb-3">⚠️</div>
+                    <h4 className="font-semibold text-gray-900 group-hover:text-orange-600">Issues</h4>
+                    <p className="text-sm text-gray-600">Track & Resolve Issues</p>
+                  </div>
+                </Link>
+              </div>
             </div>
-            <div className="text-center">
-              <div className="text-4xl font-bold text-green-600 mb-2">98%</div>
-              <div className="text-gray-600">Customer Satisfaction</div>
-            </div>
-            <div className="text-center">
-              <div className="text-4xl font-bold text-blue-600 mb-2">24/7</div>
-              <div className="text-gray-600">Order Support</div>
+          </SignedIn>
+
+          {/* Statistics Section */}
+          <div className="mt-16 bg-orange-600 rounded-xl text-white p-8">
+            <h3 className="text-2xl font-bold mb-8 text-center">Why Choose ISFC?</h3>
+            <div className="grid md:grid-cols-4 gap-6 text-center">
+              <div>
+                <div className="text-3xl font-bold mb-2">500+</div>
+                <div className="text-orange-100">Events Catered</div>
+              </div>
+              <div>
+                <div className="text-3xl font-bold mb-2">98%</div>
+                <div className="text-orange-100">Client Satisfaction</div>
+              </div>
+              <div>
+                <div className="text-3xl font-bold mb-2">24/7</div>
+                <div className="text-orange-100">Support Available</div>
+              </div>
+              <div>
+                <div className="text-3xl font-bold mb-2">15+</div>
+                <div className="text-orange-100">Years Experience</div>
+              </div>
             </div>
           </div>
         </div>

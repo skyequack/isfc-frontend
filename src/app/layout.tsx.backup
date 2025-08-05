@@ -3,6 +3,8 @@ import { Geist, Geist_Mono, Poppins } from "next/font/google";
 import Link from "next/link";
 import {
   ClerkProvider,
+  SignInButton,
+  SignUpButton,
   SignedIn,
   SignedOut,
   UserButton,
@@ -64,12 +66,16 @@ export default function RootLayout({
               </nav>
               <div className="flex items-center gap-4">
                 <SignedOut>
-                  <Link href="/sign-in" className="text-gray-600 hover:text-orange-600 transition-colors">
-                    Sign In
-                  </Link>
-                  <Link href="/sign-up" className="bg-orange-600 text-white px-4 py-2 rounded-lg hover:bg-orange-700 transition-colors font-medium">
-                    Get Started
-                  </Link>
+                  <SignInButton mode="modal">
+                    <button className="text-gray-600 hover:text-orange-600 transition-colors">
+                      Sign In
+                    </button>
+                  </SignInButton>
+                  <SignUpButton mode="modal">
+                    <button className="bg-orange-600 text-white px-4 py-2 rounded-lg hover:bg-orange-700 transition-colors font-medium">
+                      Get Started
+                    </button>
+                  </SignUpButton>
                 </SignedOut>
                 <SignedIn>
                   <UserButton afterSignOutUrl="/" />
