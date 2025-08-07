@@ -5,8 +5,8 @@ import {
   ClerkProvider,
   SignedIn,
   SignedOut,
-  UserButton,
 } from "@clerk/nextjs";
+import Navigation from "@/components/Navigation/Navigation";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -41,42 +41,29 @@ export default function RootLayout({
         <body
           className={`${geistSans.variable} ${geistMono.variable} ${poppins.variable} antialiased`}
         >
-          <header className="bg-white shadow-sm border-b sticky top-0 z-50">
-            <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-              <div className="flex items-center gap-3">
-                <div className="w-8 h-8 bg-orange-600 rounded-lg flex items-center justify-center">
-                  <span className="text-white font-bold text-sm">🍽️</span>
+          <SignedIn>
+            <Navigation />
+          </SignedIn>
+          <SignedOut>
+            <header className="bg-dark shadow-sm border-b border-dark sticky top-0 z-50">
+              <div className="container mx-auto px-4 py-4 flex justify-between items-center">
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
+                    <span className="text-white font-bold text-sm">🍽️</span>
+                  </div>
+                  <h1 className="text-xl font-bold text-light">ISFC Catering</h1>
                 </div>
-                <h1 className="text-xl font-bold text-gray-900">ISFC Catering</h1>
-              </div>
-              <nav className="hidden md:flex items-center gap-6">
-                <SignedIn>
-                  <Link href="/dashboard" className="text-gray-600 hover:text-orange-600 transition-colors">
-                    Dashboard
-                  </Link>
-                  <Link href="/checklists" className="text-gray-600 hover:text-orange-600 transition-colors">
-                    Orders
-                  </Link>
-                  <Link href="/escalations" className="text-gray-600 hover:text-orange-600 transition-colors">
-                    Issues
-                  </Link>
-                </SignedIn>
-              </nav>
-              <div className="flex items-center gap-4">
-                <SignedOut>
-                  <Link href="/sign-in" className="text-gray-600 hover:text-orange-600 transition-colors">
+                <div className="flex items-center gap-4">
+                  <Link href="/sign-in" className="text-highlight hover:text-accent transition-colors">
                     Sign In
                   </Link>
-                  <Link href="/sign-up" className="bg-orange-600 text-white px-4 py-2 rounded-lg hover:bg-orange-700 transition-colors font-medium">
+                  <Link href="/sign-up" className="bg-accent text-white px-4 py-2 rounded-lg hover:bg-primary transition-colors font-medium">
                     Get Started
                   </Link>
-                </SignedOut>
-                <SignedIn>
-                  <UserButton afterSignOutUrl="/" />
-                </SignedIn>
+                </div>
               </div>
-            </div>
-          </header>
+            </header>
+          </SignedOut>
           <main className="min-h-screen">
             {children}
           </main>

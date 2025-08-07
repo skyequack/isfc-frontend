@@ -1,16 +1,38 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #11151C;
+  --foreground: #ffffff;
+  
+  /* ISFC Custom Theme Colors */
+  --primary-dark: #295c9b;      /* Deep Navy */
+  --secondary-dark: #143357;    /* Dark Gray-Blue */
+  --accent-teal: #82A3A1;       /* Teal */
+  --accent-green: #9FC490;      /* Green */
+  --accent-light: #C0DFA1;      /* Light Green */
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-poppins);
-  --font-mono: var(--font-geist-mono);
-}
+/* Custom utility classes for ISFC theme */
+.bg-primary { background-color: var(--primary-dark); }
+.bg-secondary { background-color: var(--secondary-dark); }
+.bg-accent { background-color: var(--accent-teal); }
+.bg-success { background-color: var(--accent-green); }
+.bg-highlight { background-color: var(--accent-light); }
+.bg-dark { background-color: #11151C; }
+
+.text-primary { color: var(--primary-dark); }
+.text-secondary { color: var(--secondary-dark); }
+.text-accent { color: var(--accent-teal); }
+.text-success { color: var(--accent-green); }
+.text-highlight { color: var(--accent-light); }
+.text-light { color: #ffffff; }
+
+.border-primary { border-color: var(--primary-dark); }
+.border-secondary { border-color: var(--secondary-dark); }
+.border-accent { border-color: var(--accent-teal); }
+.border-success { border-color: var(--accent-green); }
+.border-highlight { border-color: var(--accent-light); }
+.border-dark { border-color: #2A2F36; }
 
 @media (prefers-color-scheme: dark) {
   :root {
