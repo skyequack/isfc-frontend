@@ -200,7 +200,7 @@ export default function InventoryPage() {
       
       switch (filters.sortBy) {
         case 'name':
-          aValue = a.name.toLowerCase()
+          aValue = a.name.toLowerCase() 
           bValue = b.name.toLowerCase()
           break
         case 'quantity':
@@ -301,69 +301,69 @@ export default function InventoryPage() {
 
       {/* Stats Dashboard */}
       <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mb-8">
-        <div className="bg-white p-6 rounded-lg shadow border">
+        <div className="bg-gray-800 border border-gray-700 p-6 rounded-lg shadow">
           <div className="flex items-center">
-            <div className="p-3 bg-blue-100 rounded-lg">
+            <div className="p-3 bg-primary rounded-lg">
               <span className="text-2xl">📦</span>
             </div>
             <div className="ml-4">
-              <p className="text-sm font-medium text-gray-600">Total Items</p>
-              <p className="text-2xl font-bold text-gray-900">{stats.total}</p>
+              <p className="text-sm font-medium text-gray-300">Total Items</p>
+              <p className="text-2xl font-bold text-light">{stats.total}</p>
             </div>
           </div>
         </div>
         
-        <div className="bg-white p-6 rounded-lg shadow border">
+        <div className="bg-gray-800 border border-gray-700 p-6 rounded-lg shadow">
           <div className="flex items-center">
-            <div className="p-3 bg-green-100 rounded-lg">
+            <div className="p-3 bg-success rounded-lg">
               <span className="text-2xl">✅</span>
             </div>
             <div className="ml-4">
-              <p className="text-sm font-medium text-gray-600">In Stock</p>
-              <p className="text-2xl font-bold text-green-600">{stats.inStock}</p>
+              <p className="text-sm font-medium text-gray-300">In Stock</p>
+              <p className="text-2xl font-bold text-success">{stats.inStock}</p>
             </div>
           </div>
         </div>
         
-        <div className="bg-white p-6 rounded-lg shadow border">
+        <div className="bg-gray-800 border border-gray-700 p-6 rounded-lg shadow">
           <div className="flex items-center">
-            <div className="p-3 bg-yellow-100 rounded-lg">
+            <div className="p-3 bg-accent-teal rounded-lg">
               <span className="text-2xl">⚠️</span>
             </div>
             <div className="ml-4">
-              <p className="text-sm font-medium text-gray-600">Low Stock</p>
-              <p className="text-2xl font-bold text-yellow-600">{stats.lowStock}</p>
+              <p className="text-sm font-medium text-gray-300">Low Stock</p>
+              <p className="text-2xl font-bold text-accent-teal">{stats.lowStock}</p>
             </div>
           </div>
         </div>
         
-        <div className="bg-white p-6 rounded-lg shadow border">
+        <div className="bg-gray-800 border border-gray-700 p-6 rounded-lg shadow">
           <div className="flex items-center">
-            <div className="p-3 bg-red-100 rounded-lg">
+            <div className="p-3 bg-accent-green rounded-lg">
               <span className="text-2xl">❌</span>
             </div>
             <div className="ml-4">
-              <p className="text-sm font-medium text-gray-600">Out of Stock</p>
-              <p className="text-2xl font-bold text-red-600">{stats.outOfStock}</p>
+              <p className="text-sm font-medium text-gray-300">Out of Stock</p>
+              <p className="text-2xl font-bold text-accent-green">{stats.outOfStock}</p>
             </div>
           </div>
         </div>
         
-        <div className="bg-white p-6 rounded-lg shadow border">
+        <div className="bg-gray-800 border border-gray-700 p-6 rounded-lg shadow">
           <div className="flex items-center">
-            <div className="p-3 bg-purple-100 rounded-lg">
+            <div className="p-3 bg-secondary rounded-lg">
               <span className="text-2xl">⏰</span>
             </div>
             <div className="ml-4">
-              <p className="text-sm font-medium text-gray-600">Expiring Soon</p>
-              <p className="text-2xl font-bold text-purple-600">{stats.expiringSoon}</p>
+              <p className="text-sm font-medium text-gray-300">Expiring Soon</p>
+              <p className="text-2xl font-bold text-secondary">{stats.expiringSoon}</p>
             </div>
           </div>
         </div>
       </div>
 
       {/* Filters and Search */}
-      <div className="bg-white rounded-lg shadow border p-6 mb-8">
+      <div className="bg-gray-800 border border-gray-700 rounded-lg shadow p-6 mb-8">
         <div className="flex flex-col lg:flex-row gap-4">
           {/* Search */}
           <div className="flex-1">
@@ -372,7 +372,7 @@ export default function InventoryPage() {
               placeholder="Search items, categories, suppliers, or locations..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+              className="w-full px-4 py-2 bg-gray-700 border border-gray-600 text-light rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent placeholder-gray-400"
             />
           </div>
           
@@ -380,7 +380,7 @@ export default function InventoryPage() {
           <select
             value={filters.category}
             onChange={(e) => setFilters(prev => ({ ...prev, category: e.target.value }))}
-            className="px-4 py-2 border rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+            className="px-4 py-2 bg-gray-700 border border-gray-600 text-light rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent"
           >
             {categories.map(category => (
               <option key={category} value={category}>
@@ -393,7 +393,7 @@ export default function InventoryPage() {
           <select
             value={filters.status}
             onChange={(e) => setFilters(prev => ({ ...prev, status: e.target.value as InventoryFilters['status'] }))}
-            className="px-4 py-2 border rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+            className="px-4 py-2 bg-gray-700 border border-gray-600 text-light rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent"
           >
             <option value="all">All Status</option>
             <option value="in-stock">In Stock</option>
@@ -413,7 +413,7 @@ export default function InventoryPage() {
                 sortOrder: sortOrder as InventoryFilters['sortOrder'] 
               }))
             }}
-            className="px-4 py-2 border rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+            className="px-4 py-2 bg-gray-700 border border-gray-600 text-light rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent"
           >
             <option value="name-asc">Name A-Z</option>
             <option value="name-desc">Name Z-A</option>
@@ -428,10 +428,10 @@ export default function InventoryPage() {
 
       {/* Inventory Grid */}
       {filteredInventory.length === 0 ? (
-        <div className="bg-white rounded-lg shadow border p-12 text-center">
+        <div className="bg-gray-800 border border-gray-700 rounded-lg shadow p-12 text-center">
           <div className="text-6xl mb-4">📋</div>
-          <h3 className="text-xl font-semibold text-gray-900 mb-2">No Items Found</h3>
-          <p className="text-gray-600 mb-6">
+          <h3 className="text-xl font-semibold text-light mb-2">No Items Found</h3>
+          <p className="text-gray-300 mb-6">
             {searchTerm || filters.category !== 'all' || filters.status !== 'all'
               ? 'Try adjusting your filters or search terms' 
               : 'No inventory items have been added yet'
@@ -439,7 +439,7 @@ export default function InventoryPage() {
           </p>
           <button 
             onClick={() => setShowAddModal(true)}
-            className="bg-orange-600 text-white px-6 py-3 rounded-lg hover:bg-orange-700 transition-colors font-medium"
+            className="bg-accent text-white px-6 py-3 rounded-lg hover:bg-primary transition-colors font-medium"
           >
             Add First Item
           </button>
@@ -460,13 +460,13 @@ export default function InventoryPage() {
       {/* Add Item Modal */}
       {showAddModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
-          <div className="bg-white rounded-lg shadow-xl max-w-md w-full">
+          <div className="bg-gray-800 border border-gray-700 rounded-lg shadow-xl max-w-md w-full">
             <div className="p-6">
               <div className="flex items-center justify-between mb-6">
-                <h2 className="text-2xl font-bold text-gray-900">Add New Item</h2>
+                <h2 className="text-2xl font-bold text-light">Add New Item</h2>
                 <button
                   onClick={() => setShowAddModal(false)}
-                  className="text-gray-400 hover:text-gray-600"
+                  className="text-gray-400 hover:text-gray-300"
                 >
                   ✕
                 </button>
@@ -475,9 +475,9 @@ export default function InventoryPage() {
                 <input
                   type="text"
                   placeholder="Item name"
-                  className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                  className="w-full px-4 py-2 bg-gray-700 border border-gray-600 text-light rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent placeholder-gray-400"
                 />
-                <select className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent">
+                <select className="w-full px-4 py-2 bg-gray-700 border border-gray-600 text-light rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent">
                   <option value="">Select category</option>
                   {categories.slice(1).map(category => (
                     <option key={category} value={category}>
@@ -550,13 +550,13 @@ export default function InventoryPage() {
       {/* Item Details Modal */}
       {showDetailsModal && selectedItem && (
         <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
-          <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-screen overflow-y-auto">
+          <div className="bg-gray-800 border border-gray-700 rounded-lg shadow-xl max-w-2xl w-full max-h-screen overflow-y-auto">
             <div className="p-6">
               <div className="flex items-center justify-between mb-6">
-                <h2 className="text-2xl font-bold text-gray-900">Inventory Details</h2>
+                <h2 className="text-2xl font-bold text-light">Inventory Details</h2>
                 <button
                   onClick={() => setShowDetailsModal(false)}
-                  className="text-gray-400 hover:text-gray-600"
+                  className="text-gray-400 hover:text-gray-300"
                 >
                   ✕
                 </button>
@@ -565,18 +565,18 @@ export default function InventoryPage() {
               <div className="space-y-6">
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label className="text-sm font-medium text-gray-500">Item ID</label>
-                    <p className="text-lg font-semibold">{selectedItem.id}</p>
+                    <label className="text-sm font-medium text-gray-400">Item ID</label>
+                    <p className="text-lg font-semibold text-light">{selectedItem.id}</p>
                   </div>
                   <div>
-                    <label className="text-sm font-medium text-gray-500">Category</label>
-                    <p className="text-lg font-semibold capitalize">{selectedItem.category}</p>
+                    <label className="text-sm font-medium text-gray-400">Category</label>
+                    <p className="text-lg font-semibold text-light capitalize">{selectedItem.category}</p>
                   </div>
                 </div>
 
                 <div>
-                  <label className="text-sm font-medium text-gray-500">Item Name</label>
-                  <p className="text-xl font-bold">{selectedItem.name}</p>
+                  <label className="text-sm font-medium text-gray-400">Item Name</label>
+                  <p className="text-xl font-bold text-light">{selectedItem.name}</p>
                 </div>
 
                 <div className="grid grid-cols-3 gap-4">

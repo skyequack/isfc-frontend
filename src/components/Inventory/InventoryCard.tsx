@@ -23,15 +23,15 @@ interface InventoryCardProps {
 }
 
 const categoryConfig = {
-  protein: { color: 'text-red-600', bgColor: 'bg-red-50', icon: '🥩' },
+  protein: { color: 'text-accent-green', bgColor: 'bg-success', icon: '🥩' },
   vegetable: { color: 'text-success', bgColor: 'bg-highlight', icon: '🥬' },
-  pantry: { color: 'text-yellow-600', bgColor: 'bg-yellow-50', icon: '🥫' },
-  dairy: { color: 'text-accent', bgColor: 'bg-blue-50', icon: '🥛' },
-  beverage: { color: 'text-purple-600', bgColor: 'bg-purple-50', icon: '🥤' },
-  spice: { color: 'text-secondary', bgColor: 'bg-highlight', icon: '🌶️' },
-  seafood: { color: 'text-accent', bgColor: 'bg-teal-50', icon: '🐟' },
+  pantry: { color: 'text-accent-teal', bgColor: 'bg-accent', icon: '🥫' },
+  dairy: { color: 'text-primary', bgColor: 'bg-secondary', icon: '🥛' },
+  beverage: { color: 'text-secondary', bgColor: 'bg-primary', icon: '🥤' },
+  spice: { color: 'text-accent-green', bgColor: 'bg-success', icon: '🌶️' },
+  seafood: { color: 'text-accent-teal', bgColor: 'bg-accent', icon: '🐟' },
   produce: { color: 'text-success', bgColor: 'bg-highlight', icon: '🍃' },
-  meat: { color: 'text-red-600', bgColor: 'bg-red-50', icon: '🥩' },
+  meat: { color: 'text-accent-green', bgColor: 'bg-success', icon: '🥩' },
   herbs: { color: 'text-success', bgColor: 'bg-highlight', icon: '🌿' }
 }
 
@@ -45,15 +45,15 @@ export default function InventoryCard({ item, onRestock, onViewDetails }: Invent
     const isOut = item.quantity === 0
     
     if (isOut) {
-      return { status: 'out', color: 'text-red-700', bgColor: 'bg-red-100', label: 'Out of Stock' }
+      return { status: 'out', color: 'text-light', bgColor: 'bg-accent-green', label: 'Out of Stock' }
     }
     if (isLow) {
-      return { status: 'low', color: 'text-yellow-600', bgColor: 'bg-yellow-100', label: 'Low Stock' }
+      return { status: 'low', color: 'text-primary', bgColor: 'bg-accent-teal', label: 'Low Stock' }
     }
     if (percentage < 50) {
-      return { status: 'medium', color: 'text-blue-600', bgColor: 'bg-blue-100', label: 'Medium' }
+      return { status: 'medium', color: 'text-secondary', bgColor: 'bg-primary', label: 'Medium' }
     }
-    return { status: 'good', color: 'text-green-600', bgColor: 'bg-green-100', label: 'In Stock' }
+    return { status: 'good', color: 'text-light', bgColor: 'bg-success', label: 'In Stock' }
   }, [item.quantity, item.minStock, item.maxStock])
 
   const expiryInfo = useMemo(() => {
@@ -98,17 +98,17 @@ export default function InventoryCard({ item, onRestock, onViewDetails }: Invent
   const stockPercentage = Math.min((item.quantity / item.maxStock) * 100, 100)
 
   return (
-    <div className="bg-white rounded-lg shadow border hover:shadow-md transition-shadow">
+    <div className="bg-gray-800 border border-gray-700 rounded-lg shadow hover:shadow-md transition-shadow">
       {/* Header */}
-      <div className="p-4 border-b">
+      <div className="p-4 border-b border-gray-600">
         <div className="flex items-start justify-between">
           <div className="flex items-center space-x-3">
             <div className={`p-2 rounded-lg ${config.bgColor}`}>
               <span className="text-xl">{config.icon}</span>
             </div>
             <div className="flex-1">
-              <h3 className="font-semibold text-gray-900 truncate">{item.name}</h3>
-              <p className="text-sm text-gray-600 capitalize">{item.category}</p>
+              <h3 className="font-semibold text-light truncate">{item.name}</h3>
+              <p className="text-sm text-gray-300 capitalize">{item.category}</p>
             </div>
           </div>
           <div className={`px-2 py-1 rounded-full text-xs font-medium ${stockStatus.bgColor} ${stockStatus.color}`}>
@@ -120,24 +120,24 @@ export default function InventoryCard({ item, onRestock, onViewDetails }: Invent
       {/* Stock Level */}
       <div className="p-4 space-y-3">
         <div className="flex items-center justify-between">
-          <span className="text-sm font-medium text-gray-700">Stock Level</span>
-          <span className="text-sm font-semibold">
+          <span className="text-sm font-medium text-gray-300">Stock Level</span>
+          <span className="text-sm font-semibold text-light">
             {item.quantity} / {item.maxStock} {item.unit}
           </span>
         </div>
         
-        <div className="w-full bg-gray-200 rounded-full h-2">
+        <div className="w-full bg-gray-600 rounded-full h-2">
           <div 
             className={`h-2 rounded-full transition-all duration-300 ${
-              stockStatus.status === 'out' ? 'bg-red-500' :
-              stockStatus.status === 'low' ? 'bg-yellow-500' :
-              stockStatus.status === 'medium' ? 'bg-blue-500' : 'bg-green-500'
+              stockStatus.status === 'out' ? 'bg-accent-green' :
+              stockStatus.status === 'low' ? 'bg-accent-teal' :
+              stockStatus.status === 'medium' ? 'bg-primary' : 'bg-success'
             }`}
             style={{ width: `${stockPercentage}%` }}
           />
         </div>
 
-        <div className="flex justify-between text-xs text-gray-500">
+        <div className="flex justify-between text-xs text-gray-400">
           <span>Min: {item.minStock} {item.unit}</span>
           <span>Max: {item.maxStock} {item.unit}</span>
         </div>
@@ -147,30 +147,30 @@ export default function InventoryCard({ item, onRestock, onViewDetails }: Invent
       <div className="px-4 pb-4 space-y-3">
         <div className="grid grid-cols-2 gap-4 text-sm">
           <div>
-            <p className="text-gray-500">Cost per Unit</p>
-            <p className="font-medium">${item.cost.toFixed(2)}</p>
+            <p className="text-gray-400">Cost per Unit</p>
+            <p className="font-medium text-light">${item.cost.toFixed(2)}</p>
           </div>
           <div>
-            <p className="text-gray-500">Total Value</p>
-            <p className="font-medium">${(item.quantity * item.cost).toFixed(2)}</p>
+            <p className="text-gray-400">Total Value</p>
+            <p className="font-medium text-light">${(item.quantity * item.cost).toFixed(2)}</p>
           </div>
         </div>
 
         <div className="text-sm">
-          <p className="text-gray-500">Supplier</p>
-          <p className="font-medium truncate">{item.supplier}</p>
+          <p className="text-gray-400">Supplier</p>
+          <p className="font-medium text-light truncate">{item.supplier}</p>
         </div>
 
         <div className="text-sm">
-          <p className="text-gray-500">Location</p>
-          <p className="font-medium truncate">{item.location}</p>
+          <p className="text-gray-400">Location</p>
+          <p className="font-medium text-light truncate">{item.location}</p>
         </div>
 
         {/* Expiry Warning */}
         {(expiryInfo.isExpired || expiryInfo.isExpiringSoon) && (
           <div className={`p-2 rounded-lg text-sm font-medium ${
-            expiryInfo.isExpired ? 'bg-red-100 text-red-700 border border-red-200' :
-            'bg-yellow-100 text-yellow-700 border border-yellow-200'
+            expiryInfo.isExpired ? 'bg-accent-green text-light border border-accent-teal' :
+            'bg-accent-teal text-primary border border-accent'
           }`}>
             <div className="flex items-center space-x-1">
               <span>{expiryInfo.isExpired ? '⚠️' : '⏰'}</span>
@@ -181,7 +181,7 @@ export default function InventoryCard({ item, onRestock, onViewDetails }: Invent
       </div>
 
       {/* Actions */}
-      <div className="p-4 border-t bg-gray-50 rounded-b-lg">
+      <div className="p-4 border-t border-gray-600 bg-gray-700 rounded-b-lg">
         {!showActions ? (
           <div className="flex space-x-2">
             <button
@@ -193,7 +193,7 @@ export default function InventoryCard({ item, onRestock, onViewDetails }: Invent
             {onViewDetails && (
               <button
                 onClick={() => onViewDetails(item)}
-                className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-100 transition-colors text-sm font-medium"
+                className="px-4 py-2 border border-gray-500 text-gray-300 rounded-lg hover:bg-gray-600 transition-colors text-sm font-medium"
               >
                 📋
               </button>
@@ -212,7 +212,7 @@ export default function InventoryCard({ item, onRestock, onViewDetails }: Invent
             </div>
             <button
               onClick={() => setShowActions(false)}
-              className="w-full text-gray-500 text-sm hover:text-gray-700 transition-colors"
+              className="w-full text-gray-400 text-sm hover:text-gray-300 transition-colors"
             >
               Cancel
             </button>
