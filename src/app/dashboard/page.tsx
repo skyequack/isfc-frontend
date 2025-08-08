@@ -100,7 +100,7 @@ const getDashboardData = (): DashboardData => ({
 })
 
 export default function DashboardPage() {
-  const { isLoaded, isSignedIn, user } = useUser()
+  const { isLoaded, isSignedIn } = useUser()
   const router = useRouter()
   const [dashboardData, setDashboardData] = useState<DashboardData | null>(null)
   
@@ -131,13 +131,6 @@ export default function DashboardPage() {
 
   if (!isSignedIn) {
     return null
-  }
-
-  const getGreeting = () => {
-    const hour = new Date().getHours()
-    if (hour < 12) return 'Good morning'
-    if (hour < 17) return 'Good afternoon'
-    return 'Good evening'
   }
 
   const getPriorityColor = (priority: string) => {
@@ -172,8 +165,9 @@ export default function DashboardPage() {
         {/* Header */}
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-light">Dashboard Overview</h1>
-          <p className="text-highlight mt-2">Welcome back! Here's what's happening with your catering business.</p>
-        </div>      {/* Analytics Cards */}
+          <p className="text-highlight mt-2">Welcome back! Here&apos;s what&apos;s happening with your catering business.</p>
+        </div>
+        {/* Analytics Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
         {dashboardData ? (
           dashboardData.analytics.map((metric: AnalyticsMetric, index: number) => (
