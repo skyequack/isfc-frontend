@@ -1,5 +1,8 @@
 'use client'
 
+export const dynamic = 'force-dynamic'
+export const revalidate = 0
+
 import { useUser } from '@clerk/nextjs'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
