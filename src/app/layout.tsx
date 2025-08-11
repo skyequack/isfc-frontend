@@ -10,7 +10,6 @@ import Navigation from "@/components/Navigation/Navigation";
 import "./globals.css";
 
 export const dynamic = 'force-dynamic'
-export const revalidate = 0
 
 // Read Clerk publishable key from env (required both at build and runtime)
 const clerkPublishableKey = process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY;
