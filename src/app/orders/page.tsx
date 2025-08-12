@@ -5,73 +5,6 @@ import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import OrderCard, { Order, OrderStatus } from '@/components/Orders/OrderCard'
 
-// Mock data - replace with real API calls
-const getMockOrders = (): Order[] => [
-  {
-    id: 'ORD-001',
-    customerName: 'TechCorp Inc.',
-    event: 'Annual Meeting & Awards Ceremony',
-    date: '2024-01-15',
-    time: '12:00 PM',
-    guests: 50,
-    status: 'preparing',
-    total: 2750.00,
-    items: [
-      { id: '1', name: 'Grilled Salmon', quantity: 25, price: 35.00, category: 'main' },
-      { id: '2', name: 'Vegetarian Pasta', quantity: 15, price: 28.00, category: 'main' },
-      { id: '3', name: 'Caesar Salad', quantity: 50, price: 12.00, category: 'appetizer' },
-      { id: '4', name: 'Chocolate Mousse', quantity: 50, price: 8.00, category: 'dessert' }
-    ],
-    requirements: ['Gluten-free options', 'Vegetarian meals', 'Presentation setup']
-  },
-  {
-    id: 'ORD-002',
-    customerName: 'Johnson Wedding',
-    event: 'Wedding Reception',
-    date: '2024-01-16',
-    time: '7:00 PM',
-    guests: 120,
-    status: 'confirmed',
-    total: 8500.00,
-    items: [
-      { id: '5', name: 'Prime Rib', quantity: 80, price: 65.00, category: 'main' },
-      { id: '6', name: 'Herb-crusted Chicken', quantity: 40, price: 45.00, category: 'main' },
-      { id: '7', name: 'Wedding Cake', quantity: 1, price: 350.00, category: 'dessert' }
-    ],
-    requirements: ['White tablecloths', 'Kosher preparation', 'Late evening service']
-  },
-  {
-    id: 'ORD-003',
-    customerName: 'Smith Birthday Party',
-    event: '50th Birthday Celebration',
-    date: '2024-01-15',
-    time: '3:00 PM',
-    guests: 25,
-    status: 'ready',
-    total: 890.00,
-    items: [
-      { id: '8', name: 'BBQ Platter', quantity: 25, price: 32.00, category: 'main' },
-      { id: '9', name: 'Birthday Cake', quantity: 1, price: 90.00, category: 'dessert' }
-    ],
-    requirements: ['Birthday decorations', 'Outdoor setup']
-  },
-  {
-    id: 'ORD-004',
-    customerName: 'Downtown Fitness',
-    event: 'Health & Wellness Seminar',
-    date: '2024-01-17',
-    time: '11:30 AM',
-    guests: 35,
-    status: 'pending',
-    total: 1200.00,
-    items: [
-      { id: '10', name: 'Quinoa Bowl', quantity: 35, price: 24.00, category: 'main' },
-      { id: '11', name: 'Fresh Fruit Platter', quantity: 3, price: 45.00, category: 'appetizer' }
-    ],
-    requirements: ['Healthy options only', 'Vegan alternatives', 'No processed foods']
-  }
-]
-
 export default function OrdersPage() {
   const { isLoaded, isSignedIn } = useUser()
   const router = useRouter()
@@ -81,7 +14,7 @@ export default function OrdersPage() {
   const [searchTerm, setSearchTerm] = useState('')
   const [selectedOrder, setSelectedOrder] = useState<Order | null>(null)
   const [showDetails, setShowDetails] = useState(false)
-  
+
   useEffect(() => {
     if (isLoaded && !isSignedIn) {
       router.push('/sign-in')
@@ -90,11 +23,19 @@ export default function OrdersPage() {
 
   useEffect(() => {
     if (isSignedIn) {
-      // Simulate API call
-      setTimeout(() => {
-        setOrders(getMockOrders())
-        setFilteredOrders(getMockOrders())
-      }, 500)
+      const fetchOrders = async () => {
+        try {
+          const res = await fetch('/api/orders')
+          if (res.ok) {
+            const data: Order[] = await res.json()
+            setOrders(data)
+            setFilteredOrders(data)
+          }
+        } catch (error) {
+          console.error('Failed to fetch orders', error)
+        }
+      }
+      fetchOrders()
     }
   }, [isSignedIn])
 
