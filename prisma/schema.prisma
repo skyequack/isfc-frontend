@@ -1,0 +1,47 @@
+// Prisma schema
+// DataSource
+ datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+ }
+
+ // Generator
+ generator client {
+  provider = "prisma-client-js"
+ }
+
+ model Order {
+  id           String      @id @default(cuid())
+  customerName String
+  event        String
+  date         DateTime
+  time         String?
+  guests       Int
+  status       String
+  total        Float
+  items        OrderItem[]
+  escalations  Escalation[]
+  requirements String[]
+  createdAt    DateTime    @default(now())
+}
+
+ model OrderItem {
+  id       String @id @default(cuid())
+  order    Order  @relation(fields: [orderId], references: [id])
+  orderId  String
+  name     String
+  quantity Int
+  price    Float
+  category String
+ }
+
+ model Escalation {
+  id          String   @id @default(cuid())
+  order       Order?   @relation(fields: [orderId], references: [id])
+  orderId     String?
+  priority    String
+  status      String
+  description String
+  createdAt   DateTime @default(now())
+  resolvedAt  DateTime?
+ }
