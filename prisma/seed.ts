@@ -18,7 +18,7 @@ async function main() {
     }
   });
 
-  const customer2 = await prisma.Customer.create({
+  const customer2 = await prisma.customer.create({
     data: {
       name: 'Jane Smith',
       email: 'jane@example.com',
