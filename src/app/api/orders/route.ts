@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/db';
+import { ItemCategory } from '@prisma/client';
 
 export async function GET() {
   try {
@@ -73,7 +74,7 @@ export async function POST(request: Request) {
             name: item.name,
             quantity: Number(item.quantity),
             price: Number(item.price),
-            category: item.category,
+            category: item.category.toUpperCase() as ItemCategory,
           })),
         },
       },
