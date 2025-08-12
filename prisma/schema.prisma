@@ -1,47 +1,88 @@
-// Prisma schema
-// DataSource
- datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
- }
-
- // Generator
- generator client {
+generator client {
   provider = "prisma-client-js"
- }
+}
 
- model Order {
-  id           String      @id @default(cuid())
-  customerName String
+datasource db {
+  provider          = "postgresql"
+  url               = env("DATABASE_URL")
+  shadowDatabaseUrl = env("DIRECT_URL")
+}
+
+model Customer {
+  id        String   @id @default(cuid())
+  name      String
+  email     String   @unique
+  phone     String?
+  address   String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  orders    Order[]
+}
+
+model Order {
+  id           String       @id @default(cuid())
+  customerId   String
   event        String
   date         DateTime
   time         String?
   guests       Int
-  status       String
+  status       OrderStatus  @default(PENDING)
   total        Float
-  items        OrderItem[]
-  escalations  Escalation[]
   requirements String[]
-  createdAt    DateTime    @default(now())
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+  escalations  Escalation[]
+  customer     Customer     @relation(fields: [customerId], references: [id])
+  items        OrderItem[]
 }
 
- model OrderItem {
-  id       String @id @default(cuid())
-  order    Order  @relation(fields: [orderId], references: [id])
+model OrderItem {
+  id       String       @id @default(cuid())
   orderId  String
   name     String
   quantity Int
   price    Float
-  category String
- }
+  category ItemCategory
+  order    Order        @relation(fields: [orderId], references: [id])
+}
 
- model Escalation {
-  id          String   @id @default(cuid())
-  order       Order?   @relation(fields: [orderId], references: [id])
+model Escalation {
+  id          String             @id @default(cuid())
   orderId     String?
-  priority    String
-  status      String
+  priority    EscalationPriority
+  status      EscalationStatus
   description String
-  createdAt   DateTime @default(now())
+  createdAt   DateTime           @default(now())
   resolvedAt  DateTime?
- }
+  order       Order?             @relation(fields: [orderId], references: [id])
+}
+
+enum OrderStatus {
+  PENDING
+  CONFIRMED
+  IN_PROGRESS
+  COMPLETED
+  CANCELLED
+}
+
+enum EscalationPriority {
+  LOW
+  MEDIUM
+  HIGH
+}
+
+enum EscalationStatus {
+  OPEN
+  IN_PROGRESS
+  RESOLVED
+  CLOSED
+}
+
+enum ItemCategory {
+  FURNITURE
+  EQUIPMENT
+  LINENS
+  FOOD
+  BEVERAGE
+  SERVICE
+}

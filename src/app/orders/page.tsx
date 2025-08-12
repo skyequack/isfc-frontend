@@ -1,294 +1,198 @@
-'use client'
+import { prisma } from '@/lib/db';
+import type { Prisma } from '@prisma/client';
 
-import { useUser } from '@clerk/nextjs'
-import { useRouter } from 'next/navigation'
-import { useEffect, useState } from 'react'
-import OrderCard, { Order, OrderStatus } from '@/components/Orders/OrderCard'
 
-export default function OrdersPage() {
-  const { isLoaded, isSignedIn } = useUser()
-  const router = useRouter()
-  const [orders, setOrders] = useState<Order[]>([])
-  const [filteredOrders, setFilteredOrders] = useState<Order[]>([])
-  const [statusFilter, setStatusFilter] = useState<OrderStatus | 'all'>('all')
-  const [searchTerm, setSearchTerm] = useState('')
-  const [selectedOrder, setSelectedOrder] = useState<Order | null>(null)
-  const [showDetails, setShowDetails] = useState(false)
+import { Metadata } from 'next';
 
-  useEffect(() => {
-    if (isLoaded && !isSignedIn) {
-      router.push('/sign-in')
-    }
-  }, [isLoaded, isSignedIn, router])
+export const metadata: Metadata = {
+  title: 'Orders | ISFC Dashboard',
+  description: 'View and manage your event orders'
+};
 
-  useEffect(() => {
-    if (isSignedIn) {
-      const fetchOrders = async () => {
-        try {
-          const res = await fetch('/api/orders')
-          if (res.ok) {
-            const data: Order[] = await res.json()
-            setOrders(data)
-            setFilteredOrders(data)
+interface OrderData {
+  id: string;
+  event: string;
+  date: Date;
+  time: string | null;
+  guests: number;
+  status: string;
+  total: number;
+  requirements: string[];
+  createdAt: Date;
+  customer: {
+    name: string;
+    email: string;
+    phone: string | null;
+  };
+  items: {
+    id: string;
+    name: string;
+    quantity: number;
+    price: number;
+    category: string;
+  }[];
+  escalations: {
+    id: string;
+    status: string;
+  }[];
+};
+
+async function getOrders(): Promise<OrderData[]> {
+  try {
+    type PrismaOrder = Prisma.OrderGetPayload<{
+      include: {
+        customer: true;
+        items: true;
+        escalations: true;
+      };
+    }>;
+
+    const orders = await prisma.order.findMany({
+      include: {
+        customer: true,
+        items: true,
+        escalations: {
+          where: {
+            status: 'OPEN'
           }
-        } catch (error) {
-          console.error('Failed to fetch orders', error)
         }
+      },
+      orderBy: {
+        createdAt: 'desc'
       }
-      fetchOrders()
-    }
-  }, [isSignedIn])
+    }) as PrismaOrder[];
 
-  useEffect(() => {
-    let filtered = orders
-
-    // Filter by status
-    if (statusFilter !== 'all') {
-      filtered = filtered.filter(order => order.status === statusFilter)
-    }
-
-    // Filter by search term
-    if (searchTerm) {
-      filtered = filtered.filter(order => 
-        order.customerName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        order.event.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        order.id.toLowerCase().includes(searchTerm.toLowerCase())
-      )
-    }
-
-    setFilteredOrders(filtered)
-  }, [orders, statusFilter, searchTerm])
-
-  if (!isLoaded) {
-    return (
-      <div className="container mx-auto px-4 py-8">
-                  <div className="flex items-center justify-center min-h-64">
-            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-accent"></div>
-          </div>
-      </div>
-    )
+    return orders.map((order) => ({
+      id: order.id,
+      event: order.event,
+      date: order.date,
+      time: order.time,
+      guests: order.guests,
+      status: order.status,
+      total: order.total,
+      requirements: order.requirements,
+      createdAt: order.createdAt,
+      customer: {
+        name: order.customer.name,
+        email: order.customer.email,
+        phone: order.customer.phone
+      },
+      items: order.items.map(item => ({
+        id: item.id,
+        name: item.name,
+        quantity: item.quantity,
+        price: item.price,
+        category: item.category
+      })),
+      escalations: order.escalations.map(esc => ({
+        id: esc.id,
+        status: esc.status
+      }))
+    }));
+  } catch (error) {
+    console.error('Error fetching orders:', error);
+    return [];
   }
+}
 
-  if (!isSignedIn) {
-    return null
-  }
-
-  const handleStatusChange = async (orderId: string, newStatus: OrderStatus) => {
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1000))
-    
-    setOrders(prevOrders =>
-      prevOrders.map(order =>
-        order.id === orderId ? { ...order, status: newStatus } : order
-      )
-    )
-  }
-
-  const handleViewDetails = (order: Order) => {
-    setSelectedOrder(order)
-    setShowDetails(true)
-  }
-
-  const getStatusCounts = () => {
-    const counts = orders.reduce((acc, order) => {
-      acc[order.status] = (acc[order.status] || 0) + 1
-      return acc
-    }, {} as Record<OrderStatus, number>)
-    
-    return {
-      all: orders.length,
-      ...counts
-    }
-  }
-
-  const statusCounts = getStatusCounts()
+export default async function OrdersPage() {
+  const orders = await getOrders();
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      {/* Header */}
-      <div className="mb-8">
-        <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-3xl font-bold text-primary">Order Management</h1>
-            <p className="text-secondary mt-2">Manage and track all catering orders</p>
-          </div>
-          <button className="bg-accent text-white px-6 py-3 rounded-lg hover:bg-primary transition-colors font-medium">
-            ➕ New Order
-          </button>
-        </div>
+    <div className="min-h-screen bg-gray-900 text-gray-100 p-8">
+      <div className="flex justify-between items-center mb-8">
+        <h1 className="text-3xl font-bold">Orders</h1>
+        <a
+          href="/orders/new"
+          className="px-4 py-2 bg-blue-600 hover:bg-blue-500 rounded-lg text-white"
+        >
+          New Order
+        </a>
       </div>
-
-      {/* Filters and Search */}
-      <div className="bg-white rounded-lg shadow border p-6 mb-8">
-        <div className="flex flex-col lg:flex-row gap-4">
-          {/* Search */}
-          <div className="flex-1">
-            <input
-              type="text"
-              placeholder="Search by customer, event, or order ID..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent"
-            />
-          </div>
-          
-          {/* Status Filter */}
-          <div className="flex gap-2 flex-wrap">
-            {[
-              { key: 'all' as const, label: 'All Orders', count: statusCounts.all },
-              { key: 'pending' as const, label: 'Pending', count: statusCounts.pending || 0 },
-              { key: 'confirmed' as const, label: 'Confirmed', count: statusCounts.confirmed || 0 },
-              { key: 'preparing' as const, label: 'Preparing', count: statusCounts.preparing || 0 },
-              { key: 'ready' as const, label: 'Ready', count: statusCounts.ready || 0 },
-              { key: 'delivered' as const, label: 'Delivered', count: statusCounts.delivered || 0 }
-            ].map((filter) => (
-              <button
-                key={filter.key}
-                onClick={() => setStatusFilter(filter.key)}
-                className={`px-4 py-2 rounded-lg font-medium transition-colors ${
-                  statusFilter === filter.key
-                    ? 'bg-accent text-white'
-                    : 'bg-gray-100 text-secondary hover:bg-highlight'
-                }`}
-              >
-                {filter.label} ({filter.count})
-              </button>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* Orders Grid */}
-      {filteredOrders.length === 0 ? (
-        <div className="bg-white rounded-lg shadow border p-12 text-center">
-          <div className="text-6xl mb-4">📋</div>
-          <h3 className="text-xl font-semibold text-gray-900 mb-2">No Orders Found</h3>
-          <p className="text-gray-600 mb-6">
-            {searchTerm || statusFilter !== 'all' 
-              ? 'Try adjusting your filters or search terms' 
-              : 'No orders have been created yet'
-            }
-          </p>
-          <button className="bg-orange-600 text-white px-6 py-3 rounded-lg hover:bg-orange-700 transition-colors font-medium">
-            Create New Order
-          </button>
-        </div>
-      ) : (
-        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
-          {filteredOrders.map((order) => (
-            <OrderCard
-              key={order.id}
-              order={order}
-              onStatusChange={handleStatusChange}
-              onViewDetails={handleViewDetails}
-            />
-          ))}
-        </div>
-      )}
-
-      {/* Order Details Modal */}
-      {showDetails && selectedOrder && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
-          <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-screen overflow-y-auto">
-            <div className="p-6">
-              {/* Modal Header */}
-              <div className="flex items-center justify-between mb-6">
-                <h2 className="text-2xl font-bold text-gray-900">Order Details</h2>
-                <button
-                  onClick={() => setShowDetails(false)}
-                  className="text-gray-400 hover:text-gray-600"
-                >
-                  ✕
-                </button>
-              </div>
-
-              {/* Order Info */}
-              <div className="space-y-6">
-                <div className="grid grid-cols-2 gap-4">
+      <div className="overflow-x-auto rounded-lg shadow-lg bg-gray-800">
+        <table className="min-w-full text-sm">
+          <thead>
+            <tr className="bg-gray-700">
+              <th className="px-4 py-3 text-left">Order ID</th>
+              <th className="px-4 py-3 text-left">Customer</th>
+              <th className="px-4 py-3 text-left">Event</th>
+              <th className="px-4 py-3 text-left">Items</th>
+              <th className="px-4 py-3 text-left">Total</th>
+              <th className="px-4 py-3 text-left">Status</th>
+              <th className="px-4 py-3 text-left">Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            {orders?.map((order: OrderData) => (
+              <tr key={order.id} className="border-b border-gray-700 hover:bg-gray-700 transition">
+                <td className="px-4 py-3">{order.id}</td>
+                <td className="px-4 py-3">
                   <div>
-                    <label className="text-sm font-medium text-gray-500">Order ID</label>
-                    <p className="text-lg font-semibold">{selectedOrder.id}</p>
+                    <div>{order.customer.name}</div>
+                    <div className="text-xs text-gray-400">{order.customer.email}</div>
+                    {order.customer.phone && (
+                      <div className="text-xs text-gray-400">{order.customer.phone}</div>
+                    )}
                   </div>
+                </td>
+                <td className="px-4 py-3">
                   <div>
-                    <label className="text-sm font-medium text-gray-500">Status</label>
-                    <p className="text-lg font-semibold capitalize">{selectedOrder.status}</p>
+                    <div>{order.event}</div>
+                    <div className="text-xs text-gray-400">{order.guests} guests</div>
                   </div>
-                  <div>
-                    <label className="text-sm font-medium text-gray-500">Customer</label>
-                    <p className="text-lg font-semibold">{selectedOrder.customerName}</p>
-                  </div>
-                  <div>
-                    <label className="text-sm font-medium text-gray-500">Total</label>
-                    <p className="text-lg font-semibold">${selectedOrder.total.toFixed(2)}</p>
-                  </div>
-                </div>
-
-                <div>
-                  <label className="text-sm font-medium text-gray-500">Event</label>
-                  <p className="text-lg">{selectedOrder.event}</p>
-                </div>
-
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <label className="text-sm font-medium text-gray-500">Date & Time</label>
-                    <p className="text-lg">{selectedOrder.date} at {selectedOrder.time}</p>
-                  </div>
-                  <div>
-                    <label className="text-sm font-medium text-gray-500">Guests</label>
-                    <p className="text-lg">{selectedOrder.guests} people</p>
-                  </div>
-                </div>
-
-                {/* Order Items */}
-                <div>
-                  <label className="text-sm font-medium text-gray-500 mb-3 block">Order Items</label>
-                  <div className="space-y-2">
-                    {selectedOrder.items.map((item) => (
-                      <div key={item.id} className="flex justify-between items-center p-3 bg-gray-50 rounded">
-                        <div>
-                          <p className="font-medium">{item.name}</p>
-                          <p className="text-sm text-gray-600 capitalize">{item.category}</p>
-                        </div>
-                        <div className="text-right">
-                          <p className="font-medium">x{item.quantity}</p>
-                          <p className="text-sm text-gray-600">${(item.price * item.quantity).toFixed(2)}</p>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Special Requirements */}
-                {selectedOrder.requirements.length > 0 && (
-                  <div>
-                    <label className="text-sm font-medium text-gray-500 mb-3 block">Special Requirements</label>
-                    <div className="space-y-2">
-                      {selectedOrder.requirements.map((req, index) => (
-                        <div key={index} className="p-3 bg-blue-50 rounded border-l-4 border-blue-400">
-                          <p>{req}</p>
-                        </div>
-                      ))}
+                </td>
+                <td className="px-4 py-3">
+                  {order.items.map(item => (
+                    <div key={item.id} className="text-sm mb-1">
+                      <span className="font-medium">{item.name}</span>
+                      <span className="text-gray-400"> × {item.quantity}</span>
+                      <span className="text-xs text-gray-500 ml-1">({item.category})</span>
                     </div>
+                  ))}
+                </td>
+                <td className="px-4 py-3">${order.total.toFixed(2)}</td>
+                <td className="px-4 py-3">
+                  <span className={getStatusColor(order.status)}>
+                    {order.status}
+                  </span>
+                </td>
+                <td className="px-4 py-3">
+                  <div>
+                    <div>{new Date(order.date).toLocaleDateString()}</div>
+                    {order.time && (
+                      <div className="text-xs text-gray-400">{order.time}</div>
+                    )}
                   </div>
-                )}
-              </div>
-
-              {/* Modal Actions */}
-              <div className="flex gap-3 mt-8">
-                <button
-                  onClick={() => setShowDetails(false)}
-                  className="flex-1 bg-gray-100 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-200 transition-colors"
-                >
-                  Close
-                </button>
-                <button className="flex-1 bg-orange-600 text-white px-4 py-2 rounded-lg hover:bg-orange-700 transition-colors">
-                  Edit Order
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
+                </td>
+              </tr>
+            ))}
+            {orders?.length === 0 && (
+              <tr>
+                <td colSpan={7} className="text-center py-8 text-gray-400">
+                  No orders found.
+                </td>
+              </tr>
+            )}
+          </tbody>
+        </table>
+      </div>
     </div>
-  )
+  );
+}
+
+function getStatusColor(status: string): string {
+  switch (status.toUpperCase()) {
+    case 'PENDING':
+      return 'text-yellow-400';
+    case 'CONFIRMED':
+      return 'text-blue-400';
+    case 'IN_PROGRESS':
+      return 'text-green-400';
+    case 'COMPLETED':
+      return 'text-green-500';
+    case 'CANCELLED':
+      return 'text-red-400';
+    default:
+      return 'text-gray-400';
+  }
 }
