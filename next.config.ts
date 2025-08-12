@@ -1,12 +1,17 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  // Removed static export configuration for localhost development
-  // output: 'export',
-  // trailingSlash: true,
-  // images: {
-  //   unoptimized: true
-  // }
+  // Configuration for Azure Static Web Apps
+  output: 'standalone',
+  experimental: {
+    serverComponentsExternalPackages: ['@prisma/client']
+  },
+  // Ensure trailing slashes for proper routing
+  trailingSlash: true,
+  // Optimize images for static hosting
+  images: {
+    unoptimized: true
+  }
 };
 
 export default nextConfig;
