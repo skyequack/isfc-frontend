@@ -2,15 +2,17 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   // Configuration for Azure Static Web Apps
-  output: 'standalone',
   experimental: {
     serverComponentsExternalPackages: ['@prisma/client']
   },
-  // Ensure trailing slashes for proper routing
-  trailingSlash: true,
   // Optimize images for static hosting
   images: {
     unoptimized: true
+  },
+  // Ensure proper handling of environment variables
+  env: {
+    DATABASE_URL: process.env.DATABASE_URL,
+    DIRECT_URL: process.env.DIRECT_URL,
   }
 };
 
