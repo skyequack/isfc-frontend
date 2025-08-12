@@ -2,9 +2,13 @@
 
 import { useState } from 'react'
 
+interface QueryResult {
+  [key: string]: unknown;
+}
+
 export default function SQLPage() {
   const [query, setQuery] = useState('')
-  const [result, setResult] = useState<any>(null)
+  const [result, setResult] = useState<QueryResult[] | null>(null)
   const [error, setError] = useState<string | null>(null)
 
   const executeQuery = async () => {
@@ -20,8 +24,8 @@ export default function SQLPage() {
       
       setResult(data)
       setError(null)
-    } catch (err: any) {
-      setError(err.message)
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'An error occurred')
       setResult(null)
     }
   }
@@ -65,9 +69,9 @@ export default function SQLPage() {
                 </tr>
               </thead>
               <tbody>
-                {result.map((row: any, i: number) => (
+                {result.map((row: QueryResult, i: number) => (
                   <tr key={i}>
-                    {Object.values(row).map((value: any, j: number) => (
+                    {Object.values(row).map((value: unknown, j: number) => (
                       <td key={j} className="p-4 border-b">
                         {JSON.stringify(value)}
                       </td>
