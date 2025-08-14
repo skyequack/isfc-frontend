@@ -7,7 +7,7 @@ interface AnalyticsCardProps {
   color: 'orange' | 'green' | 'blue' | 'red' | 'purple'
 }
 
-export default function AnalyticsCard({ title, value, trend, trendValue, icon, color }: AnalyticsCardProps) {
+export default function AnalyticsCard({ title, value, trend, trendValue, icon }: AnalyticsCardProps) {
   return (
     <div className="bg-gray-800 border border-gray-700 rounded-lg shadow hover:shadow-md transition-shadow">
       <div className="p-6">
