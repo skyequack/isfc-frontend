@@ -5,11 +5,11 @@
   --foreground: #ffffff;
   
   /* ISFC Custom Theme Colors */
-  --primary-dark: #295c9b;      /* Deep Navy */
-  --secondary-dark: #143357;    /* Dark Gray-Blue */
-  --accent-teal: #82A3A1;       /* Teal */
-  --accent-green: #9FC490;      /* Green */
-  --accent-light: #C0DFA1;      /* Light Green */
+  --primary-dark: #A15625;      /* Deep Navy */
+  --secondary-dark: #6CA03D;    /* Dark Gray-Blue */
+  --accent-teal: #6CA03D;       /* Teal */
+  --accent-green: #A15625;      /* Green */
+  --accent-light: rgb(197, 211, 184);      /* Light Green */
 }
 
 /* Custom utility classes for ISFC theme */

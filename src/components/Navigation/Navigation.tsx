@@ -12,6 +12,11 @@ interface NavigationItem {
 
 const navigationItems: NavigationItem[] = [
   {
+    name: 'Quotation',
+    href: '/quotations',
+    description: 'Generate quotations'
+  },
+  {
     name: 'Dashboard',
     href: '/dashboard',
     description: 'Overview and analytics'

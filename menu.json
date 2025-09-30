@@ -1,0 +1,1855 @@
+{
+  "restaurant": "Uncle Ammn",
+  "currency": "SAR",
+  "prices_exclude_vat": true,
+  "categories": [
+    {
+      "category": "COLD BREAKFAST",
+      "items": [
+        {
+          "name_en": "Lunch Service & Breakfast Three OP 3 Salus",
+          "name_ar": "فطور وغداء",
+          "unit": "BOX",
+          "price": 35.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Snacks",
+          "name_ar": "سناك",
+          "unit": "PCS",
+          "price": 2.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Organizer Breakfast",
+          "name_ar": "فطور المنظمين",
+          "unit": "PAX",
+          "price": 24.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Organizer Lunch",
+          "name_ar": "غداء المنظمين",
+          "unit": "PAX",
+          "price": 59.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Organizer Dinner",
+          "name_ar": "عشاء المنظمين",
+          "unit": "PAX",
+          "price": 59.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Refreshments all day",
+          "name_ar": "وجبات خفيفه ومرطبات",
+          "unit": "PAX",
+          "price": 45.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Race tower Refreshments",
+          "name_ar": "وجبات خفيفه ومرطبات",
+          "unit": "PAX",
+          "price": 45.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Media Refreshments",
+          "name_ar": "وجبات خفيفه ومرطبات",
+          "unit": "PAX",
+          "price": 45.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Marshalls",
+          "name_ar": "رؤساء احتفاالت",
+          "unit": "PAX",
+          "price": 79.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Police Meals",
+          "name_ar": "وجبات الشرطه",
+          "unit": "PAX",
+          "price": 49.0,
+          "source": "360G"
+        }
+      ]
+    },
+    {
+      "category": "LIVE STATIONS",
+      "items": [
+        {
+          "name_en": "Coffee & Tea station",
+          "name_ar": "ركن الشاي والقهوه",
+          "unit": "Station",
+          "price": 5000.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Cold & Hot Drinks",
+          "name_ar": "المشروبات البارده والحاره",
+          "unit": "Station",
+          "price": 40.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Traditional Saudi Whole Lamb",
+          "name_ar": "الخروف الكامل السعودي التقليدي",
+          "unit": "Station",
+          "price": 2500.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Vine Leaves Stuffed Lamb",
+          "name_ar": "خروف محشي بورق العنب",
+          "unit": "Station",
+          "price": 4000.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Live Charcoal Grilled Lamb",
+          "name_ar": "خروف مشوي على الفحم مباشرة",
+          "unit": "Station",
+          "price": 4000.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Gourmet Lamb Ouzi",
+          "name_ar": "اوزي خروف فاخر",
+          "unit": "Station",
+          "price": 4500.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Roasted Baby Camel",
+          "name_ar": "جمل صغير مشوي كامل",
+          "unit": "Station",
+          "price": 9500.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Whole Hamour",
+          "name_ar": "هامور كامل مشوي",
+          "unit": "Station",
+          "price": 3000.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Roasted Whole Turkey",
+          "name_ar": "ديك رومي مشوي كامل",
+          "unit": "Station",
+          "price": 1000.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Ballpark Popcorn",
+          "name_ar": "فشار طازج",
+          "unit": "Station",
+          "price": 500.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Gazel Al Bannat (Sugar Candy)",
+          "name_ar": "غزل البنات",
+          "unit": "Station",
+          "price": 500.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Chickpeas Fattah & Ballilah Station",
+          "name_ar": "محطة فتة الحمص والبليلة",
+          "unit": "Station",
+          "price": 1500.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Japanese Sushi Station",
+          "name_ar": "محطة السوشي الياباني",
+          "unit": "Station",
+          "price": 2000.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Far Eastern Dim Sum Station",
+          "name_ar": "محطة ديم سام الشرق الأقصى",
+          "unit": "Station",
+          "price": 2000.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Chicken Shawarma Station",
+          "name_ar": "محطة شاورما الدجاج",
+          "unit": "Station",
+          "price": 2000.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Burgers & Ball Park Franks",
+          "name_ar": "برغر وهوت دوغ",
+          "unit": "Station",
+          "price": 2500.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Pasta Station",
+          "name_ar": "محطة الباستا",
+          "unit": "Station",
+          "price": 2500.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Meat Shawarma Station",
+          "name_ar": "محطة شاورما اللحم",
+          "unit": "Station",
+          "price": 3000.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Mix Grill Station",
+          "name_ar": "محطة المشاوي المشكلة",
+          "unit": "Station",
+          "price": 3500.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Kounafa Station (Min 5kg)",
+          "name_ar": "محطة كنافة (حد أدنى 5 كجم)",
+          "unit": "Station",
+          "price": 1500.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Chocolate Fountain",
+          "name_ar": "نافورة الشوكوالتة",
+          "unit": "Station",
+          "price": 1500.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Ice Cream Carte",
+          "name_ar": "عربة الآيس كريم",
+          "unit": "Station",
+          "price": 2500.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Fruit Display 1",
+          "name_ar": "عرض فواكه 1",
+          "unit": "Station",
+          "price": 1000.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Fruit Display 2",
+          "name_ar": "عرض فواكه 2",
+          "unit": "Station",
+          "price": 2000.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Fruit Display 3",
+          "name_ar": "عرض فواكه 3",
+          "unit": "Station",
+          "price": 3000.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Price Variation of items",
+          "name_ar": "فروقات اسعار الاضافات",
+          "unit": "Item",
+          "price": 150.0,
+          "source": "360G"
+        }
+      ]
+    },
+    {
+      "category": "EQUIPMENT",
+      "items": [
+        {
+          "name_en": "Refrigerators Slaus logo",
+          "name_ar": "ثالجه",
+          "unit": "PCS",
+          "price": 150.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "waiters Cocklair",
+          "name_ar": "مقدم طعام",
+          "unit": "PAX",
+          "price": 300.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Microwave",
+          "name_ar": "مايكرويف",
+          "unit": "PCS",
+          "price": 150.0,
+          "source": "360G"
+        }
+      ]
+    },
+    {
+      "category": "ABU HAMDAN - SNACK MENU",
+      "items": [
+        {
+          "name_en": "Sample Snack Menu – 8 Pcs of Each",
+          "name_ar": "Abu Hamdan",
+          "unit": "PCS",
+          "price": 20.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Mini Feta Cheese & Thyme Croissant",
+          "name_ar": "Mini Feta Cheese & Thyme Croissant",
+          "unit": "PCS",
+          "price": 20.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Mini Stuffed Croissant with turkey & Chedder",
+          "name_ar": "Mini Stuffed Croissant with turkey & Chedder",
+          "unit": "PCS",
+          "price": 20.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Mini Brown Bread Club of Tuna",
+          "name_ar": "Mini Brown Bread Club of Tuna",
+          "unit": "PCS",
+          "price": 20.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Mini White Bread Club of Feta cheese with olives & Tomato",
+          "name_ar": "Mini White Bread Club of Feta cheese with olives & Tomato",
+          "unit": "PCS",
+          "price": 20.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Mini Olives Panini of Hallumi with Rocca & Sundried tomato",
+          "name_ar": "Mini Olives Panini of Hallumi with Rocca & Sundried tomato",
+          "unit": "PCS",
+          "price": 20.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Mini Oregano Panini of Mozzarella & Tomato",
+          "name_ar": "Mini Oregano Panini of Mozzarella & Tomato",
+          "unit": "PCS",
+          "price": 20.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Mini Tortilla Roll with Chicken",
+          "name_ar": "Mini Tortilla Roll with Chicken",
+          "unit": "PCS",
+          "price": 20.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Mini Falafel Wrap with Tortilla",
+          "name_ar": "Mini Falafel Wrap with Tortilla",
+          "unit": "PCS",
+          "price": 20.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Mini Chicken Mussakan",
+          "name_ar": "Mini Chicken Mussakan",
+          "unit": "PCS",
+          "price": 20.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Mini Pineapple Danish",
+          "name_ar": "Mini Pineapple Danish",
+          "unit": "PCS",
+          "price": 20.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Mini Strawberry Danish",
+          "name_ar": "Mini Strawberry Danish",
+          "unit": "PCS",
+          "price": 20.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Mini Chocolate Muffins",
+          "name_ar": "Mini Chocolate Muffins",
+          "unit": "PCS",
+          "price": 20.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Mini Vanilla Muffins",
+          "name_ar": "Mini Vanilla Muffins",
+          "unit": "PCS",
+          "price": 20.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Mini Blueberry with Cheese & Crumble",
+          "name_ar": "Mini Blueberry with Cheese & Crumble",
+          "unit": "PCS",
+          "price": 20.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Mini Chocolate Brownies",
+          "name_ar": "Mini Chocolate Brownies",
+          "unit": "PCS",
+          "price": 20.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Mini Peanut Chocolate Bar",
+          "name_ar": "Mini Peanut Chocolate Bar",
+          "unit": "PCS",
+          "price": 20.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Mini Rocky Road",
+          "name_ar": "Mini Rocky Road",
+          "unit": "PCS",
+          "price": 20.0,
+          "source": "360G"
+        }
+      ]
+    },
+    {
+      "category": "ABU HAMDAN - SALADS",
+      "items": [
+        {
+          "name_en": "Salad – 4 Pcs of Each",
+          "name_ar": "Salad – 4 Pcs of Each",
+          "unit": "PCS",
+          "price": null,
+          "source": "360G"
+        },
+        {
+          "name_en": "Jar of Greek Salad",
+          "name_ar": "Jar of Greek Salad",
+          "unit": "PCS",
+          "price": 10.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Jar of Tabouleh",
+          "name_ar": "Jar of Tabouleh",
+          "unit": "PCS",
+          "price": 10.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Jar of Rocca with Mushroom",
+          "name_ar": "Jar of Rocca with Mushroom",
+          "unit": "PCS",
+          "price": 10.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Jar of Quinoa Beetroot",
+          "name_ar": "Jar of Quinoa Beetroot",
+          "unit": "PCS",
+          "price": 10.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Jar of Mexican Salad",
+          "name_ar": "Jar of Mexican Salad",
+          "unit": "PCS",
+          "price": 10.0,
+          "source": "360G"
+        }
+      ]
+    },
+    {
+      "category": "ABU HAMDAN - FRUITS",
+      "items": [
+        {
+          "name_en": "Fruits – 7 Jars of Each",
+          "name_ar": "Fruits – 7 Jars of Each",
+          "unit": "PCS",
+          "price": null,
+          "source": "360G"
+        },
+        {
+          "name_en": "3 jar Mix fruits",
+          "name_ar": "3 jar Mix fruits",
+          "unit": "PCS",
+          "price": 15.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Jar of Watermelon",
+          "name_ar": "Jar of Watermelon",
+          "unit": "PCS",
+          "price": 15.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Jar of Dragon Fruits",
+          "name_ar": "Jar of Dragon Fruits",
+          "unit": "PCS",
+          "price": 15.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Jar of Pineapple",
+          "name_ar": "Jar of Pineapple",
+          "unit": "PCS",
+          "price": 15.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Jar of Strawberry",
+          "name_ar": "Jar of Strawberry",
+          "unit": "PCS",
+          "price": 15.0,
+          "source": "360G"
+        }
+      ]
+    },
+    {
+      "category": "ABU HAMDAN - ADDITIONAL ITEMS",
+      "items": [
+        {
+          "name_en": "Hosts /Hostess",
+          "name_ar": "موظفه/موظف استقبال",
+          "unit": "PAX",
+          "price": 500.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Elegant Beverages",
+          "name_ar": "مشروبات",
+          "unit": "PCS",
+          "price": 29.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Saudi Coffee and dates station",
+          "name_ar": "قهوه سعوديه مع التمر",
+          "unit": "PAX",
+          "price": 15.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Mango Juice",
+          "name_ar": "Mango Juice",
+          "unit": "PCS",
+          "price": 17.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Orange Juice",
+          "name_ar": "Orange Juice",
+          "unit": "PCS",
+          "price": 17.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Lemon Mint Juice",
+          "name_ar": "Lemon Mint Juice",
+          "unit": "PCS",
+          "price": 17.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Fruit Mocktail Juice",
+          "name_ar": "Fruit Mocktail Juice",
+          "unit": "PCS",
+          "price": 17.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "lasagna Bashamel",
+          "name_ar": "الزانيا بشاميل",
+          "unit": "PCS",
+          "price": 25.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Madghot Chicken",
+          "name_ar": "مضغوط دجاج",
+          "unit": "PCS",
+          "price": 25.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Mosaqaaa Bashamel",
+          "name_ar": "مشقعه بشاميل",
+          "unit": "PCS",
+          "price": 25.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Mix Grill",
+          "name_ar": "مشاوي مشكله",
+          "unit": "Shafing Dish",
+          "price": 350.0,
+          "source": "360G"
+        }
+      ]
+    },
+    {
+      "category": "BUFFET MENUS",
+      "items": [
+        {
+          "name_en": "Custom Menu",
+          "name_ar": "بوفيه",
+          "unit": "PAX",
+          "price": 140.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Delivery",
+          "name_ar": "توصيل",
+          "unit": "Location",
+          "price": 100.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "National Day Banner 6*8 M",
+          "name_ar": "لوحه اليوم الوطني",
+          "unit": "PCS",
+          "price": 2000.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Vision invest. Co",
+          "name_ar": "بوفيه",
+          "unit": "PAX",
+          "price": 122.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Chef on board",
+          "name_ar": "شيف",
+          "unit": "PAX",
+          "price": 300.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Full Lunch Meal (Leed)",
+          "name_ar": "وجبه غداء كامله",
+          "unit": "BOX",
+          "price": 49.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "SMART BUFFET",
+          "name_ar": "سمارت بوفيه",
+          "unit": "PAX",
+          "price": 260.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "LUNCH & DINNER BUFFET SELA",
+          "name_ar": "بوفيه",
+          "unit": "PAX",
+          "price": 100.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "LUNCH & DINNER BUFFET 1",
+          "name_ar": "بوفيه",
+          "unit": "PAX",
+          "price": 140.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "LUNCH & DINNER BUFFET 2",
+          "name_ar": "بوفيه",
+          "unit": "PAX",
+          "price": 150.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "LUNCH & DINNER BUFFET 3",
+          "name_ar": "بوفيه",
+          "unit": "PAX",
+          "price": 180.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "LUNCH & DINNER BUFFET 4",
+          "name_ar": "بوفيه",
+          "unit": "PAX",
+          "price": 150.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "LUNCH & DINNER BUFFET 5",
+          "name_ar": "بوفيه",
+          "unit": "PAX",
+          "price": 160.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "LUNCH & DINNER BUFFET 6",
+          "name_ar": "بوفيه",
+          "unit": "PAX",
+          "price": 180.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Wedding Buffet Menu 1",
+          "name_ar": "قائمة بوفيه الزفاف ١",
+          "unit": "PAX",
+          "price": 499.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Wedding Buffet Menu 2",
+          "name_ar": "قائمة بوفيه الزفاف ٢",
+          "unit": "PAX",
+          "price": 599.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Wedding Buffet Menu 3",
+          "name_ar": "قائمة بوفيه الزفاف ٣",
+          "unit": "PAX",
+          "price": 799.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Eid Menu 2",
+          "name_ar": "منيو العيد 2",
+          "unit": "PAX",
+          "price": 180.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Eid Menu 1",
+          "name_ar": "منيو العيد 1",
+          "unit": "PAX",
+          "price": 160.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "International Menu",
+          "name_ar": "قائمه عالميه",
+          "unit": "PAX",
+          "price": 220.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Special Menu",
+          "name_ar": "منيو مميز",
+          "unit": "PAX",
+          "price": 140.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Special Menu 2",
+          "name_ar": "منيو مميز 02",
+          "unit": "PAX",
+          "price": 170.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Fresh Flower",
+          "name_ar": "ورد طبيعي",
+          "unit": "VASA",
+          "price": 100.0,
+          "source": "360G"
+        }
+      ]
+    },
+    {
+      "category": "DESSERT BUFFETS",
+      "items": [
+        {
+          "name_en": "Dessert Buffet Menu 1 BN",
+          "name_ar": "بوفيه الحلويات",
+          "unit": "PAX",
+          "price": 40.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Dessert Buffet Menu 2 BN",
+          "name_ar": "بوفيه الحلويات",
+          "unit": "PAX",
+          "price": 60.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Dessert Buffet Menu 3 BN",
+          "name_ar": "بوفيه الحلويات",
+          "unit": "PAX",
+          "price": 90.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Salad Buffet & Fruit",
+          "name_ar": "بوفيه السلطات والفواكه",
+          "unit": "PAX",
+          "price": 60.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Sweetened Combo 1 – Oriental",
+          "name_ar": "مجموعة حلويات ١ – شرقية",
+          "unit": "PAX",
+          "price": 80.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Sweetened Combo 2 – Italian",
+          "name_ar": "مجموعة حلويات ٢ – إيطالية",
+          "unit": "PAX",
+          "price": 80.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Sweetened Combo 3 – Oriental Twisted",
+          "name_ar": "مجموعة حلويات ٣ – شرقية بلمسة مبتكرة",
+          "unit": "PAX",
+          "price": 80.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Sweetened Combo 4 – International",
+          "name_ar": "مجموعة حلويات ٤ – عالمية",
+          "unit": "PAX",
+          "price": 80.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Sweet Bufffet VIP",
+          "name_ar": "قائمة الحلويات",
+          "unit": "PAX",
+          "price": 100.0,
+          "source": "360G"
+        }
+      ]
+    },
+    {
+      "category": "BREAKFAST BOXES",
+      "items": [
+        {
+          "name_en": "Breakfast Box 1 BN",
+          "name_ar": "بوكس الفطور",
+          "unit": "BOX",
+          "price": 29.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Breakfast Box 2 BN",
+          "name_ar": "بوكس الفطور",
+          "unit": "BOX",
+          "price": 39.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Breakfast Box 3 BN",
+          "name_ar": "بوكس الفطور",
+          "unit": "BOX",
+          "price": 49.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Breakfast Box 4 BN",
+          "name_ar": "بوكس الفطور",
+          "unit": "BOX",
+          "price": 59.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Breakfast Box AZ",
+          "name_ar": "بوكس الفطور AZ",
+          "unit": "PAX",
+          "price": 130.0,
+          "source": "360G"
+        }
+      ]
+    },
+    {
+      "category": "LUNCH BOXES",
+      "items": [
+        {
+          "name_en": "Lunch Box 1 BN",
+          "name_ar": "بوكس الغداء",
+          "unit": "BOX",
+          "price": 35.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Lunch Box 2 BN",
+          "name_ar": "بوكس الغداء",
+          "unit": "BOX",
+          "price": 39.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Lunch Box 3 BN",
+          "name_ar": "بوكس الغداء",
+          "unit": "BOX",
+          "price": 60.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Lunch Box 4 BN",
+          "name_ar": "بوكس الغداء",
+          "unit": "BOX",
+          "price": 80.0,
+          "source": "360G"
+        }
+      ]
+    },
+    {
+      "category": "FINGER FOOD BUFFET",
+      "items": [
+        {
+          "name_en": "Finger Food Buffet Menu 1",
+          "name_ar": "قائمة بوفيه المأكوالت الخفيفة ١",
+          "unit": "PAX",
+          "price": 80.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Finger Food Buffet Menu 2",
+          "name_ar": "قائمة بوفيه المأكوالت الخفيفة ٢",
+          "unit": "PAX",
+          "price": 110.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Finger Food Buffet Menu 3",
+          "name_ar": "قائمة بوفيه المأكوالت الخفيفة ٣",
+          "unit": "PAX",
+          "price": 150.0,
+          "source": "360G"
+        }
+      ]
+    },
+    {
+      "category": "SILVER SERVICE MENU",
+      "items": [
+        {
+          "name_en": "Silver Service 1 – Oriental Cuisine",
+          "name_ar": "الخدمة الراقية ١ – المأكوالت الشرقية",
+          "unit": "PAX",
+          "price": 199.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Silver Service 2 – Oriental Cuisine",
+          "name_ar": "الخدمة الراقية ٢ – المأكوالت الشرقية",
+          "unit": "PAX",
+          "price": 250.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Silver Service 1 – International Cuisine",
+          "name_ar": "الخدمة الراقية ١ – المأكوالت العالمية",
+          "unit": "PAX",
+          "price": 220.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Silver Service 2 – International Cuisine",
+          "name_ar": "الخدمة الراقية ٢ – المأكوالت العالمية",
+          "unit": "PAX",
+          "price": 320.0,
+          "source": "360G"
+        }
+      ]
+    },
+    {
+      "category": "BBQ MENU",
+      "items": [
+        {
+          "name_en": "BBQ Menu 1",
+          "name_ar": "قائمة الشواء ١",
+          "unit": "PAX",
+          "price": 160.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "BBQ Menu 2",
+          "name_ar": "قائمة الشواء ٢",
+          "unit": "PAX",
+          "price": 200.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "BBQ Menu 3",
+          "name_ar": "قائمة الشواء ٣",
+          "unit": "PAX",
+          "price": 250.0,
+          "source": "360G"
+        }
+      ]
+    },
+    {
+      "category": "PASS AROUND COCKTAIL MENU",
+      "items": [
+        {
+          "name_en": "Pass Around Cocktail Reception Menu 1",
+          "name_ar": "قائمة استقبال الكوكتيل المتنقل ١",
+          "unit": "PAX",
+          "price": 110.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Pass Around Cocktail Reception Menu 2",
+          "name_ar": "قائمة استقبال الكوكتيل المتنقل ٢",
+          "unit": "PAX",
+          "price": 130.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Pass Around Cocktail Reception Menu 3",
+          "name_ar": "قائمة استقبال الكوكتيل المتنقل ٣",
+          "unit": "PAX",
+          "price": 170.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Pass Around Cocktail Reception Menu 4",
+          "name_ar": "قائمة استقبال الكوكتيل المتنقل ٤",
+          "unit": "PAX",
+          "price": 220.0,
+          "source": "360G"
+        }
+      ]
+    },
+    {
+      "category": "GOLYVE PACKAGES",
+      "items": [
+        {
+          "name_en": "Banners",
+          "name_ar": "لوحه اعالنيه",
+          "unit": "PCS",
+          "price": 180.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Flags",
+          "name_ar": "اعالم",
+          "unit": "PCS",
+          "price": 150.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "GOLYVE LUNCH",
+          "name_ar": "غداء عمل",
+          "unit": "PACKAGE",
+          "price": 600.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "GOLYVE BREAKFAST, LUNCH",
+          "name_ar": "فطور وغداء عمل",
+          "unit": "PACKAGE",
+          "price": 835.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "GOLYVE LUNCH,DINNER",
+          "name_ar": "غداء وعشاء",
+          "unit": "PACKAGE",
+          "price": 1043.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "GOLYVE FULL DAY",
+          "name_ar": "فطور وغداء وعشاء",
+          "unit": "PACKAGE",
+          "price": 1217.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Sandwiches",
+          "name_ar": "ساندويشات",
+          "unit": "PCS",
+          "price": 3.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Manaqeesh",
+          "name_ar": "مناقيش",
+          "unit": "PCS",
+          "price": 3.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Milk 180 ml",
+          "name_ar": "حليب 180 مل",
+          "unit": "PCS",
+          "price": 2.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Water 330ml - V1",
+          "name_ar": "ماء 330 مل",
+          "unit": "PCS",
+          "price": 1.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Labneh Platter - Small",
+          "name_ar": "طبق لبنه - صغير",
+          "unit": "Plate",
+          "size": "Small",
+          "price": 90.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Plain / Pistachio / Chocolate Hallawa - Small",
+          "name_ar": "حالوة (ساده/فستق/شوكوالته) - صغير",
+          "unit": "Plate",
+          "size": "Small",
+          "price": 100.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Labneh Balls - Small",
+          "name_ar": "كرات اللبنه - صغير",
+          "unit": "Bowl",
+          "size": "Small",
+          "price": 150.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Olives / Kalamat, Green, Morroccan - Small",
+          "name_ar": "زيتون (كلماتا/مغربي/أخضر) - صغير",
+          "unit": "Bowl",
+          "size": "Small",
+          "price": 100.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Sliced Cheese (Cheddar White & Yellow) - Small",
+          "name_ar": "شرائح جبن (شيدر أبيض وأصفر) - صغير",
+          "unit": "Plate",
+          "size": "Small",
+          "price": 150.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Arabic Cheese Plater (Hallumi, Feta, Kasshkoval) - Small",
+          "name_ar": "جبن عربي عادي (حلومي,فيتا,قشقوان) - صغير",
+          "unit": "Plate",
+          "size": "Small",
+          "price": 150.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Sliced Turkey / Smoked Beef - Small",
+          "name_ar": "شرائح (الديك الرومي/اللحم المدخن) - صغير",
+          "unit": "Plate",
+          "size": "Small",
+          "price": 125.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Sliced Smoked Norwegian Salmon - Small",
+          "name_ar": "شرائح السلمون النرويجي المدخن - صغير",
+          "unit": "Plate",
+          "size": "Small",
+          "price": 200.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Fresh Keshta - Small",
+          "name_ar": "قشطه طازجة - صغير",
+          "unit": "Bowl",
+          "size": "Small",
+          "price": 150.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Honey Bowl & Butter Potions - Small",
+          "name_ar": "وعاء عسل وقطع زبده - صغير",
+          "unit": "Bowl",
+          "size": "Small",
+          "price": 150.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Jam Bowl / Berries, Strawberry, Apricot, Fig - Small",
+          "name_ar": "وعاء مربى (توت/فراوله/تين/مشمش) - صغير",
+          "unit": "Bowl",
+          "size": "Small",
+          "price": 100.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Mini Croissant (Chocolate, Cheese, Zaatar, Plain) - 25 pcs",
+          "name_ar": "كروسان صغير (شوكالته,جبن,زعتر ساده) 25 قطعه",
+          "unit": "Plate",
+          "size": "Small",
+          "price": 90.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Mini Muffins (Chocolate, Vanilla, Blueberry) - 25 pcs",
+          "name_ar": "مافن صغير (شوكالته,جبن,توت) 25 قطعه",
+          "unit": "Plate",
+          "size": "Small",
+          "price": 90.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Sliced English Cake (Vanilla, Choclate, Fruit) - Small",
+          "name_ar": "قطع الكيك الانجليزي (فانيليا شوكالته,فواكه) - صغير",
+          "unit": "Plate",
+          "size": "Small",
+          "price": 90.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Mini Danish (Pineapple, Strawberry, Chocolate) - 25 Pcs",
+          "name_ar": "دانش صغير (أناناس،فراولة،شوكوالتة) - 25 قطعة",
+          "unit": "Plate",
+          "size": "Small",
+          "price": 90.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Breakfast Vegetables platter",
+          "name_ar": "طبق خضار الإفطار - صغير",
+          "unit": "Plate",
+          "size": "Small",
+          "price": 100.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Sesaonl Sliced Fruits Platter",
+          "name_ar": "طبق شرائح الفواكه الموسمية - صغير",
+          "unit": "Plate",
+          "size": "Small",
+          "price": 300.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Sesaonal Whole Fruits Basket",
+          "name_ar": "سلة فواكه موسمية كاملة - صغير",
+          "unit": "Basket",
+          "size": "Small",
+          "price": 300.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Seasonal Fruit Salad",
+          "name_ar": "سلطة فواكه موسمية - صغير",
+          "unit": "Bowl",
+          "size": "Small",
+          "price": 200.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Eggplant Makdous",
+          "name_ar": "مسقعه الباذنجان - صغير",
+          "unit": "Plate",
+          "size": "Small",
+          "price": 150.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Morning Cerels Bowl - Corn flakes, Choco Pops",
+          "name_ar": "وعاء رقائق الصباح (رقائق الذرة،شوكو بوبس)",
+          "unit": "Bowl",
+          "size": "Small",
+          "price": 150.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Granola Bowl with Berries",
+          "name_ar": "وعاء الجرانوال مع التوت - صغير",
+          "unit": "Bowl",
+          "size": "Small",
+          "price": 250.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Labneh Platter - Large",
+          "name_ar": "طبق لبنه - كبير",
+          "unit": "Plate",
+          "size": "Large",
+          "price": 160.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Plain / Pistachio / Chocolate Hallawa - Large",
+          "name_ar": "حالوة (ساده/فستق/شوكوالته) - كبير",
+          "unit": "Plate",
+          "size": "Large",
+          "price": 200.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Labneh Balls - Large",
+          "name_ar": "كرات اللبنه - كبير",
+          "unit": "Bowl",
+          "size": "Large",
+          "price": 250.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Olives / Kalamat, Green, Morroccan - Large",
+          "name_ar": "زيتون (كلماتا/مغربي/أخضر) - كبير",
+          "unit": "Bowl",
+          "size": "Large",
+          "price": 150.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Sliced Cheese (Cheddar White & Yellow) - Large",
+          "name_ar": "شرائح جبن (شيدر أبيض وأصفر) - كبير",
+          "unit": "Plate",
+          "size": "Large",
+          "price": 300.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Arabic Cheese Plater (Hallumi, Feta, Kasshkoval) - Large",
+          "name_ar": "جبن عربي عادي (حلومي,فيتا,قشقوان) - كبير",
+          "unit": "Plate",
+          "size": "Large",
+          "price": 300.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Sliced Turkey / Smoked Beef - Large",
+          "name_ar": "شرائح الديك الرومي/اللحم المدخن - كبير",
+          "unit": "Plate",
+          "size": "Large",
+          "price": 250.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Sliced Smoked Norwegian Salmon - Large",
+          "name_ar": "شرائح السلمون النرويجي المدخن - كبير",
+          "unit": "Plate",
+          "size": "Large",
+          "price": 400.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Fresh Keshta - Large",
+          "name_ar": "قشطه طازجه - كبير",
+          "unit": "Bowl",
+          "size": "Large",
+          "price": 250.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Honey Bowl & Butter Potions - Large",
+          "name_ar": "وعاء عسل وقطع زبده - كبير",
+          "unit": "Bowl",
+          "size": "Large",
+          "price": 250.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Jam Bowl / Berries, Strawberry, Apricot, Fig - Large",
+          "name_ar": "وعاء مربى (توت/فراوله/تين/مشمش) - كبير",
+          "unit": "Bowl",
+          "size": "Large",
+          "price": 200.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Mini Croissant (Chocolate, Cheese, Zaatar, Plain) - 50 pcs",
+          "name_ar": "كروسان صغير (شوكالته,جبن,زعتر ساده) 50 قطعه",
+          "unit": "Plate",
+          "size": "Large",
+          "price": 180.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Mini Muffins (Chocolate, Vanilla, Blueberry) - 50 pcs",
+          "name_ar": "مافن صغير (شوكالته,جبن,توت) 50 قطعه",
+          "unit": "Plate",
+          "size": "Large",
+          "price": 180.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Sliced English Cake (Vanilla, Choclate, Fruit) - Large",
+          "name_ar": "قطع الكيك الانجليزي (فانيليا شوكالته,فواكه) - كبير",
+          "unit": "Plate",
+          "size": "Large",
+          "price": 180.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Pancake with Maple Syrup - Round",
+          "name_ar": "بانكيك مع شراب القيقب - دائري",
+          "unit": "small",
+          "size": null,
+          "price": 200.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Pancake with Maple Syrup - Rectangular (Medium)",
+          "name_ar": "بانكيك مع شراب القيقب - مستطيل (وسط)",
+          "unit": "Meduim",
+          "size": null,
+          "price": 350.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Pancake with Maple Syrup - Rectangular (Large)",
+          "name_ar": "بانكيك مع شراب القيقب - مستطيل (كبير)",
+          "unit": "Large",
+          "size": null,
+          "price": 350.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "PanCake & Crepe Station",
+          "name_ar": "ركن البانكيك والكريب",
+          "unit": "Live Cooking",
+          "size": null,
+          "price": 2000.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Shrimp on Risotto Saffron Cake - Small",
+          "name_ar": "روزيتو جمبري مع كيك الزعفران - صغير",
+          "unit": "small",
+          "size": null,
+          "price": 500.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Shrimp on Risotto Saffron Cake - Medium",
+          "name_ar": "روزيتو جمبري مع كيك الزعفران - وسط",
+          "unit": "Meduim",
+          "size": null,
+          "price": 700.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Shrimp on Risotto Saffron Cake - Large",
+          "name_ar": "روزيتو جمبري مع كيك الزعفران - كبير",
+          "unit": "Large",
+          "size": null,
+          "price": 900.0,
+          "source": "360G"
+        }
+      ]
+    },
+    {
+      "category": "INTERNATIONAL CAKE & TARTS",
+      "items": [
+        {
+          "item_code": "492",
+          "name_en": "Cake With gazel el Banet - 25cm",
+          "name_ar": "كيك مع غزل البنات 25 سم",
+          "unit": "Cake 25 cm",
+          "price": 250.0,
+          "source": "360G"
+        },
+        {
+          "item_code": "493",
+          "name_en": "Cake With gazel el Banet",
+          "name_ar": "كيك مع غزل البنات 30 سم",
+          "unit": "Cake 30 cm",
+          "price": 300.0,
+          "source": "360G"
+        },
+        {
+          "item_code": "494",
+          "name_en": "Cake Chocolate caramel - Cake 25 cm",
+          "name_ar": "كيك بالشوكوالو الكراميل 25 سم",
+          "unit": "Cake 25 cm",
+          "price": 250.0,
+          "source": "360G"
+        },
+        {
+          "item_code": "495",
+          "name_en": "Cake Chocolate caramel - Cake 30 cm",
+          "name_ar": "كيك بالشوكوالو الكراميل 30 سم",
+          "unit": "Cake 30 cm",
+          "price": 300.0,
+          "source": "360G"
+        },
+        {
+          "item_code": "506",
+          "name_en": "Cake Red Velvet with mixed Berries - Cake 25 cm",
+          "name_ar": "رد فيلفت مع الفاكهة الحمراء 25 سم",
+          "unit": "Cake 25 cm",
+          "price": 250.0,
+          "source": "360G"
+        },
+        {
+          "item_code": "507",
+          "name_en": "Cake Red Velvet with mixed Berries - Cake 30 cm",
+          "name_ar": "رد فيلفت مع الفاكهة الحمراء 30 سم",
+          "unit": "Cake 30 cm",
+          "price": 300.0,
+          "source": "360G"
+        },
+        {
+          "item_code": "510",
+          "name_en": "Cheese cake - Cake 25 cm",
+          "name_ar": "تشيز كيك 25 سم",
+          "unit": "Cake 25 cm",
+          "price": 200.0,
+          "source": "360G"
+        },
+        {
+          "item_code": "511",
+          "name_en": "Cheese cake - Cake 30 cm",
+          "name_ar": "تشيز كيك 30 سم",
+          "unit": "Cake 30 cm",
+          "price": 250.0,
+          "source": "360G"
+        }
+      ]
+    },
+    {
+      "category": "CELEBRATION CAKE",
+      "items": [
+        {
+          "item_code": "519",
+          "name_en": "Reguler Cake",
+          "name_ar": "كيك عادي",
+          "unit": "Per Portion",
+          "price": 10.0,
+          "source": "360G"
+        },
+        {
+          "item_code": "520",
+          "name_en": "Design Cake (Picture on top)",
+          "name_ar": "كعكه تصميم (الصوره في الاعلى)",
+          "unit": "Per Portion",
+          "price": 18.0,
+          "source": "360G"
+        },
+        {
+          "item_code": "521",
+          "name_en": "Design Cake (3 D)",
+          "name_ar": "كعكه تصميم (3D)",
+          "unit": "Per Portion",
+          "price": 25.0,
+          "source": "360G"
+        },
+        {
+          "item_code": "522",
+          "name_en": "Wedding Cake As Per Design",
+          "name_ar": "كعكه زفاف حسب التصميم",
+          "unit": "Per Portion",
+          "price": 35.0,
+          "source": "360G"
+        },
+        {
+          "item_code": "536",
+          "name_en": "Shot of Cheese Cake Blueberry",
+          "name_ar": "تشيز كيك التوت الازرق قطعه صغيره",
+          "unit": "Piece",
+          "price": 6.0,
+          "source": "360G"
+        },
+        {
+          "item_code": "537",
+          "name_en": "Shot of Cheese Cake Strawberry",
+          "name_ar": "تشيز كيك بالفراوله قطعه صغيره",
+          "unit": "Piece",
+          "price": 6.0,
+          "source": "360G"
+        },
+        {
+          "item_code": "539",
+          "name_en": "Mini Lazy Cake",
+          "name_ar": "مني ليزي كيك",
+          "unit": "Piece",
+          "price": 4.0,
+          "source": "360G"
+        },
+        {
+          "item_code": "648",
+          "name_en": "Fluffy Chocolate Cake",
+          "name_ar": "كعكة الشوكوالتة الرقيقة",
+          "unit": "Piece",
+          "price": 5.3,
+          "source": "360G"
+        },
+        {
+          "item_code": "650",
+          "name_en": "Blueberry Cheese Cake",
+          "name_ar": "تشيز كيك التوت الأزرق",
+          "unit": "Piece",
+          "price": 5.3,
+          "source": "360G"
+        },
+        {
+          "item_code": "651",
+          "name_en": "Chocolate Mousse Cake",
+          "name_ar": "كيك موس الشوكالته",
+          "unit": "Piece",
+          "price": 5.3,
+          "source": "360G"
+        },
+        {
+          "item_code": "653",
+          "name_en": "Lazy Cake",
+          "name_ar": "ليزي كيك",
+          "unit": "Piece",
+          "price": 5.3,
+          "source": "360G"
+        },
+        {
+          "item_code": "18",
+          "name_en": "Cake",
+          "name_ar": "كيكه",
+          "unit": "Piece",
+          "price": 400.0,
+          "source": "360G"
+        }
+      ]
+    },
+    {
+      "category": "SNACKS & SANDWICHES",
+      "items": [
+        {
+          "name_en": "Milk bread filling strawberry jam & peanut butter",
+          "name_ar": "Milk bread filling strawberry jam & peanut butter",
+          "unit": "PCS",
+          "price": 3.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Wrap rolls bread filling feta cheese & zatar",
+          "name_ar": "Wrap rolls bread filling feta cheese & zatar",
+          "unit": "PCS",
+          "price": 2.5,
+          "source": "360G"
+        },
+        {
+          "name_en": "White toast bread filling mix cheese",
+          "name_ar": "White toast bread filling mix cheese",
+          "unit": "PCS",
+          "price": 3.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Milk bread filling fig jam & cheddar cheese",
+          "name_ar": "Milk bread filling fig jam & cheddar cheese",
+          "unit": "PCS",
+          "price": 3.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Samoli bread filling labaneh with olives",
+          "name_ar": "Samoli bread filling labaneh with olives",
+          "unit": "PCS",
+          "price": 2.5,
+          "source": "360G"
+        },
+        {
+          "name_en": "Arabic bread filling falafel and tahina sauce",
+          "name_ar": "Arabic bread filling falafel and tahina sauce",
+          "unit": "PCS",
+          "price": 3.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Nutella with roasted nuts",
+          "name_ar": "Nutella with roasted nuts",
+          "unit": "PCS",
+          "price": 3.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Mini Pizza Margherita",
+          "name_ar": "Mini Pizza Margherita",
+          "unit": "PCS",
+          "price": 3.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Snack Mini cup cake",
+          "name_ar": "Snack Mini cup cake",
+          "unit": "PCS",
+          "price": 2.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Snack Mini Muffin",
+          "name_ar": "Snack Mini Muffin",
+          "unit": "PCS",
+          "price": 2.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Manaqeesh Zaatar",
+          "name_ar": "Manaqeesh Zaatar",
+          "unit": "PCS",
+          "price": 2.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Manaqeesh cheese",
+          "name_ar": "Manaqeesh cheese",
+          "unit": "PCS",
+          "price": 2.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Manaqeesh cheese & Zaatar",
+          "name_ar": "Manaqeesh cheese & Zaatar",
+          "unit": "PCS",
+          "price": 2.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Snack Fruit two pcs",
+          "name_ar": "Snack Fruit two pcs",
+          "unit": "PCS",
+          "price": 3.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Snack Granola bar",
+          "name_ar": "Snack Granola bar",
+          "unit": "PCS",
+          "price": 2.5,
+          "source": "360G"
+        },
+        {
+          "name_en": "Snack Flavor English Cake",
+          "name_ar": "Snack Flavor English Cake",
+          "unit": "PCS",
+          "price": 3.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Milk",
+          "name_ar": "Milk",
+          "unit": "PCS",
+          "price": 1.8,
+          "source": "360G"
+        },
+        {
+          "name_en": "Water 330ml - V2",
+          "name_ar": "Water 330ml",
+          "unit": "PCS",
+          "price": 1.0,
+          "source": "360G"
+        }
+      ]
+    },
+    {
+      "category": "MISCELLANEOUS ITEMS",
+      "items": [
+        {
+          "name_en": "Date",
+          "name_ar": "تمر",
+          "unit": "Tray",
+          "price": 100.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Coffee Thermal",
+          "name_ar": "براد قهوه",
+          "unit": "Thermal",
+          "price": 150.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Speakers with microphone",
+          "name_ar": "سماعات ومايكروفون",
+          "unit": "PCS",
+          "price": 400.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Cake Vanilla fruit",
+          "name_ar": "كيكه",
+          "unit": "45*35 CM",
+          "price": 750.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Wedding custom menu",
+          "name_ar": "منيو فرح معدل",
+          "unit": "Pax",
+          "price": 157.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Food Truck",
+          "name_ar": "فود ترك",
+          "unit": "Truck",
+          "price": 750.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Custom Breakfast Menu",
+          "name_ar": "منيو فطور معدل",
+          "unit": "PAX",
+          "price": 65.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Snacks whole day",
+          "name_ar": "سناك",
+          "unit": "PAX",
+          "price": 55.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Oriantal Menu",
+          "name_ar": "منيو شرقي",
+          "unit": "PAX",
+          "price": 140.0,
+          "source": "360G"
+        }
+      ]
+    },
+    {
+      "category": "BOXED SERVICES - SALUS",
+      "items": [
+        {
+          "name_en": "Lunch Service one Salus OP 1",
+          "name_ar": "غداء",
+          "unit": "BOX",
+          "price": 16.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Breakfast Service Two OP 2-I Salus",
+          "name_ar": "فطور",
+          "unit": "BOX",
+          "price": 10.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Lunch Service Two OP 2-II Salus",
+          "name_ar": "غداء",
+          "unit": "BOX",
+          "price": 21.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Lunch & Breakfast Service Two OP 2-III Salus",
+          "name_ar": "فطور وغداء",
+          "unit": "BOX",
+          "price": 28.0,
+          "source": "360G"
+        },
+        {
+          "name_en": "Lunch & Breakfast Service Two OP 2-IIII Salus",
+          "name_ar": "فطور وغداء",
+          "unit": "BOX",
+          "price": 30.0,
+          "source": "360G"
+        }
+      ]
+    }
+  ]
+}
