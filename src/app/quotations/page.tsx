@@ -2,34 +2,8 @@
 
 import { useState, useEffect } from "react";
 import { Sun, Moon } from "lucide-react";
+import menuDataRaw from "../../../menu.json";
 
-// Mock menu data structure
-const menuDataRaw = {
-  categories: [
-    {
-      category: "Main Course",
-      items: [
-        { name_en: "Grilled Chicken", price: 45, source: "Kitchen A" },
-        { name_en: "Beef Steak", price: 65, source: "Kitchen A" },
-        { name_en: "Fish Fillet", price: 55, source: "Kitchen B" }
-      ]
-    },
-    {
-      category: "Appetizers",
-      items: [
-        { name_en: "Caesar Salad", price: 25, source: "Kitchen A" },
-        { name_en: "Soup", price: 20, source: "Kitchen B" }
-      ]
-    },
-    {
-      category: "Desserts",
-      items: [
-        { name_en: "Chocolate Cake", price: 30, source: "Kitchen A" },
-        { name_en: "Ice Cream", price: 15, source: "Kitchen B" }
-      ]
-    }
-  ]
-};
 
 interface MenuItem {
   item: string;
@@ -154,13 +128,55 @@ export default function QuotationPage() {
 
   const handleDownloadExcel = () => {
     if (quotation.length === 0) return;
-    alert("Excel download would trigger here in production");
+    const menuData = menuDataRaw.categories.flatMap(c => 
+      c.items.map(i => ({
+        Item: i.name_en,
+        Arabic: i.name_ar || "",
+        Unit: i.unit || "pcs",
+        Price: i.price,
+        source: i.source,
+        category: c.category
+      }))
+    );
+    const orderData = quotation.map(q => ({
+      Item: q.item,
+      Quantity: q.quantity
+    }));
+    const clientInfo = {
+      clientName,
+      mobileNumber,
+      eventOrganizer,
+      numberOfPeople,
+      eventDate,
+      location,
+      pickupTime
+    };
+    fetch("/api/generate-quotation", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ menuData, orderData, clientInfo })
+    })
+      .then(async (res) => {
+        if (!res.ok) throw new Error("Failed to generate Excel");
+        const blob = await res.blob();
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "quotation.xlsx";
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        window.URL.revokeObjectURL(url);
+      })
+      .catch((err) => {
+        setError(err.message || "Failed to download Excel");
+      });
   };
 
   return (
     <div className={`min-h-screen transition-colors duration-300 ${
       darkMode 
-        ? 'bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900' 
+        ? 'bg-gradient-to-br from-black via-gray-950 to-black' 
         : 'bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50'
     } p-4 md:p-8`}>
       <div className="max-w-7xl mx-auto">
@@ -283,8 +299,8 @@ export default function QuotationPage() {
                 <thead>
                   <tr className={`transition-colors duration-300 ${
                     darkMode 
-                      ? 'bg-gradient-to-r from-blue-600 to-indigo-700 text-white' 
-                      : 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white'
+                      ? 'bg-gradient-to-r from-blue-900 to-blue-950 text-white' 
+                      : 'bg-gradient-to-r from-blue-900 to-black text-white'
                   }`}>
                     <th className="p-4 text-left font-semibold">Item</th>
                     <th className="p-4 text-left font-semibold">Sub Category</th>
@@ -324,8 +340,8 @@ export default function QuotationPage() {
                   ))}
                   <tr className={`transition-colors duration-300 ${
                     darkMode 
-                      ? 'bg-gradient-to-r from-blue-600 to-indigo-700 text-white' 
-                      : 'bg-gradient-to-r from-blue-500 to-indigo-600 text-white'
+                      ? 'bg-gradient-to-r from-black to-blue-950 text-white' 
+                      : 'bg-gradient-to-r from-blue-900 to-black text-white'
                   }`}>
                     <td colSpan={5} className="p-4 text-right font-bold text-lg">Grand Total</td>
                     <td className="p-4 font-bold text-lg">{grandTotal} SAR</td>
