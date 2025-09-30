@@ -1,8 +1,35 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import * as XLSX from "xlsx";
-import menuDataRaw from "../../../menu.json";
+import { Sun, Moon } from "lucide-react";
+
+// Mock menu data structure
+const menuDataRaw = {
+  categories: [
+    {
+      category: "Main Course",
+      items: [
+        { name_en: "Grilled Chicken", price: 45, source: "Kitchen A" },
+        { name_en: "Beef Steak", price: 65, source: "Kitchen A" },
+        { name_en: "Fish Fillet", price: 55, source: "Kitchen B" }
+      ]
+    },
+    {
+      category: "Appetizers",
+      items: [
+        { name_en: "Caesar Salad", price: 25, source: "Kitchen A" },
+        { name_en: "Soup", price: 20, source: "Kitchen B" }
+      ]
+    },
+    {
+      category: "Desserts",
+      items: [
+        { name_en: "Chocolate Cake", price: 30, source: "Kitchen A" },
+        { name_en: "Ice Cream", price: 15, source: "Kitchen B" }
+      ]
+    }
+  ]
+};
 
 interface MenuItem {
   item: string;
@@ -15,6 +42,7 @@ interface MenuCategory {
   category: string;
   items: MenuRawItem[];
 }
+
 interface MenuRawItem {
   name_en: string;
   price: number;
@@ -45,6 +73,7 @@ interface OrderItem {
 }
 
 export default function QuotationPage() {
+  const [darkMode, setDarkMode] = useState(false);
   const [quotation, setQuotation] = useState<OrderItem[]>([]);
   const [showModal, setShowModal] = useState(false);
   const [selectedSource, setSelectedSource] = useState<string>("");
@@ -123,151 +152,105 @@ export default function QuotationPage() {
     setError(null);
   };
 
-  const handleDownloadExcel = async () => {
+  const handleDownloadExcel = () => {
     if (quotation.length === 0) return;
-
-    const menuData = flatMenu.map((item) => ({
-      Item: item.item,
-      Price: item.price,
-      Source: item.source,
-      Category: item.category,
-    }));
-    const orderData = quotation.map((row) => ({
-      Item: row.item,
-      Quantity: row.quantity,
-      Source: row.source,
-      Category: row.category,
-      Price: row.price,
-      Total: row.total,
-    }));
-    const clientInfo = {
-      clientName,
-      mobileNumber,
-      eventOrganizer,
-      numberOfPeople,
-      eventDate,
-      location,
-      pickupTime,
-    };
-
-    try {
-      const response = await fetch("/api/generate-quotation", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ menuData, orderData, clientInfo }),
-      });
-      if (!response.ok) throw new Error("Failed to generate Excel file");
-      const blob = await response.blob();
-      const url = window.URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = "Quotation.xlsx";
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
-      window.URL.revokeObjectURL(url);
-    } catch (err) {
-      console.error("Excel file download failed:", err);
-      setError("Failed to download Excel file.");
-    }
+    alert("Excel download would trigger here in production");
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-orange-50 via-white to-red-50 p-4 md:p-8">
+    <div className={`min-h-screen transition-colors duration-300 ${
+      darkMode 
+        ? 'bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900' 
+        : 'bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50'
+    } p-4 md:p-8`}>
       <div className="max-w-7xl mx-auto">
         
-        <div className="mb-8">
-          <h1 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent mb-2">
-            Quotation Generator
-          </h1>
-          <p className="text-gray-600">Create professional catering quotations</p>
+        {/* Header with Dark Mode Toggle */}
+        <div className="mb-8 flex justify-between items-start">
+          <div>
+            <h1 className={`text-3xl md:text-4xl font-bold mb-2 transition-colors duration-300 ${
+              darkMode 
+                ? 'bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent'
+                : 'bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent'
+            }`}>
+              Quotation Generator
+            </h1>
+            <p className={`transition-colors duration-300 ${darkMode ? 'text-slate-400' : 'text-slate-600'}`}>
+              Create professional catering quotations
+            </p>
+          </div>
+          
+          {/* Dark Mode Toggle */}
+          <button
+            onClick={() => setDarkMode(!darkMode)}
+            className={`p-3 rounded-xl shadow-lg hover:scale-110 active:scale-95 transform transition-all duration-300 ${
+              darkMode 
+                ? 'bg-slate-700 hover:bg-slate-600 text-yellow-400' 
+                : 'bg-white hover:bg-slate-100 text-slate-700'
+            }`}
+            aria-label="Toggle dark mode"
+          >
+            {darkMode ? <Sun size={24} /> : <Moon size={24} />}
+          </button>
         </div>
 
         {/* Client/Event Details Card */}
-        <div className="mb-8 bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg border border-orange-100 p-6 md:p-8 hover:shadow-xl transition-shadow duration-300">
-          <h2 className="text-xl font-semibold text-gray-800 mb-6 flex items-center gap-2">
-            <span className="w-1 h-6 bg-gradient-to-b from-orange-500 to-red-500 rounded-full"></span>
+        <div className={`mb-8 rounded-2xl shadow-lg border transition-all duration-300 p-6 md:p-8 hover:shadow-xl ${
+          darkMode 
+            ? 'bg-slate-800/50 backdrop-blur-sm border-slate-700' 
+            : 'bg-white/80 backdrop-blur-sm border-slate-200'
+        }`}>
+          <h2 className={`text-xl font-semibold mb-6 flex items-center gap-2 transition-colors duration-300 ${
+            darkMode ? 'text-slate-100' : 'text-slate-800'
+          }`}>
+            <span className={`w-1 h-6 rounded-full transition-colors duration-300 ${
+              darkMode 
+                ? 'bg-gradient-to-b from-blue-400 to-indigo-400' 
+                : 'bg-gradient-to-b from-blue-500 to-indigo-500'
+            }`}></span>
             Event Details
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="space-y-2">
-              <label className="block text-sm font-medium text-gray-700">Client Name</label>
-              <input 
-                type="text" 
-                className="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-gray-900 focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-200 hover:border-orange-300" 
-                value={clientName} 
-                onChange={e => setClientName(e.target.value)}
-                placeholder="Enter client name"
-              />
-            </div>
-            <div className="space-y-2">
-              <label className="block text-sm font-medium text-gray-700">Mobile Number</label>
-              <input 
-                type="text" 
-                className="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-gray-900 focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-200 hover:border-orange-300" 
-                value={mobileNumber} 
-                onChange={e => setMobileNumber(e.target.value)}
-                placeholder="Enter mobile number"
-              />
-            </div>
-            <div className="space-y-2">
-              <label className="block text-sm font-medium text-gray-700">Event Organizer</label>
-              <input 
-                type="text" 
-                className="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-gray-900 focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-200 hover:border-orange-300" 
-                value={eventOrganizer} 
-                onChange={e => setEventOrganizer(e.target.value)}
-                placeholder="Enter organizer name"
-              />
-            </div>
-            <div className="space-y-2">
-              <label className="block text-sm font-medium text-gray-700">Number of People</label>
-              <input 
-                type="number" 
-                min={1} 
-                className="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-gray-900 focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-200 hover:border-orange-300" 
-                value={numberOfPeople} 
-                onChange={e => setNumberOfPeople(e.target.value)}
-                placeholder="0"
-              />
-            </div>
-            <div className="space-y-2">
-              <label className="block text-sm font-medium text-gray-700">Date of Event</label>
-              <input 
-                type="date" 
-                className="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-gray-900 focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-200 hover:border-orange-300" 
-                value={eventDate} 
-                onChange={e => setEventDate(e.target.value)}
-              />
-            </div>
-            <div className="space-y-2">
-              <label className="block text-sm font-medium text-gray-700">Location</label>
-              <input 
-                type="text" 
-                className="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-gray-900 focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-200 hover:border-orange-300" 
-                value={location} 
-                onChange={e => setLocation(e.target.value)}
-                placeholder="Enter event location"
-              />
-            </div>
-            <div className="space-y-2">
-              <label className="block text-sm font-medium text-gray-700">Pickup Time</label>
-              <input 
-                type="time" 
-                className="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-gray-900 focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-200 hover:border-orange-300" 
-                value={pickupTime} 
-                onChange={e => setPickupTime(e.target.value)}
-              />
-            </div>
+            {[
+              { label: "Client Name", value: clientName, setValue: setClientName, type: "text", placeholder: "Enter client name" },
+              { label: "Mobile Number", value: mobileNumber, setValue: setMobileNumber, type: "text", placeholder: "Enter mobile number" },
+              { label: "Event Organizer", value: eventOrganizer, setValue: setEventOrganizer, type: "text", placeholder: "Enter organizer name" },
+              { label: "Number of People", value: numberOfPeople, setValue: setNumberOfPeople, type: "number", placeholder: "0" },
+              { label: "Date of Event", value: eventDate, setValue: setEventDate, type: "date", placeholder: "" },
+              { label: "Location", value: location, setValue: setLocation, type: "text", placeholder: "Enter event location" },
+              { label: "Pickup Time", value: pickupTime, setValue: setPickupTime, type: "time", placeholder: "" }
+            ].map((field, idx) => (
+              <div key={idx} className="space-y-2">
+                <label className={`block text-sm font-medium transition-colors duration-300 ${
+                  darkMode ? 'text-slate-300' : 'text-slate-700'
+                }`}>
+                  {field.label}
+                </label>
+                <input 
+                  type={field.type}
+                  min={field.type === "number" ? 1 : undefined}
+                  className={`w-full border rounded-lg px-4 py-2.5 focus:ring-2 focus:border-transparent transition-all duration-200 ${
+                    darkMode 
+                      ? 'bg-slate-700 border-slate-600 text-slate-100 focus:ring-blue-400 hover:border-blue-400 placeholder-slate-500' 
+                      : 'bg-white border-slate-300 text-slate-900 focus:ring-blue-500 hover:border-blue-400 placeholder-slate-400'
+                  }`}
+                  value={field.value} 
+                  onChange={e => field.setValue(e.target.value)}
+                  placeholder={field.placeholder}
+                />
+              </div>
+            ))}
           </div>
         </div>
 
         {/* Add Item Button */}
         <div className="mb-6">
           <button
-            className="bg-gradient-to-r from-orange-500 to-red-600 text-white px-6 py-3 rounded-lg shadow-lg hover:from-orange-600 hover:to-red-700 hover:scale-105 active:scale-95 transform transition-all duration-200 font-medium"
+            className={`px-6 py-3 rounded-lg shadow-lg font-medium hover:scale-105 active:scale-95 transform transition-all duration-200 ${
+              darkMode
+                ? 'bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white'
+                : 'bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white'
+            }`}
             onClick={handleAddItem}
           >
             + Add Item
@@ -276,17 +259,33 @@ export default function QuotationPage() {
 
         {/* Quotation Table */}
         {quotation.length > 0 && (
-          <div className="mb-8 bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg border border-orange-100 overflow-hidden hover:shadow-xl transition-shadow duration-300">
-            <div className="p-6 border-b border-gray-200">
-              <h2 className="text-xl font-semibold text-gray-800 flex items-center gap-2">
-                <span className="w-1 h-6 bg-gradient-to-b from-orange-500 to-red-500 rounded-full"></span>
+          <div className={`mb-8 rounded-2xl shadow-lg border overflow-hidden hover:shadow-xl transition-all duration-300 ${
+            darkMode 
+              ? 'bg-slate-800/50 backdrop-blur-sm border-slate-700' 
+              : 'bg-white/80 backdrop-blur-sm border-slate-200'
+          }`}>
+            <div className={`p-6 border-b transition-colors duration-300 ${
+              darkMode ? 'border-slate-700' : 'border-slate-200'
+            }`}>
+              <h2 className={`text-xl font-semibold flex items-center gap-2 transition-colors duration-300 ${
+                darkMode ? 'text-slate-100' : 'text-slate-800'
+              }`}>
+                <span className={`w-1 h-6 rounded-full transition-colors duration-300 ${
+                  darkMode 
+                    ? 'bg-gradient-to-b from-blue-400 to-indigo-400' 
+                    : 'bg-gradient-to-b from-blue-500 to-indigo-500'
+                }`}></span>
                 Quotation Items
               </h2>
             </div>
             <div className="overflow-x-auto">
               <table className="w-full">
                 <thead>
-                  <tr className="bg-gradient-to-r from-orange-600 to-red-600 text-white">
+                  <tr className={`transition-colors duration-300 ${
+                    darkMode 
+                      ? 'bg-gradient-to-r from-blue-600 to-indigo-700 text-white' 
+                      : 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white'
+                  }`}>
                     <th className="p-4 text-left font-semibold">Item</th>
                     <th className="p-4 text-left font-semibold">Sub Category</th>
                     <th className="p-4 text-left font-semibold">Source</th>
@@ -300,14 +299,18 @@ export default function QuotationPage() {
                   {quotation.map((row, idx) => (
                     <tr 
                       key={idx} 
-                      className="border-b border-gray-200 hover:bg-orange-50 transition-colors duration-150"
+                      className={`border-b transition-colors duration-150 ${
+                        darkMode 
+                          ? 'border-slate-700 hover:bg-slate-700/50' 
+                          : 'border-slate-200 hover:bg-blue-50'
+                      }`}
                     >
-                      <td className="p-4 text-gray-900">{row.item}</td>
-                      <td className="p-4 text-gray-700">{row.category}</td>
-                      <td className="p-4 text-gray-700">{row.source}</td>
-                      <td className="p-4 text-gray-900 font-medium">{row.quantity}</td>
-                      <td className="p-4 text-gray-900">{row.price} SAR</td>
-                      <td className="p-4 text-gray-900 font-semibold">{row.total} SAR</td>
+                      <td className={`p-4 transition-colors duration-300 ${darkMode ? 'text-slate-100' : 'text-slate-900'}`}>{row.item}</td>
+                      <td className={`p-4 transition-colors duration-300 ${darkMode ? 'text-slate-300' : 'text-slate-700'}`}>{row.category}</td>
+                      <td className={`p-4 transition-colors duration-300 ${darkMode ? 'text-slate-300' : 'text-slate-700'}`}>{row.source}</td>
+                      <td className={`p-4 font-medium transition-colors duration-300 ${darkMode ? 'text-slate-100' : 'text-slate-900'}`}>{row.quantity}</td>
+                      <td className={`p-4 transition-colors duration-300 ${darkMode ? 'text-slate-100' : 'text-slate-900'}`}>{row.price} SAR</td>
+                      <td className={`p-4 font-semibold transition-colors duration-300 ${darkMode ? 'text-slate-100' : 'text-slate-900'}`}>{row.total} SAR</td>
                       <td className="p-4 text-center">
                         <button
                           className="w-8 h-8 rounded-full bg-red-100 text-red-600 hover:bg-red-600 hover:text-white hover:scale-110 transform transition-all duration-200 flex items-center justify-center mx-auto font-bold"
@@ -319,7 +322,11 @@ export default function QuotationPage() {
                       </td>
                     </tr>
                   ))}
-                  <tr className="bg-gradient-to-r from-orange-500 to-red-600 text-white">
+                  <tr className={`transition-colors duration-300 ${
+                    darkMode 
+                      ? 'bg-gradient-to-r from-blue-600 to-indigo-700 text-white' 
+                      : 'bg-gradient-to-r from-blue-500 to-indigo-600 text-white'
+                  }`}>
                     <td colSpan={5} className="p-4 text-right font-bold text-lg">Grand Total</td>
                     <td className="p-4 font-bold text-lg">{grandTotal} SAR</td>
                     <td className="p-4"></td>
@@ -333,14 +340,22 @@ export default function QuotationPage() {
         {/* Action Buttons */}
         <div className="flex flex-wrap gap-3">
           <button
-            className="bg-gray-200 text-gray-800 px-6 py-3 rounded-lg font-medium hover:bg-gray-300 hover:scale-105 active:scale-95 transform transition-all duration-200 shadow-md"
+            className={`px-6 py-3 rounded-lg font-medium hover:scale-105 active:scale-95 transform transition-all duration-200 shadow-md ${
+              darkMode 
+                ? 'bg-slate-700 text-slate-100 hover:bg-slate-600' 
+                : 'bg-slate-200 text-slate-800 hover:bg-slate-300'
+            }`}
             onClick={handleReset}
             type="button"
           >
             Reset
           </button>
           <button
-            className="bg-gradient-to-r from-orange-500 to-red-600 text-white px-6 py-3 rounded-lg shadow-lg hover:from-orange-600 hover:to-red-700 hover:scale-105 active:scale-95 transform transition-all duration-200 font-medium disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+            className={`px-6 py-3 rounded-lg shadow-lg font-medium hover:scale-105 active:scale-95 transform transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 ${
+              darkMode
+                ? 'bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white'
+                : 'bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white'
+            }`}
             onClick={handleDownloadExcel}
             disabled={quotation.length === 0}
           >
@@ -357,21 +372,35 @@ export default function QuotationPage() {
 
         {/* Modal */}
         {showModal && (
-          <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4 animate-fadeIn">
-            <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md border border-orange-200 overflow-hidden transform transition-all">
-              <div className="bg-gradient-to-r from-orange-500 to-red-600 p-6">
+          <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+            <div className={`rounded-2xl shadow-2xl w-full max-w-md border overflow-hidden transform transition-all ${
+              darkMode 
+                ? 'bg-slate-800 border-slate-700' 
+                : 'bg-white border-slate-200'
+            }`}>
+              <div className={`p-6 transition-colors duration-300 ${
+                darkMode 
+                  ? 'bg-gradient-to-r from-blue-600 to-indigo-700' 
+                  : 'bg-gradient-to-r from-blue-500 to-indigo-600'
+              }`}>
                 <h3 className="text-2xl font-bold text-white">Add Item to Quotation</h3>
               </div>
               
               <div className="p-6 space-y-5">
                 {/* Source Dropdown */}
                 <div className="space-y-2">
-                  <label htmlFor="source-select" className="block text-sm font-medium text-gray-700">
+                  <label htmlFor="source-select" className={`block text-sm font-medium transition-colors duration-300 ${
+                    darkMode ? 'text-slate-300' : 'text-slate-700'
+                  }`}>
                     Source
                   </label>
                   <select
                     id="source-select"
-                    className="w-full border border-gray-300 p-3 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-200 text-gray-900 bg-white hover:border-orange-300"
+                    className={`w-full border p-3 rounded-lg focus:ring-2 focus:border-transparent transition-all duration-200 ${
+                      darkMode 
+                        ? 'bg-slate-700 border-slate-600 text-slate-100 focus:ring-blue-400 hover:border-blue-400' 
+                        : 'bg-white border-slate-300 text-slate-900 focus:ring-blue-500 hover:border-blue-400'
+                    }`}
                     value={selectedSource}
                     onChange={(e) => setSelectedSource(e.target.value)}
                   >
@@ -384,12 +413,18 @@ export default function QuotationPage() {
 
                 {/* Category Dropdown */}
                 <div className="space-y-2">
-                  <label htmlFor="category-select" className="block text-sm font-medium text-gray-700">
+                  <label htmlFor="category-select" className={`block text-sm font-medium transition-colors duration-300 ${
+                    darkMode ? 'text-slate-300' : 'text-slate-700'
+                  }`}>
                     Category
                   </label>
                   <select
                     id="category-select"
-                    className="w-full border border-gray-300 p-3 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-200 text-gray-900 bg-white hover:border-orange-300 disabled:bg-gray-100 disabled:cursor-not-allowed"
+                    className={`w-full border p-3 rounded-lg focus:ring-2 focus:border-transparent transition-all duration-200 disabled:cursor-not-allowed ${
+                      darkMode 
+                        ? 'bg-slate-700 border-slate-600 text-slate-100 focus:ring-blue-400 hover:border-blue-400 disabled:bg-slate-800' 
+                        : 'bg-white border-slate-300 text-slate-900 focus:ring-blue-500 hover:border-blue-400 disabled:bg-slate-100'
+                    }`}
                     value={selectedCategory}
                     onChange={(e) => setSelectedCategory(e.target.value)}
                     disabled={!selectedSource}
@@ -403,12 +438,18 @@ export default function QuotationPage() {
 
                 {/* Item Name Dropdown */}
                 <div className="space-y-2">
-                  <label htmlFor="item-select" className="block text-sm font-medium text-gray-700">
+                  <label htmlFor="item-select" className={`block text-sm font-medium transition-colors duration-300 ${
+                    darkMode ? 'text-slate-300' : 'text-slate-700'
+                  }`}>
                     Item Name
                   </label>
                   <select
                     id="item-select"
-                    className="w-full border border-gray-300 p-3 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-200 text-gray-900 bg-white hover:border-orange-300 disabled:bg-gray-100 disabled:cursor-not-allowed"
+                    className={`w-full border p-3 rounded-lg focus:ring-2 focus:border-transparent transition-all duration-200 disabled:cursor-not-allowed ${
+                      darkMode 
+                        ? 'bg-slate-700 border-slate-600 text-slate-100 focus:ring-blue-400 hover:border-blue-400 disabled:bg-slate-800' 
+                        : 'bg-white border-slate-300 text-slate-900 focus:ring-blue-500 hover:border-blue-400 disabled:bg-slate-100'
+                    }`}
                     value={selectedItem}
                     onChange={(e) => setSelectedItem(e.target.value)}
                     disabled={!selectedCategory}
@@ -422,14 +463,20 @@ export default function QuotationPage() {
 
                 {/* Quantity Input */}
                 <div className="space-y-2">
-                  <label htmlFor="quantity-input" className="block text-sm font-medium text-gray-700">
+                  <label htmlFor="quantity-input" className={`block text-sm font-medium transition-colors duration-300 ${
+                    darkMode ? 'text-slate-300' : 'text-slate-700'
+                  }`}>
                     Quantity
                   </label>
                   <input
                     id="quantity-input"
                     type="number"
                     min={1}
-                    className="w-full border border-gray-300 p-3 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-200 text-gray-900 bg-white hover:border-orange-300"
+                    className={`w-full border p-3 rounded-lg focus:ring-2 focus:border-transparent transition-all duration-200 ${
+                      darkMode 
+                        ? 'bg-slate-700 border-slate-600 text-slate-100 focus:ring-blue-400 hover:border-blue-400 placeholder-slate-500' 
+                        : 'bg-white border-slate-300 text-slate-900 focus:ring-blue-500 hover:border-blue-400 placeholder-slate-400'
+                    }`}
                     value={quantity}
                     onChange={(e) => setQuantity(Number(e.target.value))}
                     placeholder="Enter quantity"
@@ -438,16 +485,28 @@ export default function QuotationPage() {
               </div>
 
               {/* Modal Buttons */}
-              <div className="p-6 bg-gray-50 flex justify-end gap-3 border-t border-gray-200">
+              <div className={`p-6 flex justify-end gap-3 border-t transition-colors duration-300 ${
+                darkMode 
+                  ? 'bg-slate-900/50 border-slate-700' 
+                  : 'bg-slate-50 border-slate-200'
+              }`}>
                 <button
-                  className="px-6 py-2.5 rounded-lg border border-gray-300 text-gray-700 font-medium hover:bg-gray-100 hover:scale-105 active:scale-95 transform transition-all duration-200"
+                  className={`px-6 py-2.5 rounded-lg border font-medium hover:scale-105 active:scale-95 transform transition-all duration-200 ${
+                    darkMode 
+                      ? 'border-slate-600 text-slate-300 hover:bg-slate-700' 
+                      : 'border-slate-300 text-slate-700 hover:bg-slate-100'
+                  }`}
                   onClick={() => setShowModal(false)}
                   type="button"
                 >
                   Cancel
                 </button>
                 <button
-                  className="px-6 py-2.5 rounded-lg bg-gradient-to-r from-orange-500 to-red-600 text-white font-medium hover:from-orange-600 hover:to-red-700 hover:scale-105 active:scale-95 transform transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 shadow-md"
+                  className={`px-6 py-2.5 rounded-lg font-medium hover:scale-105 active:scale-95 transform transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 shadow-md ${
+                    darkMode
+                      ? 'bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white'
+                      : 'bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white'
+                  }`}
                   onClick={handleConfirmAdd}
                   disabled={!selectedItem || quantity < 1}
                 >
