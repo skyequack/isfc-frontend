@@ -62,6 +62,8 @@ export default function QuotationPage() {
   const [location, setLocation] = useState("");
   const [pickupTime, setPickupTime] = useState("");
 
+  const [excelData, setExcelData] = useState<string | null>(null);
+
   const flatMenu = getFlatMenuItems();
   const sources = Array.from(new Set(flatMenu.map((item) => item.source)));
   const categories = Array.from(new Set(flatMenu.filter((item) => item.source === selectedSource).map((item) => item.category)));
@@ -80,7 +82,12 @@ export default function QuotationPage() {
     setSelectedItem("");
   }, [selectedCategory]);
 
-
+  useEffect(() => {
+    if (error) {
+      const timer = setTimeout(() => setError(null), 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [error]);
 
   const handleConfirmAdd = () => {
     const menuItem = items.find((m) => m.item === selectedItem);
@@ -168,6 +175,25 @@ export default function QuotationPage() {
       });
   };
 
+  // Ensure error type is handled properly
+  const handlePreviewExcel = async () => {
+    try {
+      const res = await fetch("/api/generate-quotation", { method: "POST" });
+      if (!res.ok) throw new Error("Failed to generate Excel");
+      const blob = await res.blob();
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        setExcelData(e.target?.result as string);
+      };
+      reader.readAsDataURL(blob);
+    } catch (err) {
+      const errorMessage = err instanceof Error ? err.message : "Failed to preview Excel";
+      setError(errorMessage);
+    }
+  };
+
+  const errorClass = error ? "opacity-100 transition-opacity duration-500" : "opacity-0 transition-opacity duration-500";
+
   return (
     <div className="min-h-screen transition-colors duration-300 bg-gradient-to-br from-[#a47149] via-[#a47149] to-[#a47149] pl-0 pr-0 pt-4 md:pt-8 pb-4 md:pb-8">
       {/* Full-width header bar */}
@@ -178,7 +204,7 @@ export default function QuotationPage() {
               Quotation Generator
             </h1>
             <p className="transition-colors duration-300 text-white/90">
-              Create professional catering quotations
+              Create catering quotations
             </p>
           </div>
         </div>
@@ -389,9 +415,26 @@ export default function QuotationPage() {
           </div>
         </div>
 
+        {/* Excel Preview Pane */}
+        <div className="mt-6">
+          <button
+            className="px-6 py-3 rounded-lg shadow-lg font-medium hover:scale-105 active:scale-95 transform transition-all duration-200 bg-[#5e775a] hover:bg-[#4a5f47] text-white"
+            onClick={handlePreviewExcel}
+          >
+            Preview Excel
+          </button>
+          {excelData && (
+            <iframe
+              src={excelData}
+              className="w-full h-96 mt-4 border border-gray-300 rounded-lg"
+              title="Excel Preview"
+            ></iframe>
+          )}
+        </div>
+
         {/* Error Message */}
         {error && (
-          <div className="mt-6 bg-red-50 border border-red-200 rounded-lg p-4 text-red-700 font-medium animate-fadeIn">
+          <div className={`mt-6 bg-red-50 border border-red-200 rounded-lg p-4 text-red-700 font-medium animate-fadeIn ${errorClass}`}>
             {error}
           </div>
         )}

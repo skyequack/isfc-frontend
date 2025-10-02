@@ -127,7 +127,7 @@ function createWorkbook(
 
   // Set column widths precisely (floats provided in spec)
   sheet.columns = [
-    { width: 24.14 }, // No.
+    { width: 5 }, // No.
     { width: 27.29 }, // Product
     { width: 17.0 },  // Arabic name
     { width: 10.71 }, // Unit
@@ -152,18 +152,12 @@ function createWorkbook(
   titleRow.getCell(1).alignment = { horizontal: "center", vertical: "middle" };
   titleRow.height = 30;
 
-  sheet.mergeCells("A3:H3");
-  const subtitleRow = sheet.getRow(3);
-  subtitleRow.getCell(1).value = "Buffets - Banquets";
-  subtitleRow.getCell(1).font = { name: "Arial", size: 12, bold: true };
-  subtitleRow.getCell(1).alignment = { horizontal: "center", vertical: "middle" };
-  subtitleRow.height = 20;
 
   // A4 spacer
-  sheet.getRow(4).height = 10;
+  sheet.getRow(3).height = 10;
 
-  // --- Client information (start at row 5) ---
-  let currentRow = 5;
+  // --- Client information (start at row 4) ---
+  let currentRow = 4;
   const clientFields = [
     { label: "Serial Number:", value: clientInfo?.serialNumber || "" },
     { label: "Client Name:", value: clientInfo?.clientName || "" },
@@ -177,14 +171,14 @@ function createWorkbook(
 
   clientFields.forEach((field) => {
     const r = sheet.getRow(currentRow);
-    // Label in column A
-    const lbl = r.getCell(1);
+    // Label in column B
+    const lbl = r.getCell(2);
     lbl.value = field.label;
     lbl.font = { name: "Arial", size: 10, bold: true };
     lbl.alignment = { horizontal: "left", vertical: "middle" };
 
-    // Value in column B
-    const val = r.getCell(2);
+    // Value in column C
+    const val = r.getCell(3);
     val.value = field.value;
     val.font = { name: "Arial", size: 10 };
     val.alignment = { horizontal: "left", vertical: "middle" };
@@ -193,9 +187,18 @@ function createWorkbook(
     currentRow++;
   });
 
+
+
   // empty spacer row after client block
   sheet.getRow(currentRow).height = 10;
   currentRow++;
+
+  sheet.mergeCells("A22:H22");
+  const subtitleRow = sheet.getRow(22);
+  subtitleRow.getCell(1).value = "Buffets - Banquets";
+  subtitleRow.getCell(1).font = { name: "Arial", size: 12, bold: true };
+  subtitleRow.getCell(1).alignment = { horizontal: "center", vertical: "middle" };
+  subtitleRow.height = 20;
 
   // --- Table header row ---
   const headerRow = sheet.getRow(currentRow);
@@ -277,14 +280,11 @@ function createWorkbook(
     currentRow++;
   });
 
-  // --- "Open" row immediately after items ---
-  const openRow = sheet.getRow(currentRow);
-  openRow.getCell(2).value = "Open";
-  openRow.getCell(2).font = { name: "Arial", size: 10 };
-  openRow.height = 20;
-  // Apply borders to entire row columns A-H
+
+
+  const r = sheet.getRow(currentRow - 1);
   for (let c = 1; c <= 8; c++) {
-    const cell = openRow.getCell(c);
+    const cell = r.getCell(c);
     cell.border = {
       top: { style: "thin" },
       left: { style: "thin" },
@@ -346,10 +346,10 @@ function createWorkbook(
   addSummaryLine("Total Exclude VAT", totals.totalExcludeVAT, 11, true, 11, true, undefined, 25);
   addSummaryLine("VAT 15%", totals.vat, 11, true, 11, true, undefined, 25);
   // Total Amount: fill amount cell with yellow ARGB 'FFFFD966' and larger font
-  addSummaryLine("Total Amount", totals.totalAmount, 12, true, 12, true, "FFFFD966", 30);
+  addSummaryLine("Total Amount", totals.totalAmount, 11, true, 11, true, "FFFFD966", 30);
 
   // Paid / Remaining rows
-  addSummaryLine("Paid Amount", totals.totalAmount, 11, true, 11, true, undefined, 25);
+  addSummaryLine("Paid Amount", null, 11, true, 11, true, undefined, 25);
   addSummaryLine("Remaining Amount (Balance)", null, 11, true, 11, false, undefined, 25);
 
   // --- Terms & Conditions block ---
@@ -369,7 +369,7 @@ function createWorkbook(
   const termsTextRow = sheet.getRow(currentRow);
   termsTextRow.getCell(1).value =
     "This quotation is valid for 3 days from the date of sending the quotation, once approved 100% of the quotation total amount should be paid 3 days before the event.\nOnce booking is confirmed, the payment will not be refunded for any reason.";
-  termsTextRow.getCell(1).font = { name: "Arial", size: 9 };
+  termsTextRow.getCell(1).font = { name: "Arial", size: 12 };
   termsTextRow.getCell(1).alignment = { horizontal: "left", vertical: "top", wrapText: true };
   termsTextRow.height = 40;
   currentRow += 2;
@@ -378,40 +378,5 @@ function createWorkbook(
   // (Optional) iterate a few rows down to make sure borders are present where needed
   // (No logo shapes attempted per extra notes)
 
-  // --- Menu Reference sheet ---
-  addMenuReferenceSheet(workbook, menuData);
-
   return workbook;
-}
-
-/**
- * Add Menu Reference worksheet named exactly "Menu Reference"
- * with headers from Object.keys(menuData[0]) and thin borders and width 20 (reasonable).
- */
-function addMenuReferenceSheet(workbook: ExcelJS.Workbook, menuData: MenuRow[]) {
-  const menuSheet = workbook.addWorksheet("Menu Reference");
-
-  if (!menuData || menuData.length === 0) {
-    // create minimal headers if empty
-    menuSheet.columns = [{ header: "Item", width: 20 }, { header: "Arabic", width: 20 }, { header: "Unit", width: 20 }, { header: "Price", width: 20 }];
-    return;
-  }
-
-  // Build headers from keys (preserve order from first object)
-  const keys = Object.keys(menuData[0]);
-  menuSheet.columns = keys.map((k) => ({ header: k, width: 20 }));
-
-  // Add rows and style each row cells with thin borders
-  menuData.forEach((menuRow) => {
-    const rowValues = keys.map((k) => menuRow[k as keyof MenuRow]);
-    const r = menuSheet.addRow(rowValues);
-    r.eachCell((cell) => {
-      cell.border = {
-        top: { style: "thin" },
-        left: { style: "thin" },
-        bottom: { style: "thin" },
-        right: { style: "thin" },
-      };
-    });
-  });
 }
