@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import * as XLSX from "xlsx";
+import ExcelJS from "exceljs";
 
 interface MenuRow {
   Item: string;
@@ -11,6 +11,7 @@ interface MenuRow {
 interface OrderRow {
   Item: string;
   Quantity: number;
+  Days?: number;
 }
 
 interface ProcessedItem {
@@ -19,7 +20,19 @@ interface ProcessedItem {
   unit: string;
   pricePerUnit: number;
   qty: number;
+  days: number;
   total: number;
+}
+
+interface ClientInfo {
+  clientName?: string;
+  mobileNumber?: string;
+  eventOrganizer?: string;
+  numberOfPeople?: string;
+  eventDate?: string;
+  location?: string;
+  pickupTime?: string;
+  serialNumber?: string;
 }
 
 export async function POST(req: Request) {
@@ -33,10 +46,11 @@ export async function POST(req: Request) {
       );
     }
 
-    // Match order with menu
+    // Match order with menu (preserve business logic exactly: qty * price * days)
     const items: ProcessedItem[] = orderData.map((row: OrderRow) => {
       const itemName = row.Item;
       const quantity = row.Quantity;
+      const days = row.Days || 1;
 
       const menuEntry: MenuRow | undefined = menuData.find(
         (m: MenuRow) => m.Item === itemName
@@ -52,167 +66,32 @@ export async function POST(req: Request) {
         unit,
         pricePerUnit: price,
         qty: quantity,
-        total: price * quantity,
+        days,
+        total: price * quantity * days,
       };
     });
 
-    // Compute totals
+    // Compute totals (unchanged logic): subtotal, VAT (15%), grand total
     const totalExcludeVAT = items.reduce((sum, r) => sum + r.total, 0);
     const vat = totalExcludeVAT * 0.15;
     const totalAmount = totalExcludeVAT + vat;
 
-    // Create workbook
-    const workbook = XLSX.utils.book_new();
-
-    // Prepare header rows with labels and values separated
-    const headerRows = [
-      ["QUOTATION"], // Title
-      [],
-      ["Client Name:", clientInfo?.clientName || ""],
-      ["Mobile Number:", clientInfo?.mobileNumber || ""],
-      ["Event Organizer:", clientInfo?.eventOrganizer || ""],
-      ["Number of People:", clientInfo?.numberOfPeople || ""],
-      ["Date of Event:", clientInfo?.eventDate || ""],
-      ["Location:", clientInfo?.location || ""],
-      ["Pickup Time:", clientInfo?.pickupTime || ""],
-      [], // blank row before table
-    ];
-
-    // Table header (without Arabic Name and Unit)
-    const tableHeader = [
-      "Item Name",
-      "Price per Unit",
-      "Quantity",
-      "Total Price"
-    ];
-
-    const tableRows = items.map(item => [
-      item.item,
-      item.pricePerUnit,
-      item.qty,
-      item.total
-    ]);
-
-    // Summary rows
-    const summaryRows = [
-      [],
-      ["Total Exclude VAT", "", "", totalExcludeVAT],
-      ["VAT 15%", "", "", vat],
-      ["Total Amount", "", "", totalAmount],
-      [],
-      ["Paid Amount", "", "", ""],
-      ["Remaining Amount (Balance)", "", "", ""]
-    ];
-
-    // Combine all rows
-    const sheetRows = [
-      ...headerRows,
-      tableHeader,
-      ...tableRows,
-      ...summaryRows
-    ];
-
-    const itemsSheet = XLSX.utils.aoa_to_sheet(sheetRows);
-
-    // Column widths
-    itemsSheet["!cols"] = [
-      { wch: 30 }, // Item Name
-      { wch: 18 }, // Price per unit
-      { wch: 12 }, // Quantity
-      { wch: 18 }  // Total Price
-    ];
-
-    // Apply styling
-    const range = XLSX.utils.decode_range(itemsSheet["!ref"] || "A1");
-
-    for (let R = range.s.r; R <= range.e.r; ++R) {
-      for (let C = range.s.c; C <= range.e.c; ++C) {
-        const cellAddress = XLSX.utils.encode_cell({ r: R, c: C });
-        if (!itemsSheet[cellAddress]) continue;
-
-        // Initialize cell style
-        if (!itemsSheet[cellAddress].s) itemsSheet[cellAddress].s = {};
-
-        // Title row (QUOTATION)
-        if (R === 0) {
-          itemsSheet[cellAddress].s = {
-            font: { bold: true, sz: 16 },
-            alignment: { horizontal: "center", vertical: "center" }
-          };
-        }
-
-        // Client info labels (rows 2-8, column A)
-        if (R >= 2 && R <= 8 && C === 0) {
-          itemsSheet[cellAddress].s = {
-            font: { bold: true },
-            alignment: { horizontal: "left", vertical: "center" }
-          };
-        }
-
-        // Table header row
-        if (R === 10) {
-          itemsSheet[cellAddress].s = {
-            font: { bold: true },
-            fill: { fgColor: { rgb: "E0E0E0" } },
-            alignment: { horizontal: "center", vertical: "center" },
-            border: {
-              top: { style: "thin" },
-              bottom: { style: "thin" },
-              left: { style: "thin" },
-              right: { style: "thin" }
-            }
-          };
-        }
-
-        // Table data rows
-        if (R > 10 && R <= 10 + items.length) {
-          itemsSheet[cellAddress].s = {
-            alignment: { horizontal: C === 0 ? "left" : "center", vertical: "center" },
-            border: {
-              top: { style: "thin" },
-              bottom: { style: "thin" },
-              left: { style: "thin" },
-              right: { style: "thin" }
-            }
-          };
-        }
-
-        // Summary rows - bold labels in first column
-        const summaryStartRow = 10 + items.length + 2;
-        if (R >= summaryStartRow && C === 0) {
-          itemsSheet[cellAddress].s = {
-            font: { bold: true },
-            alignment: { horizontal: "left", vertical: "center" }
-          };
-        }
-
-        // Total Amount row - make it more prominent
-        if (R === summaryStartRow + 2) {
-          itemsSheet[cellAddress].s = {
-            font: { bold: true, sz: 12 },
-            fill: { fgColor: { rgb: "FFD966" } },
-            alignment: { horizontal: C === 0 ? "left" : "center", vertical: "center" }
-          };
-        }
+    // Create workbook via the single centralized function (accepts totals object)
+    const workbook = createWorkbook(
+      items,
+      menuData,
+      clientInfo || {},
+      {
+        totalExcludeVAT,
+        vat,
+        totalAmount,
       }
-    }
+    );
 
-    // Merge title cell
-    itemsSheet["!merges"] = [{ s: { r: 0, c: 0 }, e: { r: 0, c: 3 } }];
+    // Write buffer and return as attachment (preserve headers)
+    const buffer = await workbook.xlsx.writeBuffer();
 
-    XLSX.utils.book_append_sheet(workbook, itemsSheet, "Order Summary");
-
-    // Add Menu Reference sheet
-    const menuSheet = XLSX.utils.json_to_sheet(menuData);
-    XLSX.utils.book_append_sheet(workbook, menuSheet, "Menu Reference");
-
-    // Generate buffer
-    const excelBuffer = XLSX.write(workbook, {
-      bookType: "xlsx",
-      type: "array",
-    });
-
-    return new Response(excelBuffer, {
+    return new Response(buffer, {
       headers: {
         "Content-Type":
           "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
@@ -225,4 +104,314 @@ export async function POST(req: Request) {
       { status: 500 }
     );
   }
+}
+
+/**
+ * Centralized workbook creation.
+ * signature:
+ * (items, menuData, clientInfo, totals) => ExcelJS.Workbook
+ */
+function createWorkbook(
+  items: ProcessedItem[],
+  menuData: MenuRow[],
+  clientInfo: ClientInfo,
+  totals: { totalExcludeVAT: number; vat: number; totalAmount: number }
+): ExcelJS.Workbook {
+  const workbook = new ExcelJS.Workbook();
+
+  // Main worksheet — exact name required
+  const sheet = workbook.addWorksheet("Quotation-عرض سعر");
+
+  // Ensure left-to-right view (uploaded file is LTR with Arabic column)
+  sheet.views = [{ rightToLeft: false }];
+
+  // Set column widths precisely (floats provided in spec)
+  sheet.columns = [
+    { width: 24.14 }, // No.
+    { width: 27.29 }, // Product
+    { width: 17.0 },  // Arabic name
+    { width: 10.71 }, // Unit
+    { width: 16.71 }, // Price per unit
+    { width: 6.86 },  // QTY
+    { width: 10.71 }, // #DAYS
+    { width: 14.71 }, // Total Price
+  ];
+
+  // --- Top header block ---
+  sheet.mergeCells("A1:H1");
+  const companyRow = sheet.getRow(1);
+  companyRow.getCell(1).value = "الشركة العالمية التخصصية لألغذية";
+  companyRow.getCell(1).font = { name: "Arial", size: 14, bold: true };
+  companyRow.getCell(1).alignment = { horizontal: "center", vertical: "middle" };
+  companyRow.height = 25;
+
+  sheet.mergeCells("A2:H2");
+  const titleRow = sheet.getRow(2);
+  titleRow.getCell(1).value = "Quotation - عرض سعر";
+  titleRow.getCell(1).font = { name: "Arial", size: 16, bold: true };
+  titleRow.getCell(1).alignment = { horizontal: "center", vertical: "middle" };
+  titleRow.height = 30;
+
+  sheet.mergeCells("A3:H3");
+  const subtitleRow = sheet.getRow(3);
+  subtitleRow.getCell(1).value = "Buffets - Banquets";
+  subtitleRow.getCell(1).font = { name: "Arial", size: 12, bold: true };
+  subtitleRow.getCell(1).alignment = { horizontal: "center", vertical: "middle" };
+  subtitleRow.height = 20;
+
+  // A4 spacer
+  sheet.getRow(4).height = 10;
+
+  // --- Client information (start at row 5) ---
+  let currentRow = 5;
+  const clientFields = [
+    { label: "Serial Number:", value: clientInfo?.serialNumber || "" },
+    { label: "Client Name:", value: clientInfo?.clientName || "" },
+    { label: "Mobile Number:", value: clientInfo?.mobileNumber || "" },
+    { label: "Event Organizer:", value: clientInfo?.eventOrganizer || "" },
+    { label: "Number of People:", value: clientInfo?.numberOfPeople || "" },
+    { label: "Date of event:", value: clientInfo?.eventDate || "" },
+    { label: "Location:", value: clientInfo?.location || "After Approval" },
+    { label: "Pickup Time:", value: clientInfo?.pickupTime || "" },
+  ];
+
+  clientFields.forEach((field) => {
+    const r = sheet.getRow(currentRow);
+    // Label in column A
+    const lbl = r.getCell(1);
+    lbl.value = field.label;
+    lbl.font = { name: "Arial", size: 10, bold: true };
+    lbl.alignment = { horizontal: "left", vertical: "middle" };
+
+    // Value in column B
+    const val = r.getCell(2);
+    val.value = field.value;
+    val.font = { name: "Arial", size: 10 };
+    val.alignment = { horizontal: "left", vertical: "middle" };
+
+    r.height = 18;
+    currentRow++;
+  });
+
+  // empty spacer row after client block
+  sheet.getRow(currentRow).height = 10;
+  currentRow++;
+
+  // --- Table header row ---
+  const headerRow = sheet.getRow(currentRow);
+  headerRow.values = [
+    "No.",
+    "Product",
+    "Arabic name",
+    "Unit",
+    "Price per unit",
+    "QTY",
+    "#DAYS",
+    "Total Price",
+  ];
+  headerRow.font = { name: "Arial", size: 10, bold: true };
+  headerRow.alignment = { horizontal: "center", vertical: "middle", wrapText: true };
+  headerRow.height = 30;
+
+  // Style header cells: grey fill (ARGB), thin borders
+  for (let c = 1; c <= 8; c++) {
+    const cell = headerRow.getCell(c);
+    cell.fill = {
+      type: "pattern",
+      pattern: "solid",
+      fgColor: { argb: "FFD3D3D3" }, // light grey
+    };
+    cell.border = {
+      top: { style: "thin" },
+      left: { style: "thin" },
+      bottom: { style: "thin" },
+      right: { style: "thin" },
+    };
+  }
+
+  currentRow++;
+
+  // --- Table data rows ---
+  items.forEach((item, idx) => {
+    const r = sheet.getRow(currentRow);
+    // Put numeric values as numbers so Excel can format them
+    r.getCell(1).value = idx + 1;
+    r.getCell(2).value = item.item;
+    r.getCell(3).value = item.arabicName;
+    r.getCell(4).value = item.unit;
+    r.getCell(5).value = item.pricePerUnit;
+    r.getCell(6).value = item.qty;
+    r.getCell(7).value = item.days;
+    r.getCell(8).value = item.total;
+
+    // Font & heights
+    r.height = 25;
+    for (let c = 1; c <= 8; c++) {
+      const cell = r.getCell(c);
+      cell.font = { name: "Arial", size: 10 };
+      // Borders
+      cell.border = {
+        top: { style: "thin" },
+        left: { style: "thin" },
+        bottom: { style: "thin" },
+        right: { style: "thin" },
+      };
+      // Alignment: numeric center for columns 1 and 5-8; text left for 2-4
+      if (c === 1 || c >= 5) {
+        cell.alignment = { horizontal: "center", vertical: "middle" };
+      } else {
+        cell.alignment = { horizontal: "left", vertical: "middle" };
+      }
+    }
+
+    // Number formatting for price/amount columns (5 and 8) and integer columns (6-7)
+    const priceCell = r.getCell(5);
+    priceCell.numFmt = '#,##0 "SAR"';
+    const qtyCell = r.getCell(6);
+    qtyCell.numFmt = '0';
+    const daysCell = r.getCell(7);
+    daysCell.numFmt = '0';
+    const totalCell = r.getCell(8);
+    totalCell.numFmt = '#,##0 "SAR"';
+
+    currentRow++;
+  });
+
+  // --- "Open" row immediately after items ---
+  const openRow = sheet.getRow(currentRow);
+  openRow.getCell(2).value = "Open";
+  openRow.getCell(2).font = { name: "Arial", size: 10 };
+  openRow.height = 20;
+  // Apply borders to entire row columns A-H
+  for (let c = 1; c <= 8; c++) {
+    const cell = openRow.getCell(c);
+    cell.border = {
+      top: { style: "thin" },
+      left: { style: "thin" },
+      bottom: { style: "thin" },
+      right: { style: "thin" },
+    };
+    // empty numeric formatting for empties to be safe
+    if (c === 8 && !cell.value) cell.numFmt = '#,##0 "SAR"';
+  }
+  currentRow++;
+
+  // spacer row before summary
+  sheet.getRow(currentRow).height = 8;
+  currentRow++;
+
+  // --- Summary block (labels merged A:G and amounts in H) ---
+  // Helper to add a merged label at A:G and numeric in H
+  function addSummaryLine(label: string, numericValue: number | null, labelFontSize = 11, labelBold = true, amountFontSize = 11, amountBold = true, amountFillARGB?: string, rowHeight = 25) {
+    sheet.mergeCells(`A${currentRow}:G${currentRow}`);
+    const r = sheet.getRow(currentRow);
+    const lblCell = r.getCell(1);
+    lblCell.value = label;
+    lblCell.font = { name: "Arial", size: labelFontSize, bold: labelBold };
+    lblCell.alignment = { horizontal: "right", vertical: "middle" };
+
+    const amtCell = r.getCell(8);
+    if (numericValue !== null) {
+      const rounded = Math.round(numericValue);
+      amtCell.value = rounded;
+      amtCell.numFmt = '#,##0 "SAR"';
+    } else {
+      amtCell.value = "";
+    }
+    amtCell.font = { name: "Arial", size: amountFontSize, bold: amountBold };
+    amtCell.alignment = { horizontal: "center", vertical: "middle" };
+    if (amountFillARGB) {
+      amtCell.fill = {
+        type: 'pattern',
+        pattern: 'solid',
+        fgColor: { argb: amountFillARGB },
+      };
+    }
+
+    // borders on A:H for the row
+    for (let c = 1; c <= 8; c++) {
+      const cell = r.getCell(c);
+      cell.border = {
+        top: { style: "thin" },
+        left: { style: "thin" },
+        bottom: { style: "thin" },
+        right: { style: "thin" },
+      };
+    }
+
+    r.height = rowHeight;
+    currentRow++;
+  }
+
+  addSummaryLine("Total Exclude VAT", totals.totalExcludeVAT, 11, true, 11, true, undefined, 25);
+  addSummaryLine("VAT 15%", totals.vat, 11, true, 11, true, undefined, 25);
+  // Total Amount: fill amount cell with yellow ARGB 'FFFFD966' and larger font
+  addSummaryLine("Total Amount", totals.totalAmount, 12, true, 12, true, "FFFFD966", 30);
+
+  // Paid / Remaining rows
+  addSummaryLine("Paid Amount", totals.totalAmount, 11, true, 11, true, undefined, 25);
+  addSummaryLine("Remaining Amount (Balance)", null, 11, true, 11, false, undefined, 25);
+
+  // --- Terms & Conditions block ---
+  // spacer row
+  currentRow += 1;
+
+  sheet.mergeCells(`A${currentRow}:H${currentRow}`);
+  const termsHeaderRow = sheet.getRow(currentRow);
+  termsHeaderRow.getCell(1).value = "Terms & Conditions - الشروط والاحكام";
+  termsHeaderRow.getCell(1).font = { name: "Arial", size: 11, bold: true };
+  termsHeaderRow.getCell(1).alignment = { horizontal: "center", vertical: "middle" };
+  termsHeaderRow.height = 25;
+  currentRow++;
+
+  // Terms text across two rows (merged A:H)
+  sheet.mergeCells(`A${currentRow}:H${currentRow + 1}`);
+  const termsTextRow = sheet.getRow(currentRow);
+  termsTextRow.getCell(1).value =
+    "This quotation is valid for 3 days from the date of sending the quotation, once approved 100% of the quotation total amount should be paid 3 days before the event.\nOnce booking is confirmed, the payment will not be refunded for any reason.";
+  termsTextRow.getCell(1).font = { name: "Arial", size: 9 };
+  termsTextRow.getCell(1).alignment = { horizontal: "left", vertical: "top", wrapText: true };
+  termsTextRow.height = 40;
+  currentRow += 2;
+
+  // Ensure all columns A-H have explicit borders in the summary area / terms region (cosmetic)
+  // (Optional) iterate a few rows down to make sure borders are present where needed
+  // (No logo shapes attempted per extra notes)
+
+  // --- Menu Reference sheet ---
+  addMenuReferenceSheet(workbook, menuData);
+
+  return workbook;
+}
+
+/**
+ * Add Menu Reference worksheet named exactly "Menu Reference"
+ * with headers from Object.keys(menuData[0]) and thin borders and width 20 (reasonable).
+ */
+function addMenuReferenceSheet(workbook: ExcelJS.Workbook, menuData: MenuRow[]) {
+  const menuSheet = workbook.addWorksheet("Menu Reference");
+
+  if (!menuData || menuData.length === 0) {
+    // create minimal headers if empty
+    menuSheet.columns = [{ header: "Item", width: 20 }, { header: "Arabic", width: 20 }, { header: "Unit", width: 20 }, { header: "Price", width: 20 }];
+    return;
+  }
+
+  // Build headers from keys (preserve order from first object)
+  const keys = Object.keys(menuData[0]);
+  menuSheet.columns = keys.map((k) => ({ header: k, width: 20 }));
+
+  // Add rows and style each row cells with thin borders
+  menuData.forEach((menuRow) => {
+    const rowValues = keys.map((k) => menuRow[k as keyof MenuRow]);
+    const r = menuSheet.addRow(rowValues);
+    r.eachCell((cell) => {
+      cell.border = {
+        top: { style: "thin" },
+        left: { style: "thin" },
+        bottom: { style: "thin" },
+        right: { style: "thin" },
+      };
+    });
+  });
 }
