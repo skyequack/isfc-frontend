@@ -10,71 +10,187 @@
           "name_en": "Lunch Service & Breakfast Three OP 3 Salus",
           "name_ar": "فطور وغداء",
           "unit": "BOX",
-          "price": 35.0,
-          "source": "360G"
+          "price": 35,
+          "source": "360G",
+          "rating": "88%",
+          "description": "Hearty breakfast selection with traditional and international options",
+          "prepTime": "15 minutes",
+          "ingredients": [
+            "eggs",
+            "bread",
+            "cheese",
+            "vegetables"
+          ],
+          "allergens": [
+            "gluten",
+            "dairy",
+            "eggs"
+          ],
+          "dietary": [
+            "vegetarian"
+          ]
         },
         {
           "name_en": "Snacks",
           "name_ar": "سناك",
           "unit": "PCS",
-          "price": 2.0,
-          "source": "360G"
+          "price": 2,
+          "source": "360G",
+          "rating": "87%",
+          "description": "Light bites and refreshing beverages",
+          "prepTime": "10 minutes",
+          "ingredients": [
+            "assorted snacks",
+            "fruits",
+            "beverages"
+          ],
+          "allergens": [],
+          "dietary": [
+            "vegetarian"
+          ]
         },
         {
           "name_en": "Organizer Breakfast",
           "name_ar": "فطور المنظمين",
           "unit": "PAX",
-          "price": 24.0,
-          "source": "360G"
+          "price": 24,
+          "source": "360G",
+          "rating": "88%",
+          "description": "Hearty breakfast selection with traditional and international options",
+          "prepTime": "15 minutes",
+          "ingredients": [
+            "eggs",
+            "bread",
+            "cheese",
+            "vegetables"
+          ],
+          "allergens": [
+            "gluten",
+            "dairy",
+            "eggs"
+          ],
+          "dietary": [
+            "vegetarian"
+          ]
         },
         {
           "name_en": "Organizer Lunch",
           "name_ar": "غداء المنظمين",
           "unit": "PAX",
-          "price": 59.0,
-          "source": "360G"
+          "price": 59,
+          "source": "360G",
+          "rating": "91%",
+          "description": "Complete meal with main course, sides, and accompaniments",
+          "prepTime": "30 minutes",
+          "ingredients": [
+            "protein",
+            "rice",
+            "vegetables",
+            "sauce"
+          ],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Organizer Dinner",
           "name_ar": "عشاء المنظمين",
           "unit": "PAX",
-          "price": 59.0,
-          "source": "360G"
+          "price": 59,
+          "source": "360G",
+          "rating": "91%",
+          "description": "Complete meal with main course, sides, and accompaniments",
+          "prepTime": "30 minutes",
+          "ingredients": [
+            "protein",
+            "rice",
+            "vegetables",
+            "sauce"
+          ],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Refreshments all day",
           "name_ar": "وجبات خفيفه ومرطبات",
           "unit": "PAX",
-          "price": 45.0,
-          "source": "360G"
+          "price": 45,
+          "source": "360G",
+          "rating": "87%",
+          "description": "Light bites and refreshing beverages",
+          "prepTime": "10 minutes",
+          "ingredients": [
+            "assorted snacks",
+            "fruits",
+            "beverages"
+          ],
+          "allergens": [],
+          "dietary": [
+            "vegetarian"
+          ]
         },
         {
           "name_en": "Race tower Refreshments",
           "name_ar": "وجبات خفيفه ومرطبات",
           "unit": "PAX",
-          "price": 45.0,
-          "source": "360G"
+          "price": 45,
+          "source": "360G",
+          "rating": "87%",
+          "description": "Light bites and refreshing beverages",
+          "prepTime": "10 minutes",
+          "ingredients": [
+            "assorted snacks",
+            "fruits",
+            "beverages"
+          ],
+          "allergens": [],
+          "dietary": [
+            "vegetarian"
+          ]
         },
         {
           "name_en": "Media Refreshments",
           "name_ar": "وجبات خفيفه ومرطبات",
           "unit": "PAX",
-          "price": 45.0,
-          "source": "360G"
+          "price": 45,
+          "source": "360G",
+          "rating": "87%",
+          "description": "Light bites and refreshing beverages",
+          "prepTime": "10 minutes",
+          "ingredients": [
+            "assorted snacks",
+            "fruits",
+            "beverages"
+          ],
+          "allergens": [],
+          "dietary": [
+            "vegetarian"
+          ]
         },
         {
           "name_en": "Marshalls",
           "name_ar": "رؤساء احتفاالت",
           "unit": "PAX",
-          "price": 79.0,
-          "source": "360G"
+          "price": 79,
+          "source": "360G",
+          "rating": "88%",
+          "description": "Delicious Marshalls",
+          "prepTime": "10 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Police Meals",
           "name_ar": "وجبات الشرطه",
           "unit": "PAX",
-          "price": 49.0,
-          "source": "360G"
+          "price": 49,
+          "source": "360G",
+          "rating": "88%",
+          "description": "Delicious Police Meals",
+          "prepTime": "10 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         }
       ]
     },
@@ -85,183 +201,403 @@
           "name_en": "Coffee & Tea station",
           "name_ar": "ركن الشاي والقهوه",
           "unit": "Station",
-          "price": 5000.0,
-          "source": "360G"
+          "price": 5000,
+          "source": "360G",
+          "rating": "94%",
+          "description": "Premium coffee and tea station with various options",
+          "prepTime": "5 minutes",
+          "ingredients": [
+            "coffee beans",
+            "tea leaves",
+            "milk",
+            "sugar"
+          ],
+          "allergens": [
+            "dairy"
+          ],
+          "dietary": [
+            "vegetarian"
+          ]
         },
         {
           "name_en": "Cold & Hot Drinks",
           "name_ar": "المشروبات البارده والحاره",
           "unit": "Station",
-          "price": 40.0,
-          "source": "360G"
+          "price": 40,
+          "source": "360G",
+          "rating": "90%",
+          "description": "Refreshing beverages including hot and cold options",
+          "prepTime": "5 minutes",
+          "ingredients": [
+            "water",
+            "fruit juices",
+            "tea",
+            "coffee"
+          ],
+          "allergens": [],
+          "dietary": [
+            "vegetarian",
+            "vegan"
+          ]
         },
         {
           "name_en": "Traditional Saudi Whole Lamb",
           "name_ar": "الخروف الكامل السعودي التقليدي",
           "unit": "Station",
-          "price": 2500.0,
-          "source": "360G"
+          "price": 2500,
+          "source": "360G",
+          "rating": "96%",
+          "description": "Tender lamb prepared with traditional Saudi spices and herbs",
+          "prepTime": "180 minutes",
+          "ingredients": [
+            "lamb",
+            "rice",
+            "spices",
+            "herbs"
+          ],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Vine Leaves Stuffed Lamb",
           "name_ar": "خروف محشي بورق العنب",
           "unit": "Station",
-          "price": 4000.0,
-          "source": "360G"
+          "price": 4000,
+          "source": "360G",
+          "rating": "96%",
+          "description": "Tender lamb prepared with traditional Saudi spices and herbs",
+          "prepTime": "180 minutes",
+          "ingredients": [
+            "lamb",
+            "rice",
+            "spices",
+            "herbs"
+          ],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Live Charcoal Grilled Lamb",
           "name_ar": "خروف مشوي على الفحم مباشرة",
           "unit": "Station",
-          "price": 4000.0,
-          "source": "360G"
+          "price": 4000,
+          "source": "360G",
+          "rating": "96%",
+          "description": "Tender lamb prepared with traditional Saudi spices and herbs",
+          "prepTime": "180 minutes",
+          "ingredients": [
+            "lamb",
+            "rice",
+            "spices",
+            "herbs"
+          ],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Gourmet Lamb Ouzi",
           "name_ar": "اوزي خروف فاخر",
           "unit": "Station",
-          "price": 4500.0,
-          "source": "360G"
+          "price": 4500,
+          "source": "360G",
+          "rating": "96%",
+          "description": "Tender lamb prepared with traditional Saudi spices and herbs",
+          "prepTime": "180 minutes",
+          "ingredients": [
+            "lamb",
+            "rice",
+            "spices",
+            "herbs"
+          ],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Roasted Baby Camel",
           "name_ar": "جمل صغير مشوي كامل",
           "unit": "Station",
-          "price": 9500.0,
-          "source": "360G"
+          "price": 9500,
+          "source": "360G",
+          "rating": "95%",
+          "description": "Authentic roasted camel prepared with traditional methods",
+          "prepTime": "240 minutes",
+          "ingredients": [
+            "camel meat",
+            "rice",
+            "spices",
+            "herbs"
+          ],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Whole Hamour",
           "name_ar": "هامور كامل مشوي",
           "unit": "Station",
-          "price": 3000.0,
-          "source": "360G"
+          "price": 3000,
+          "source": "360G",
+          "rating": "93%",
+          "description": "Fresh seafood grilled to perfection with aromatic spices",
+          "prepTime": "30 minutes",
+          "ingredients": [
+            "fish",
+            "lemon",
+            "herbs",
+            "spices"
+          ],
+          "allergens": [
+            "fish",
+            "shellfish"
+          ],
+          "dietary": []
         },
         {
           "name_en": "Roasted Whole Turkey",
           "name_ar": "ديك رومي مشوي كامل",
           "unit": "Station",
-          "price": 1000.0,
-          "source": "360G"
+          "price": 1000,
+          "source": "360G",
+          "rating": "92%",
+          "description": "Delicious Roasted Whole Turkey",
+          "prepTime": "20 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Ballpark Popcorn",
           "name_ar": "فشار طازج",
           "unit": "Station",
-          "price": 500.0,
-          "source": "360G"
+          "price": 500,
+          "source": "360G",
+          "rating": "92%",
+          "description": "Delicious Ballpark Popcorn",
+          "prepTime": "20 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Gazel Al Bannat (Sugar Candy)",
           "name_ar": "غزل البنات",
           "unit": "Station",
-          "price": 500.0,
-          "source": "360G"
+          "price": 500,
+          "source": "360G",
+          "rating": "92%",
+          "description": "Delicious Gazel Al Bannat (Sugar Candy)",
+          "prepTime": "20 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Chickpeas Fattah & Ballilah Station",
           "name_ar": "محطة فتة الحمص والبليلة",
           "unit": "Station",
-          "price": 1500.0,
-          "source": "360G"
+          "price": 1500,
+          "source": "360G",
+          "rating": "92%",
+          "description": "Delicious Chickpeas Fattah & Ballilah Station",
+          "prepTime": "20 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Japanese Sushi Station",
           "name_ar": "محطة السوشي الياباني",
           "unit": "Station",
-          "price": 2000.0,
-          "source": "360G"
+          "price": 2000,
+          "source": "360G",
+          "rating": "92%",
+          "description": "Delicious Japanese Sushi Station",
+          "prepTime": "20 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Far Eastern Dim Sum Station",
           "name_ar": "محطة ديم سام الشرق الأقصى",
           "unit": "Station",
-          "price": 2000.0,
-          "source": "360G"
+          "price": 2000,
+          "source": "360G",
+          "rating": "92%",
+          "description": "Delicious Far Eastern Dim Sum Station",
+          "prepTime": "20 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Chicken Shawarma Station",
           "name_ar": "محطة شاورما الدجاج",
           "unit": "Station",
-          "price": 2000.0,
-          "source": "360G"
+          "price": 2000,
+          "source": "360G",
+          "rating": "91%",
+          "description": "Succulent chicken prepared with special seasoning",
+          "prepTime": "45 minutes",
+          "ingredients": [
+            "chicken",
+            "spices",
+            "herbs",
+            "olive oil"
+          ],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Burgers & Ball Park Franks",
           "name_ar": "برغر وهوت دوغ",
           "unit": "Station",
-          "price": 2500.0,
-          "source": "360G"
+          "price": 2500,
+          "source": "360G",
+          "rating": "92%",
+          "description": "Delicious Burgers & Ball Park Franks",
+          "prepTime": "20 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Pasta Station",
           "name_ar": "محطة الباستا",
           "unit": "Station",
-          "price": 2500.0,
-          "source": "360G"
+          "price": 2500,
+          "source": "360G",
+          "rating": "92%",
+          "description": "Delicious Pasta Station",
+          "prepTime": "20 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Meat Shawarma Station",
           "name_ar": "محطة شاورما اللحم",
           "unit": "Station",
-          "price": 3000.0,
-          "source": "360G"
+          "price": 3000,
+          "source": "360G",
+          "rating": "92%",
+          "description": "Delicious Meat Shawarma Station",
+          "prepTime": "20 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Mix Grill Station",
           "name_ar": "محطة المشاوي المشكلة",
           "unit": "Station",
-          "price": 3500.0,
-          "source": "360G"
+          "price": 3500,
+          "source": "360G",
+          "rating": "92%",
+          "description": "Delicious Mix Grill Station",
+          "prepTime": "20 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Kounafa Station (Min 5kg)",
           "name_ar": "محطة كنافة (حد أدنى 5 كجم)",
           "unit": "Station",
-          "price": 1500.0,
-          "source": "360G"
+          "price": 1500,
+          "source": "360G",
+          "rating": "92%",
+          "description": "Delicious Kounafa Station (Min 5kg)",
+          "prepTime": "20 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Chocolate Fountain",
           "name_ar": "نافورة الشوكوالتة",
           "unit": "Station",
-          "price": 1500.0,
-          "source": "360G"
+          "price": 1500,
+          "source": "360G",
+          "rating": "92%",
+          "description": "Delicious Chocolate Fountain",
+          "prepTime": "20 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Ice Cream Carte",
           "name_ar": "عربة الآيس كريم",
           "unit": "Station",
-          "price": 2500.0,
-          "source": "360G"
+          "price": 2500,
+          "source": "360G",
+          "rating": "92%",
+          "description": "Delicious Ice Cream Carte",
+          "prepTime": "20 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Fruit Display 1",
           "name_ar": "عرض فواكه 1",
           "unit": "Station",
-          "price": 1000.0,
-          "source": "360G"
+          "price": 1000,
+          "source": "360G",
+          "rating": "92%",
+          "description": "Delicious Fruit Display 1",
+          "prepTime": "20 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Fruit Display 2",
           "name_ar": "عرض فواكه 2",
           "unit": "Station",
-          "price": 2000.0,
-          "source": "360G"
+          "price": 2000,
+          "source": "360G",
+          "rating": "92%",
+          "description": "Delicious Fruit Display 2",
+          "prepTime": "20 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Fruit Display 3",
           "name_ar": "عرض فواكه 3",
           "unit": "Station",
-          "price": 3000.0,
-          "source": "360G"
+          "price": 3000,
+          "source": "360G",
+          "rating": "92%",
+          "description": "Delicious Fruit Display 3",
+          "prepTime": "20 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Price Variation of items",
           "name_ar": "فروقات اسعار الاضافات",
           "unit": "Item",
-          "price": 150.0,
-          "source": "360G"
+          "price": 150,
+          "source": "360G",
+          "rating": "92%",
+          "description": "Aromatic rice dish cooked with fragrant spices",
+          "prepTime": "40 minutes",
+          "ingredients": [
+            "basmati rice",
+            "spices",
+            "herbs",
+            "ghee"
+          ],
+          "allergens": [
+            "dairy"
+          ],
+          "dietary": [
+            "vegetarian"
+          ]
         }
       ]
     },
@@ -272,22 +608,40 @@
           "name_en": "Refrigerators Slaus logo",
           "name_ar": "ثالجه",
           "unit": "PCS",
-          "price": 150.0,
-          "source": "360G"
+          "price": 150,
+          "source": "360G",
+          "rating": "90%",
+          "description": "Delicious Refrigerators Slaus logo",
+          "prepTime": "15 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "waiters Cocklair",
           "name_ar": "مقدم طعام",
           "unit": "PAX",
-          "price": 300.0,
-          "source": "360G"
+          "price": 300,
+          "source": "360G",
+          "rating": "90%",
+          "description": "Delicious waiters Cocklair",
+          "prepTime": "15 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Microwave",
           "name_ar": "مايكرويف",
           "unit": "PCS",
-          "price": 150.0,
-          "source": "360G"
+          "price": 150,
+          "source": "360G",
+          "rating": "90%",
+          "description": "Delicious Microwave",
+          "prepTime": "15 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         }
       ]
     },
@@ -298,127 +652,269 @@
           "name_en": "Sample Snack Menu – 8 Pcs of Each",
           "name_ar": "Abu Hamdan",
           "unit": "PCS",
-          "price": 20.0,
-          "source": "360G"
+          "price": 20,
+          "source": "360G",
+          "rating": "87%",
+          "description": "Light bites and refreshing beverages",
+          "prepTime": "10 minutes",
+          "ingredients": [
+            "assorted snacks",
+            "fruits",
+            "beverages"
+          ],
+          "allergens": [],
+          "dietary": [
+            "vegetarian"
+          ]
         },
         {
           "name_en": "Mini Feta Cheese & Thyme Croissant",
           "name_ar": "Mini Feta Cheese & Thyme Croissant",
           "unit": "PCS",
-          "price": 20.0,
-          "source": "360G"
+          "price": 20,
+          "source": "360G",
+          "rating": "90%",
+          "description": "Delicious Mini Feta Cheese & Thyme Croissant",
+          "prepTime": "15 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Mini Stuffed Croissant with turkey & Chedder",
           "name_ar": "Mini Stuffed Croissant with turkey & Chedder",
           "unit": "PCS",
-          "price": 20.0,
-          "source": "360G"
+          "price": 20,
+          "source": "360G",
+          "rating": "90%",
+          "description": "Delicious Mini Stuffed Croissant with turkey & Chedder",
+          "prepTime": "15 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Mini Brown Bread Club of Tuna",
           "name_ar": "Mini Brown Bread Club of Tuna",
           "unit": "PCS",
-          "price": 20.0,
-          "source": "360G"
+          "price": 20,
+          "source": "360G",
+          "rating": "90%",
+          "description": "Freshly baked bread served warm",
+          "prepTime": "20 minutes",
+          "ingredients": [
+            "flour",
+            "water",
+            "yeast",
+            "salt"
+          ],
+          "allergens": [
+            "gluten"
+          ],
+          "dietary": [
+            "vegetarian"
+          ]
         },
         {
           "name_en": "Mini White Bread Club of Feta cheese with olives & Tomato",
           "name_ar": "Mini White Bread Club of Feta cheese with olives & Tomato",
           "unit": "PCS",
-          "price": 20.0,
-          "source": "360G"
+          "price": 20,
+          "source": "360G",
+          "rating": "90%",
+          "description": "Freshly baked bread served warm",
+          "prepTime": "20 minutes",
+          "ingredients": [
+            "flour",
+            "water",
+            "yeast",
+            "salt"
+          ],
+          "allergens": [
+            "gluten"
+          ],
+          "dietary": [
+            "vegetarian"
+          ]
         },
         {
           "name_en": "Mini Olives Panini of Hallumi with Rocca & Sundried tomato",
           "name_ar": "Mini Olives Panini of Hallumi with Rocca & Sundried tomato",
           "unit": "PCS",
-          "price": 20.0,
-          "source": "360G"
+          "price": 20,
+          "source": "360G",
+          "rating": "90%",
+          "description": "Delicious Mini Olives Panini of Hallumi with Rocca & Sundried tomato",
+          "prepTime": "15 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Mini Oregano Panini of Mozzarella & Tomato",
           "name_ar": "Mini Oregano Panini of Mozzarella & Tomato",
           "unit": "PCS",
-          "price": 20.0,
-          "source": "360G"
+          "price": 20,
+          "source": "360G",
+          "rating": "90%",
+          "description": "Delicious Mini Oregano Panini of Mozzarella & Tomato",
+          "prepTime": "15 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Mini Tortilla Roll with Chicken",
           "name_ar": "Mini Tortilla Roll with Chicken",
           "unit": "PCS",
-          "price": 20.0,
-          "source": "360G"
+          "price": 20,
+          "source": "360G",
+          "rating": "91%",
+          "description": "Succulent chicken prepared with special seasoning",
+          "prepTime": "45 minutes",
+          "ingredients": [
+            "chicken",
+            "spices",
+            "herbs",
+            "olive oil"
+          ],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Mini Falafel Wrap with Tortilla",
           "name_ar": "Mini Falafel Wrap with Tortilla",
           "unit": "PCS",
-          "price": 20.0,
-          "source": "360G"
+          "price": 20,
+          "source": "360G",
+          "rating": "90%",
+          "description": "Delicious Mini Falafel Wrap with Tortilla",
+          "prepTime": "15 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Mini Chicken Mussakan",
           "name_ar": "Mini Chicken Mussakan",
           "unit": "PCS",
-          "price": 20.0,
-          "source": "360G"
+          "price": 20,
+          "source": "360G",
+          "rating": "91%",
+          "description": "Succulent chicken prepared with special seasoning",
+          "prepTime": "45 minutes",
+          "ingredients": [
+            "chicken",
+            "spices",
+            "herbs",
+            "olive oil"
+          ],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Mini Pineapple Danish",
           "name_ar": "Mini Pineapple Danish",
           "unit": "PCS",
-          "price": 20.0,
-          "source": "360G"
+          "price": 20,
+          "source": "360G",
+          "rating": "90%",
+          "description": "Delicious Mini Pineapple Danish",
+          "prepTime": "15 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Mini Strawberry Danish",
           "name_ar": "Mini Strawberry Danish",
           "unit": "PCS",
-          "price": 20.0,
-          "source": "360G"
+          "price": 20,
+          "source": "360G",
+          "rating": "90%",
+          "description": "Delicious Mini Strawberry Danish",
+          "prepTime": "15 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Mini Chocolate Muffins",
           "name_ar": "Mini Chocolate Muffins",
           "unit": "PCS",
-          "price": 20.0,
-          "source": "360G"
+          "price": 20,
+          "source": "360G",
+          "rating": "90%",
+          "description": "Delicious Mini Chocolate Muffins",
+          "prepTime": "15 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Mini Vanilla Muffins",
           "name_ar": "Mini Vanilla Muffins",
           "unit": "PCS",
-          "price": 20.0,
-          "source": "360G"
+          "price": 20,
+          "source": "360G",
+          "rating": "90%",
+          "description": "Delicious Mini Vanilla Muffins",
+          "prepTime": "15 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Mini Blueberry with Cheese & Crumble",
           "name_ar": "Mini Blueberry with Cheese & Crumble",
           "unit": "PCS",
-          "price": 20.0,
-          "source": "360G"
+          "price": 20,
+          "source": "360G",
+          "rating": "90%",
+          "description": "Delicious Mini Blueberry with Cheese & Crumble",
+          "prepTime": "15 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Mini Chocolate Brownies",
           "name_ar": "Mini Chocolate Brownies",
           "unit": "PCS",
-          "price": 20.0,
-          "source": "360G"
+          "price": 20,
+          "source": "360G",
+          "rating": "90%",
+          "description": "Delicious Mini Chocolate Brownies",
+          "prepTime": "15 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Mini Peanut Chocolate Bar",
           "name_ar": "Mini Peanut Chocolate Bar",
           "unit": "PCS",
-          "price": 20.0,
-          "source": "360G"
+          "price": 20,
+          "source": "360G",
+          "rating": "90%",
+          "description": "Delicious Mini Peanut Chocolate Bar",
+          "prepTime": "15 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Mini Rocky Road",
           "name_ar": "Mini Rocky Road",
           "unit": "PCS",
-          "price": 20.0,
-          "source": "360G"
+          "price": 20,
+          "source": "360G",
+          "rating": "90%",
+          "description": "Delicious Mini Rocky Road",
+          "prepTime": "15 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         }
       ]
     },
@@ -430,42 +926,102 @@
           "name_ar": "Salad – 4 Pcs of Each",
           "unit": "PCS",
           "price": null,
-          "source": "360G"
+          "source": "360G",
+          "rating": "89%",
+          "description": "Fresh garden salad with seasonal vegetables",
+          "prepTime": "10 minutes",
+          "ingredients": [
+            "lettuce",
+            "tomatoes",
+            "cucumbers",
+            "dressing"
+          ],
+          "allergens": [],
+          "dietary": [
+            "vegetarian",
+            "vegan"
+          ]
         },
         {
           "name_en": "Jar of Greek Salad",
           "name_ar": "Jar of Greek Salad",
           "unit": "PCS",
-          "price": 10.0,
-          "source": "360G"
+          "price": 10,
+          "source": "360G",
+          "rating": "89%",
+          "description": "Fresh garden salad with seasonal vegetables",
+          "prepTime": "10 minutes",
+          "ingredients": [
+            "lettuce",
+            "tomatoes",
+            "cucumbers",
+            "dressing"
+          ],
+          "allergens": [],
+          "dietary": [
+            "vegetarian",
+            "vegan"
+          ]
         },
         {
           "name_en": "Jar of Tabouleh",
           "name_ar": "Jar of Tabouleh",
           "unit": "PCS",
-          "price": 10.0,
-          "source": "360G"
+          "price": 10,
+          "source": "360G",
+          "rating": "90%",
+          "description": "Delicious Jar of Tabouleh",
+          "prepTime": "15 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Jar of Rocca with Mushroom",
           "name_ar": "Jar of Rocca with Mushroom",
           "unit": "PCS",
-          "price": 10.0,
-          "source": "360G"
+          "price": 10,
+          "source": "360G",
+          "rating": "90%",
+          "description": "Delicious Jar of Rocca with Mushroom",
+          "prepTime": "15 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Jar of Quinoa Beetroot",
           "name_ar": "Jar of Quinoa Beetroot",
           "unit": "PCS",
-          "price": 10.0,
-          "source": "360G"
+          "price": 10,
+          "source": "360G",
+          "rating": "90%",
+          "description": "Delicious Jar of Quinoa Beetroot",
+          "prepTime": "15 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Jar of Mexican Salad",
           "name_ar": "Jar of Mexican Salad",
           "unit": "PCS",
-          "price": 10.0,
-          "source": "360G"
+          "price": 10,
+          "source": "360G",
+          "rating": "89%",
+          "description": "Fresh garden salad with seasonal vegetables",
+          "prepTime": "10 minutes",
+          "ingredients": [
+            "lettuce",
+            "tomatoes",
+            "cucumbers",
+            "dressing"
+          ],
+          "allergens": [],
+          "dietary": [
+            "vegetarian",
+            "vegan"
+          ]
         }
       ]
     },
@@ -477,42 +1033,78 @@
           "name_ar": "Fruits – 7 Jars of Each",
           "unit": "PCS",
           "price": null,
-          "source": "360G"
+          "source": "360G",
+          "rating": "90%",
+          "description": "Delicious Fruits – 7 Jars of Each",
+          "prepTime": "15 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "3 jar Mix fruits",
           "name_ar": "3 jar Mix fruits",
           "unit": "PCS",
-          "price": 15.0,
-          "source": "360G"
+          "price": 15,
+          "source": "360G",
+          "rating": "90%",
+          "description": "Delicious 3 jar Mix fruits",
+          "prepTime": "15 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Jar of Watermelon",
           "name_ar": "Jar of Watermelon",
           "unit": "PCS",
-          "price": 15.0,
-          "source": "360G"
+          "price": 15,
+          "source": "360G",
+          "rating": "90%",
+          "description": "Delicious Jar of Watermelon",
+          "prepTime": "15 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Jar of Dragon Fruits",
           "name_ar": "Jar of Dragon Fruits",
           "unit": "PCS",
-          "price": 15.0,
-          "source": "360G"
+          "price": 15,
+          "source": "360G",
+          "rating": "90%",
+          "description": "Delicious Jar of Dragon Fruits",
+          "prepTime": "15 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Jar of Pineapple",
           "name_ar": "Jar of Pineapple",
           "unit": "PCS",
-          "price": 15.0,
-          "source": "360G"
+          "price": 15,
+          "source": "360G",
+          "rating": "90%",
+          "description": "Delicious Jar of Pineapple",
+          "prepTime": "15 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Jar of Strawberry",
           "name_ar": "Jar of Strawberry",
           "unit": "PCS",
-          "price": 15.0,
-          "source": "360G"
+          "price": 15,
+          "source": "360G",
+          "rating": "90%",
+          "description": "Delicious Jar of Strawberry",
+          "prepTime": "15 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         }
       ]
     },
@@ -523,78 +1115,190 @@
           "name_en": "Hosts /Hostess",
           "name_ar": "موظفه/موظف استقبال",
           "unit": "PAX",
-          "price": 500.0,
-          "source": "360G"
+          "price": 500,
+          "source": "360G",
+          "rating": "90%",
+          "description": "Delicious Hosts /Hostess",
+          "prepTime": "15 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Elegant Beverages",
           "name_ar": "مشروبات",
           "unit": "PCS",
-          "price": 29.0,
-          "source": "360G"
+          "price": 29,
+          "source": "360G",
+          "rating": "90%",
+          "description": "Delicious Elegant Beverages",
+          "prepTime": "15 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Saudi Coffee and dates station",
           "name_ar": "قهوه سعوديه مع التمر",
           "unit": "PAX",
-          "price": 15.0,
-          "source": "360G"
+          "price": 15,
+          "source": "360G",
+          "rating": "94%",
+          "description": "Premium coffee and tea station with various options",
+          "prepTime": "5 minutes",
+          "ingredients": [
+            "coffee beans",
+            "tea leaves",
+            "milk",
+            "sugar"
+          ],
+          "allergens": [
+            "dairy"
+          ],
+          "dietary": [
+            "vegetarian"
+          ]
         },
         {
           "name_en": "Mango Juice",
           "name_ar": "Mango Juice",
           "unit": "PCS",
-          "price": 17.0,
-          "source": "360G"
+          "price": 17,
+          "source": "360G",
+          "rating": "90%",
+          "description": "Refreshing beverages including hot and cold options",
+          "prepTime": "5 minutes",
+          "ingredients": [
+            "water",
+            "fruit juices",
+            "tea",
+            "coffee"
+          ],
+          "allergens": [],
+          "dietary": [
+            "vegetarian",
+            "vegan"
+          ]
         },
         {
           "name_en": "Orange Juice",
           "name_ar": "Orange Juice",
           "unit": "PCS",
-          "price": 17.0,
-          "source": "360G"
+          "price": 17,
+          "source": "360G",
+          "rating": "90%",
+          "description": "Refreshing beverages including hot and cold options",
+          "prepTime": "5 minutes",
+          "ingredients": [
+            "water",
+            "fruit juices",
+            "tea",
+            "coffee"
+          ],
+          "allergens": [],
+          "dietary": [
+            "vegetarian",
+            "vegan"
+          ]
         },
         {
           "name_en": "Lemon Mint Juice",
           "name_ar": "Lemon Mint Juice",
           "unit": "PCS",
-          "price": 17.0,
-          "source": "360G"
+          "price": 17,
+          "source": "360G",
+          "rating": "90%",
+          "description": "Refreshing beverages including hot and cold options",
+          "prepTime": "5 minutes",
+          "ingredients": [
+            "water",
+            "fruit juices",
+            "tea",
+            "coffee"
+          ],
+          "allergens": [],
+          "dietary": [
+            "vegetarian",
+            "vegan"
+          ]
         },
         {
           "name_en": "Fruit Mocktail Juice",
           "name_ar": "Fruit Mocktail Juice",
           "unit": "PCS",
-          "price": 17.0,
-          "source": "360G"
+          "price": 17,
+          "source": "360G",
+          "rating": "90%",
+          "description": "Refreshing beverages including hot and cold options",
+          "prepTime": "5 minutes",
+          "ingredients": [
+            "water",
+            "fruit juices",
+            "tea",
+            "coffee"
+          ],
+          "allergens": [],
+          "dietary": [
+            "vegetarian",
+            "vegan"
+          ]
         },
         {
           "name_en": "lasagna Bashamel",
           "name_ar": "الزانيا بشاميل",
           "unit": "PCS",
-          "price": 25.0,
-          "source": "360G"
+          "price": 25,
+          "source": "360G",
+          "rating": "90%",
+          "description": "Delicious lasagna Bashamel",
+          "prepTime": "15 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Madghot Chicken",
           "name_ar": "مضغوط دجاج",
           "unit": "PCS",
-          "price": 25.0,
-          "source": "360G"
+          "price": 25,
+          "source": "360G",
+          "rating": "91%",
+          "description": "Succulent chicken prepared with special seasoning",
+          "prepTime": "45 minutes",
+          "ingredients": [
+            "chicken",
+            "spices",
+            "herbs",
+            "olive oil"
+          ],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Mosaqaaa Bashamel",
           "name_ar": "مشقعه بشاميل",
           "unit": "PCS",
-          "price": 25.0,
-          "source": "360G"
+          "price": 25,
+          "source": "360G",
+          "rating": "90%",
+          "description": "Delicious Mosaqaaa Bashamel",
+          "prepTime": "15 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Mix Grill",
           "name_ar": "مشاوي مشكله",
           "unit": "Shafing Dish",
-          "price": 350.0,
-          "source": "360G"
+          "price": 350,
+          "source": "360G",
+          "rating": "90%",
+          "description": "Delicious Mix Grill",
+          "prepTime": "15 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         }
       ]
     },
@@ -605,162 +1309,340 @@
           "name_en": "Custom Menu",
           "name_ar": "بوفيه",
           "unit": "PAX",
-          "price": 140.0,
-          "source": "360G"
+          "price": 140,
+          "source": "360G",
+          "rating": "90%",
+          "description": "Delicious Custom Menu",
+          "prepTime": "15 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Delivery",
           "name_ar": "توصيل",
           "unit": "Location",
-          "price": 100.0,
-          "source": "360G"
+          "price": 100,
+          "source": "360G",
+          "rating": "90%",
+          "description": "Delicious Delivery",
+          "prepTime": "15 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "National Day Banner 6*8 M",
           "name_ar": "لوحه اليوم الوطني",
           "unit": "PCS",
-          "price": 2000.0,
-          "source": "360G"
+          "price": 2000,
+          "source": "360G",
+          "rating": "90%",
+          "description": "Delicious National Day Banner 6*8 M",
+          "prepTime": "15 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Vision invest. Co",
           "name_ar": "بوفيه",
           "unit": "PAX",
-          "price": 122.0,
-          "source": "360G"
+          "price": 122,
+          "source": "360G",
+          "rating": "90%",
+          "description": "Delicious Vision invest. Co",
+          "prepTime": "15 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Chef on board",
           "name_ar": "شيف",
           "unit": "PAX",
-          "price": 300.0,
-          "source": "360G"
+          "price": 300,
+          "source": "360G",
+          "rating": "90%",
+          "description": "Delicious Chef on board",
+          "prepTime": "15 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Full Lunch Meal (Leed)",
           "name_ar": "وجبه غداء كامله",
           "unit": "BOX",
-          "price": 49.0,
-          "source": "360G"
+          "price": 49,
+          "source": "360G",
+          "rating": "91%",
+          "description": "Complete meal with main course, sides, and accompaniments",
+          "prepTime": "30 minutes",
+          "ingredients": [
+            "protein",
+            "rice",
+            "vegetables",
+            "sauce"
+          ],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "SMART BUFFET",
           "name_ar": "سمارت بوفيه",
           "unit": "PAX",
-          "price": 260.0,
-          "source": "360G"
+          "price": 260,
+          "source": "360G",
+          "rating": "90%",
+          "description": "Delicious SMART BUFFET",
+          "prepTime": "15 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "LUNCH & DINNER BUFFET SELA",
           "name_ar": "بوفيه",
           "unit": "PAX",
-          "price": 100.0,
-          "source": "360G"
+          "price": 100,
+          "source": "360G",
+          "rating": "91%",
+          "description": "Complete meal with main course, sides, and accompaniments",
+          "prepTime": "30 minutes",
+          "ingredients": [
+            "protein",
+            "rice",
+            "vegetables",
+            "sauce"
+          ],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "LUNCH & DINNER BUFFET 1",
           "name_ar": "بوفيه",
           "unit": "PAX",
-          "price": 140.0,
-          "source": "360G"
+          "price": 140,
+          "source": "360G",
+          "rating": "91%",
+          "description": "Complete meal with main course, sides, and accompaniments",
+          "prepTime": "30 minutes",
+          "ingredients": [
+            "protein",
+            "rice",
+            "vegetables",
+            "sauce"
+          ],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "LUNCH & DINNER BUFFET 2",
           "name_ar": "بوفيه",
           "unit": "PAX",
-          "price": 150.0,
-          "source": "360G"
+          "price": 150,
+          "source": "360G",
+          "rating": "91%",
+          "description": "Complete meal with main course, sides, and accompaniments",
+          "prepTime": "30 minutes",
+          "ingredients": [
+            "protein",
+            "rice",
+            "vegetables",
+            "sauce"
+          ],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "LUNCH & DINNER BUFFET 3",
           "name_ar": "بوفيه",
           "unit": "PAX",
-          "price": 180.0,
-          "source": "360G"
+          "price": 180,
+          "source": "360G",
+          "rating": "91%",
+          "description": "Complete meal with main course, sides, and accompaniments",
+          "prepTime": "30 minutes",
+          "ingredients": [
+            "protein",
+            "rice",
+            "vegetables",
+            "sauce"
+          ],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "LUNCH & DINNER BUFFET 4",
           "name_ar": "بوفيه",
           "unit": "PAX",
-          "price": 150.0,
-          "source": "360G"
+          "price": 150,
+          "source": "360G",
+          "rating": "91%",
+          "description": "Complete meal with main course, sides, and accompaniments",
+          "prepTime": "30 minutes",
+          "ingredients": [
+            "protein",
+            "rice",
+            "vegetables",
+            "sauce"
+          ],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "LUNCH & DINNER BUFFET 5",
           "name_ar": "بوفيه",
           "unit": "PAX",
-          "price": 160.0,
-          "source": "360G"
+          "price": 160,
+          "source": "360G",
+          "rating": "91%",
+          "description": "Complete meal with main course, sides, and accompaniments",
+          "prepTime": "30 minutes",
+          "ingredients": [
+            "protein",
+            "rice",
+            "vegetables",
+            "sauce"
+          ],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "LUNCH & DINNER BUFFET 6",
           "name_ar": "بوفيه",
           "unit": "PAX",
-          "price": 180.0,
-          "source": "360G"
+          "price": 180,
+          "source": "360G",
+          "rating": "91%",
+          "description": "Complete meal with main course, sides, and accompaniments",
+          "prepTime": "30 minutes",
+          "ingredients": [
+            "protein",
+            "rice",
+            "vegetables",
+            "sauce"
+          ],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Wedding Buffet Menu 1",
           "name_ar": "قائمة بوفيه الزفاف ١",
           "unit": "PAX",
-          "price": 499.0,
-          "source": "360G"
+          "price": 499,
+          "source": "360G",
+          "rating": "90%",
+          "description": "Delicious Wedding Buffet Menu 1",
+          "prepTime": "15 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Wedding Buffet Menu 2",
           "name_ar": "قائمة بوفيه الزفاف ٢",
           "unit": "PAX",
-          "price": 599.0,
-          "source": "360G"
+          "price": 599,
+          "source": "360G",
+          "rating": "90%",
+          "description": "Delicious Wedding Buffet Menu 2",
+          "prepTime": "15 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Wedding Buffet Menu 3",
           "name_ar": "قائمة بوفيه الزفاف ٣",
           "unit": "PAX",
-          "price": 799.0,
-          "source": "360G"
+          "price": 799,
+          "source": "360G",
+          "rating": "90%",
+          "description": "Delicious Wedding Buffet Menu 3",
+          "prepTime": "15 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Eid Menu 2",
           "name_ar": "منيو العيد 2",
           "unit": "PAX",
-          "price": 180.0,
-          "source": "360G"
+          "price": 180,
+          "source": "360G",
+          "rating": "90%",
+          "description": "Delicious Eid Menu 2",
+          "prepTime": "15 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Eid Menu 1",
           "name_ar": "منيو العيد 1",
           "unit": "PAX",
-          "price": 160.0,
-          "source": "360G"
+          "price": 160,
+          "source": "360G",
+          "rating": "90%",
+          "description": "Delicious Eid Menu 1",
+          "prepTime": "15 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "International Menu",
           "name_ar": "قائمه عالميه",
           "unit": "PAX",
-          "price": 220.0,
-          "source": "360G"
+          "price": 220,
+          "source": "360G",
+          "rating": "90%",
+          "description": "Delicious International Menu",
+          "prepTime": "15 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Special Menu",
           "name_ar": "منيو مميز",
           "unit": "PAX",
-          "price": 140.0,
-          "source": "360G"
+          "price": 140,
+          "source": "360G",
+          "rating": "90%",
+          "description": "Delicious Special Menu",
+          "prepTime": "15 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Special Menu 2",
           "name_ar": "منيو مميز 02",
           "unit": "PAX",
-          "price": 170.0,
-          "source": "360G"
+          "price": 170,
+          "source": "360G",
+          "rating": "90%",
+          "description": "Delicious Special Menu 2",
+          "prepTime": "15 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Fresh Flower",
           "name_ar": "ورد طبيعي",
           "unit": "VASA",
-          "price": 100.0,
-          "source": "360G"
+          "price": 100,
+          "source": "360G",
+          "rating": "90%",
+          "description": "Delicious Fresh Flower",
+          "prepTime": "15 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         }
       ]
     },
@@ -771,64 +1653,214 @@
           "name_en": "Dessert Buffet Menu 1 BN",
           "name_ar": "بوفيه الحلويات",
           "unit": "PAX",
-          "price": 40.0,
-          "source": "360G"
+          "price": 40,
+          "source": "360G",
+          "rating": "94%",
+          "description": "Delightful sweet treat to end your meal",
+          "prepTime": "15 minutes",
+          "ingredients": [
+            "flour",
+            "sugar",
+            "eggs",
+            "butter"
+          ],
+          "allergens": [
+            "gluten",
+            "dairy",
+            "eggs"
+          ],
+          "dietary": [
+            "vegetarian"
+          ]
         },
         {
           "name_en": "Dessert Buffet Menu 2 BN",
           "name_ar": "بوفيه الحلويات",
           "unit": "PAX",
-          "price": 60.0,
-          "source": "360G"
+          "price": 60,
+          "source": "360G",
+          "rating": "94%",
+          "description": "Delightful sweet treat to end your meal",
+          "prepTime": "15 minutes",
+          "ingredients": [
+            "flour",
+            "sugar",
+            "eggs",
+            "butter"
+          ],
+          "allergens": [
+            "gluten",
+            "dairy",
+            "eggs"
+          ],
+          "dietary": [
+            "vegetarian"
+          ]
         },
         {
           "name_en": "Dessert Buffet Menu 3 BN",
           "name_ar": "بوفيه الحلويات",
           "unit": "PAX",
-          "price": 90.0,
-          "source": "360G"
+          "price": 90,
+          "source": "360G",
+          "rating": "94%",
+          "description": "Delightful sweet treat to end your meal",
+          "prepTime": "15 minutes",
+          "ingredients": [
+            "flour",
+            "sugar",
+            "eggs",
+            "butter"
+          ],
+          "allergens": [
+            "gluten",
+            "dairy",
+            "eggs"
+          ],
+          "dietary": [
+            "vegetarian"
+          ]
         },
         {
           "name_en": "Salad Buffet & Fruit",
           "name_ar": "بوفيه السلطات والفواكه",
           "unit": "PAX",
-          "price": 60.0,
-          "source": "360G"
+          "price": 60,
+          "source": "360G",
+          "rating": "89%",
+          "description": "Fresh garden salad with seasonal vegetables",
+          "prepTime": "10 minutes",
+          "ingredients": [
+            "lettuce",
+            "tomatoes",
+            "cucumbers",
+            "dressing"
+          ],
+          "allergens": [],
+          "dietary": [
+            "vegetarian",
+            "vegan"
+          ]
         },
         {
           "name_en": "Sweetened Combo 1 – Oriental",
           "name_ar": "مجموعة حلويات ١ – شرقية",
           "unit": "PAX",
-          "price": 80.0,
-          "source": "360G"
+          "price": 80,
+          "source": "360G",
+          "rating": "94%",
+          "description": "Delightful sweet treat to end your meal",
+          "prepTime": "15 minutes",
+          "ingredients": [
+            "flour",
+            "sugar",
+            "eggs",
+            "butter"
+          ],
+          "allergens": [
+            "gluten",
+            "dairy",
+            "eggs"
+          ],
+          "dietary": [
+            "vegetarian"
+          ]
         },
         {
           "name_en": "Sweetened Combo 2 – Italian",
           "name_ar": "مجموعة حلويات ٢ – إيطالية",
           "unit": "PAX",
-          "price": 80.0,
-          "source": "360G"
+          "price": 80,
+          "source": "360G",
+          "rating": "94%",
+          "description": "Delightful sweet treat to end your meal",
+          "prepTime": "15 minutes",
+          "ingredients": [
+            "flour",
+            "sugar",
+            "eggs",
+            "butter"
+          ],
+          "allergens": [
+            "gluten",
+            "dairy",
+            "eggs"
+          ],
+          "dietary": [
+            "vegetarian"
+          ]
         },
         {
           "name_en": "Sweetened Combo 3 – Oriental Twisted",
           "name_ar": "مجموعة حلويات ٣ – شرقية بلمسة مبتكرة",
           "unit": "PAX",
-          "price": 80.0,
-          "source": "360G"
+          "price": 80,
+          "source": "360G",
+          "rating": "94%",
+          "description": "Delightful sweet treat to end your meal",
+          "prepTime": "15 minutes",
+          "ingredients": [
+            "flour",
+            "sugar",
+            "eggs",
+            "butter"
+          ],
+          "allergens": [
+            "gluten",
+            "dairy",
+            "eggs"
+          ],
+          "dietary": [
+            "vegetarian"
+          ]
         },
         {
           "name_en": "Sweetened Combo 4 – International",
           "name_ar": "مجموعة حلويات ٤ – عالمية",
           "unit": "PAX",
-          "price": 80.0,
-          "source": "360G"
+          "price": 80,
+          "source": "360G",
+          "rating": "94%",
+          "description": "Delightful sweet treat to end your meal",
+          "prepTime": "15 minutes",
+          "ingredients": [
+            "flour",
+            "sugar",
+            "eggs",
+            "butter"
+          ],
+          "allergens": [
+            "gluten",
+            "dairy",
+            "eggs"
+          ],
+          "dietary": [
+            "vegetarian"
+          ]
         },
         {
           "name_en": "Sweet Bufffet VIP",
           "name_ar": "قائمة الحلويات",
           "unit": "PAX",
-          "price": 100.0,
-          "source": "360G"
+          "price": 100,
+          "source": "360G",
+          "rating": "94%",
+          "description": "Delightful sweet treat to end your meal",
+          "prepTime": "15 minutes",
+          "ingredients": [
+            "flour",
+            "sugar",
+            "eggs",
+            "butter"
+          ],
+          "allergens": [
+            "gluten",
+            "dairy",
+            "eggs"
+          ],
+          "dietary": [
+            "vegetarian"
+          ]
         }
       ]
     },
@@ -839,36 +1871,121 @@
           "name_en": "Breakfast Box 1 BN",
           "name_ar": "بوكس الفطور",
           "unit": "BOX",
-          "price": 29.0,
-          "source": "360G"
+          "price": 29,
+          "source": "360G",
+          "rating": "88%",
+          "description": "Hearty breakfast selection with traditional and international options",
+          "prepTime": "15 minutes",
+          "ingredients": [
+            "eggs",
+            "bread",
+            "cheese",
+            "vegetables"
+          ],
+          "allergens": [
+            "gluten",
+            "dairy",
+            "eggs"
+          ],
+          "dietary": [
+            "vegetarian"
+          ]
         },
         {
           "name_en": "Breakfast Box 2 BN",
           "name_ar": "بوكس الفطور",
           "unit": "BOX",
-          "price": 39.0,
-          "source": "360G"
+          "price": 39,
+          "source": "360G",
+          "rating": "88%",
+          "description": "Hearty breakfast selection with traditional and international options",
+          "prepTime": "15 minutes",
+          "ingredients": [
+            "eggs",
+            "bread",
+            "cheese",
+            "vegetables"
+          ],
+          "allergens": [
+            "gluten",
+            "dairy",
+            "eggs"
+          ],
+          "dietary": [
+            "vegetarian"
+          ]
         },
         {
           "name_en": "Breakfast Box 3 BN",
           "name_ar": "بوكس الفطور",
           "unit": "BOX",
-          "price": 49.0,
-          "source": "360G"
+          "price": 49,
+          "source": "360G",
+          "rating": "88%",
+          "description": "Hearty breakfast selection with traditional and international options",
+          "prepTime": "15 minutes",
+          "ingredients": [
+            "eggs",
+            "bread",
+            "cheese",
+            "vegetables"
+          ],
+          "allergens": [
+            "gluten",
+            "dairy",
+            "eggs"
+          ],
+          "dietary": [
+            "vegetarian"
+          ]
         },
         {
           "name_en": "Breakfast Box 4 BN",
           "name_ar": "بوكس الفطور",
           "unit": "BOX",
-          "price": 59.0,
-          "source": "360G"
+          "price": 59,
+          "source": "360G",
+          "rating": "88%",
+          "description": "Hearty breakfast selection with traditional and international options",
+          "prepTime": "15 minutes",
+          "ingredients": [
+            "eggs",
+            "bread",
+            "cheese",
+            "vegetables"
+          ],
+          "allergens": [
+            "gluten",
+            "dairy",
+            "eggs"
+          ],
+          "dietary": [
+            "vegetarian"
+          ]
         },
         {
           "name_en": "Breakfast Box AZ",
           "name_ar": "بوكس الفطور AZ",
           "unit": "PAX",
-          "price": 130.0,
-          "source": "360G"
+          "price": 130,
+          "source": "360G",
+          "rating": "88%",
+          "description": "Hearty breakfast selection with traditional and international options",
+          "prepTime": "15 minutes",
+          "ingredients": [
+            "eggs",
+            "bread",
+            "cheese",
+            "vegetables"
+          ],
+          "allergens": [
+            "gluten",
+            "dairy",
+            "eggs"
+          ],
+          "dietary": [
+            "vegetarian"
+          ]
         }
       ]
     },
@@ -879,29 +1996,73 @@
           "name_en": "Lunch Box 1 BN",
           "name_ar": "بوكس الغداء",
           "unit": "BOX",
-          "price": 35.0,
-          "source": "360G"
+          "price": 35,
+          "source": "360G",
+          "rating": "91%",
+          "description": "Complete meal with main course, sides, and accompaniments",
+          "prepTime": "30 minutes",
+          "ingredients": [
+            "protein",
+            "rice",
+            "vegetables",
+            "sauce"
+          ],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Lunch Box 2 BN",
           "name_ar": "بوكس الغداء",
           "unit": "BOX",
-          "price": 39.0,
-          "source": "360G"
+          "price": 39,
+          "source": "360G",
+          "rating": "91%",
+          "description": "Complete meal with main course, sides, and accompaniments",
+          "prepTime": "30 minutes",
+          "ingredients": [
+            "protein",
+            "rice",
+            "vegetables",
+            "sauce"
+          ],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Lunch Box 3 BN",
           "name_ar": "بوكس الغداء",
           "unit": "BOX",
-          "price": 60.0,
-          "source": "360G"
+          "price": 60,
+          "source": "360G",
+          "rating": "91%",
+          "description": "Complete meal with main course, sides, and accompaniments",
+          "prepTime": "30 minutes",
+          "ingredients": [
+            "protein",
+            "rice",
+            "vegetables",
+            "sauce"
+          ],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Lunch Box 4 BN",
           "name_ar": "بوكس الغداء",
           "unit": "BOX",
-          "price": 80.0,
-          "source": "360G"
+          "price": 80,
+          "source": "360G",
+          "rating": "91%",
+          "description": "Complete meal with main course, sides, and accompaniments",
+          "prepTime": "30 minutes",
+          "ingredients": [
+            "protein",
+            "rice",
+            "vegetables",
+            "sauce"
+          ],
+          "allergens": [],
+          "dietary": []
         }
       ]
     },
@@ -912,22 +2073,40 @@
           "name_en": "Finger Food Buffet Menu 1",
           "name_ar": "قائمة بوفيه المأكوالت الخفيفة ١",
           "unit": "PAX",
-          "price": 80.0,
-          "source": "360G"
+          "price": 80,
+          "source": "360G",
+          "rating": "90%",
+          "description": "Delicious Finger Food Buffet Menu 1",
+          "prepTime": "15 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Finger Food Buffet Menu 2",
           "name_ar": "قائمة بوفيه المأكوالت الخفيفة ٢",
           "unit": "PAX",
-          "price": 110.0,
-          "source": "360G"
+          "price": 110,
+          "source": "360G",
+          "rating": "90%",
+          "description": "Delicious Finger Food Buffet Menu 2",
+          "prepTime": "15 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Finger Food Buffet Menu 3",
           "name_ar": "قائمة بوفيه المأكوالت الخفيفة ٣",
           "unit": "PAX",
-          "price": 150.0,
-          "source": "360G"
+          "price": 150,
+          "source": "360G",
+          "rating": "90%",
+          "description": "Delicious Finger Food Buffet Menu 3",
+          "prepTime": "15 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         }
       ]
     },
@@ -938,29 +2117,53 @@
           "name_en": "Silver Service 1 – Oriental Cuisine",
           "name_ar": "الخدمة الراقية ١ – المأكوالت الشرقية",
           "unit": "PAX",
-          "price": 199.0,
-          "source": "360G"
+          "price": 199,
+          "source": "360G",
+          "rating": "90%",
+          "description": "Delicious Silver Service 1 – Oriental Cuisine",
+          "prepTime": "15 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Silver Service 2 – Oriental Cuisine",
           "name_ar": "الخدمة الراقية ٢ – المأكوالت الشرقية",
           "unit": "PAX",
-          "price": 250.0,
-          "source": "360G"
+          "price": 250,
+          "source": "360G",
+          "rating": "90%",
+          "description": "Delicious Silver Service 2 – Oriental Cuisine",
+          "prepTime": "15 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Silver Service 1 – International Cuisine",
           "name_ar": "الخدمة الراقية ١ – المأكوالت العالمية",
           "unit": "PAX",
-          "price": 220.0,
-          "source": "360G"
+          "price": 220,
+          "source": "360G",
+          "rating": "90%",
+          "description": "Delicious Silver Service 1 – International Cuisine",
+          "prepTime": "15 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Silver Service 2 – International Cuisine",
           "name_ar": "الخدمة الراقية ٢ – المأكوالت العالمية",
           "unit": "PAX",
-          "price": 320.0,
-          "source": "360G"
+          "price": 320,
+          "source": "360G",
+          "rating": "90%",
+          "description": "Delicious Silver Service 2 – International Cuisine",
+          "prepTime": "15 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         }
       ]
     },
@@ -971,22 +2174,40 @@
           "name_en": "BBQ Menu 1",
           "name_ar": "قائمة الشواء ١",
           "unit": "PAX",
-          "price": 160.0,
-          "source": "360G"
+          "price": 160,
+          "source": "360G",
+          "rating": "90%",
+          "description": "Delicious BBQ Menu 1",
+          "prepTime": "15 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "BBQ Menu 2",
           "name_ar": "قائمة الشواء ٢",
           "unit": "PAX",
-          "price": 200.0,
-          "source": "360G"
+          "price": 200,
+          "source": "360G",
+          "rating": "90%",
+          "description": "Delicious BBQ Menu 2",
+          "prepTime": "15 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "BBQ Menu 3",
           "name_ar": "قائمة الشواء ٣",
           "unit": "PAX",
-          "price": 250.0,
-          "source": "360G"
+          "price": 250,
+          "source": "360G",
+          "rating": "90%",
+          "description": "Delicious BBQ Menu 3",
+          "prepTime": "15 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         }
       ]
     },
@@ -997,29 +2218,53 @@
           "name_en": "Pass Around Cocktail Reception Menu 1",
           "name_ar": "قائمة استقبال الكوكتيل المتنقل ١",
           "unit": "PAX",
-          "price": 110.0,
-          "source": "360G"
+          "price": 110,
+          "source": "360G",
+          "rating": "90%",
+          "description": "Delicious Pass Around Cocktail Reception Menu 1",
+          "prepTime": "15 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Pass Around Cocktail Reception Menu 2",
           "name_ar": "قائمة استقبال الكوكتيل المتنقل ٢",
           "unit": "PAX",
-          "price": 130.0,
-          "source": "360G"
+          "price": 130,
+          "source": "360G",
+          "rating": "90%",
+          "description": "Delicious Pass Around Cocktail Reception Menu 2",
+          "prepTime": "15 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Pass Around Cocktail Reception Menu 3",
           "name_ar": "قائمة استقبال الكوكتيل المتنقل ٣",
           "unit": "PAX",
-          "price": 170.0,
-          "source": "360G"
+          "price": 170,
+          "source": "360G",
+          "rating": "90%",
+          "description": "Delicious Pass Around Cocktail Reception Menu 3",
+          "prepTime": "15 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Pass Around Cocktail Reception Menu 4",
           "name_ar": "قائمة استقبال الكوكتيل المتنقل ٤",
           "unit": "PAX",
-          "price": 220.0,
-          "source": "360G"
+          "price": 220,
+          "source": "360G",
+          "rating": "90%",
+          "description": "Delicious Pass Around Cocktail Reception Menu 4",
+          "prepTime": "15 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         }
       ]
     },
@@ -1030,415 +2275,863 @@
           "name_en": "Banners",
           "name_ar": "لوحه اعالنيه",
           "unit": "PCS",
-          "price": 180.0,
-          "source": "360G"
+          "price": 180,
+          "source": "360G",
+          "rating": "90%",
+          "description": "Delicious Banners",
+          "prepTime": "15 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Flags",
           "name_ar": "اعالم",
           "unit": "PCS",
-          "price": 150.0,
-          "source": "360G"
+          "price": 150,
+          "source": "360G",
+          "rating": "90%",
+          "description": "Delicious Flags",
+          "prepTime": "15 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "GOLYVE LUNCH",
           "name_ar": "غداء عمل",
           "unit": "PACKAGE",
-          "price": 600.0,
-          "source": "360G"
+          "price": 600,
+          "source": "360G",
+          "rating": "91%",
+          "description": "Complete meal with main course, sides, and accompaniments",
+          "prepTime": "30 minutes",
+          "ingredients": [
+            "protein",
+            "rice",
+            "vegetables",
+            "sauce"
+          ],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "GOLYVE BREAKFAST, LUNCH",
           "name_ar": "فطور وغداء عمل",
           "unit": "PACKAGE",
-          "price": 835.0,
-          "source": "360G"
+          "price": 835,
+          "source": "360G",
+          "rating": "88%",
+          "description": "Hearty breakfast selection with traditional and international options",
+          "prepTime": "15 minutes",
+          "ingredients": [
+            "eggs",
+            "bread",
+            "cheese",
+            "vegetables"
+          ],
+          "allergens": [
+            "gluten",
+            "dairy",
+            "eggs"
+          ],
+          "dietary": [
+            "vegetarian"
+          ]
         },
         {
           "name_en": "GOLYVE LUNCH,DINNER",
           "name_ar": "غداء وعشاء",
           "unit": "PACKAGE",
-          "price": 1043.0,
-          "source": "360G"
+          "price": 1043,
+          "source": "360G",
+          "rating": "91%",
+          "description": "Complete meal with main course, sides, and accompaniments",
+          "prepTime": "30 minutes",
+          "ingredients": [
+            "protein",
+            "rice",
+            "vegetables",
+            "sauce"
+          ],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "GOLYVE FULL DAY",
           "name_ar": "فطور وغداء وعشاء",
           "unit": "PACKAGE",
-          "price": 1217.0,
-          "source": "360G"
+          "price": 1217,
+          "source": "360G",
+          "rating": "90%",
+          "description": "Delicious GOLYVE FULL DAY",
+          "prepTime": "15 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Sandwiches",
           "name_ar": "ساندويشات",
           "unit": "PCS",
-          "price": 3.0,
-          "source": "360G"
+          "price": 3,
+          "source": "360G",
+          "rating": "90%",
+          "description": "Delicious Sandwiches",
+          "prepTime": "15 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Manaqeesh",
           "name_ar": "مناقيش",
           "unit": "PCS",
-          "price": 3.0,
-          "source": "360G"
+          "price": 3,
+          "source": "360G",
+          "rating": "90%",
+          "description": "Delicious Manaqeesh",
+          "prepTime": "15 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Milk 180 ml",
           "name_ar": "حليب 180 مل",
           "unit": "PCS",
-          "price": 2.0,
-          "source": "360G"
+          "price": 2,
+          "source": "360G",
+          "rating": "90%",
+          "description": "Delicious Milk 180 ml",
+          "prepTime": "15 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Water 330ml - V1",
           "name_ar": "ماء 330 مل",
           "unit": "PCS",
-          "price": 1.0,
-          "source": "360G"
+          "price": 1,
+          "source": "360G",
+          "rating": "90%",
+          "description": "Delicious Water 330ml - V1",
+          "prepTime": "15 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Labneh Platter - Small",
           "name_ar": "طبق لبنه - صغير",
           "unit": "Plate",
           "size": "Small",
-          "price": 90.0,
-          "source": "360G"
+          "price": 90,
+          "source": "360G",
+          "rating": "90%",
+          "description": "Delicious Labneh Platter - Small",
+          "prepTime": "15 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Plain / Pistachio / Chocolate Hallawa - Small",
           "name_ar": "حالوة (ساده/فستق/شوكوالته) - صغير",
           "unit": "Plate",
           "size": "Small",
-          "price": 100.0,
-          "source": "360G"
+          "price": 100,
+          "source": "360G",
+          "rating": "90%",
+          "description": "Delicious Plain / Pistachio / Chocolate Hallawa - Small",
+          "prepTime": "15 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Labneh Balls - Small",
           "name_ar": "كرات اللبنه - صغير",
           "unit": "Bowl",
           "size": "Small",
-          "price": 150.0,
-          "source": "360G"
+          "price": 150,
+          "source": "360G",
+          "rating": "90%",
+          "description": "Delicious Labneh Balls - Small",
+          "prepTime": "15 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Olives / Kalamat, Green, Morroccan - Small",
           "name_ar": "زيتون (كلماتا/مغربي/أخضر) - صغير",
           "unit": "Bowl",
           "size": "Small",
-          "price": 100.0,
-          "source": "360G"
+          "price": 100,
+          "source": "360G",
+          "rating": "90%",
+          "description": "Delicious Olives / Kalamat, Green, Morroccan - Small",
+          "prepTime": "15 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Sliced Cheese (Cheddar White & Yellow) - Small",
           "name_ar": "شرائح جبن (شيدر أبيض وأصفر) - صغير",
           "unit": "Plate",
           "size": "Small",
-          "price": 150.0,
-          "source": "360G"
+          "price": 150,
+          "source": "360G",
+          "rating": "90%",
+          "description": "Delicious Sliced Cheese (Cheddar White & Yellow) - Small",
+          "prepTime": "15 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Arabic Cheese Plater (Hallumi, Feta, Kasshkoval) - Small",
           "name_ar": "جبن عربي عادي (حلومي,فيتا,قشقوان) - صغير",
           "unit": "Plate",
           "size": "Small",
-          "price": 150.0,
-          "source": "360G"
+          "price": 150,
+          "source": "360G",
+          "rating": "90%",
+          "description": "Delicious Arabic Cheese Plater (Hallumi, Feta, Kasshkoval) - Small",
+          "prepTime": "15 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Sliced Turkey / Smoked Beef - Small",
           "name_ar": "شرائح (الديك الرومي/اللحم المدخن) - صغير",
           "unit": "Plate",
           "size": "Small",
-          "price": 125.0,
-          "source": "360G"
+          "price": 125,
+          "source": "360G",
+          "rating": "90%",
+          "description": "Delicious Sliced Turkey / Smoked Beef - Small",
+          "prepTime": "15 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Sliced Smoked Norwegian Salmon - Small",
           "name_ar": "شرائح السلمون النرويجي المدخن - صغير",
           "unit": "Plate",
           "size": "Small",
-          "price": 200.0,
-          "source": "360G"
+          "price": 200,
+          "source": "360G",
+          "rating": "90%",
+          "description": "Delicious Sliced Smoked Norwegian Salmon - Small",
+          "prepTime": "15 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Fresh Keshta - Small",
           "name_ar": "قشطه طازجة - صغير",
           "unit": "Bowl",
           "size": "Small",
-          "price": 150.0,
-          "source": "360G"
+          "price": 150,
+          "source": "360G",
+          "rating": "90%",
+          "description": "Delicious Fresh Keshta - Small",
+          "prepTime": "15 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Honey Bowl & Butter Potions - Small",
           "name_ar": "وعاء عسل وقطع زبده - صغير",
           "unit": "Bowl",
           "size": "Small",
-          "price": 150.0,
-          "source": "360G"
+          "price": 150,
+          "source": "360G",
+          "rating": "90%",
+          "description": "Delicious Honey Bowl & Butter Potions - Small",
+          "prepTime": "15 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Jam Bowl / Berries, Strawberry, Apricot, Fig - Small",
           "name_ar": "وعاء مربى (توت/فراوله/تين/مشمش) - صغير",
           "unit": "Bowl",
           "size": "Small",
-          "price": 100.0,
-          "source": "360G"
+          "price": 100,
+          "source": "360G",
+          "rating": "90%",
+          "description": "Delicious Jam Bowl / Berries, Strawberry, Apricot, Fig - Small",
+          "prepTime": "15 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Mini Croissant (Chocolate, Cheese, Zaatar, Plain) - 25 pcs",
           "name_ar": "كروسان صغير (شوكالته,جبن,زعتر ساده) 25 قطعه",
           "unit": "Plate",
           "size": "Small",
-          "price": 90.0,
-          "source": "360G"
+          "price": 90,
+          "source": "360G",
+          "rating": "90%",
+          "description": "Delicious Mini Croissant (Chocolate, Cheese, Zaatar, Plain) - 25 pcs",
+          "prepTime": "15 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Mini Muffins (Chocolate, Vanilla, Blueberry) - 25 pcs",
           "name_ar": "مافن صغير (شوكالته,جبن,توت) 25 قطعه",
           "unit": "Plate",
           "size": "Small",
-          "price": 90.0,
-          "source": "360G"
+          "price": 90,
+          "source": "360G",
+          "rating": "90%",
+          "description": "Delicious Mini Muffins (Chocolate, Vanilla, Blueberry) - 25 pcs",
+          "prepTime": "15 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Sliced English Cake (Vanilla, Choclate, Fruit) - Small",
           "name_ar": "قطع الكيك الانجليزي (فانيليا شوكالته,فواكه) - صغير",
           "unit": "Plate",
           "size": "Small",
-          "price": 90.0,
-          "source": "360G"
+          "price": 90,
+          "source": "360G",
+          "rating": "94%",
+          "description": "Delightful sweet treat to end your meal",
+          "prepTime": "15 minutes",
+          "ingredients": [
+            "flour",
+            "sugar",
+            "eggs",
+            "butter"
+          ],
+          "allergens": [
+            "gluten",
+            "dairy",
+            "eggs"
+          ],
+          "dietary": [
+            "vegetarian"
+          ]
         },
         {
           "name_en": "Mini Danish (Pineapple, Strawberry, Chocolate) - 25 Pcs",
           "name_ar": "دانش صغير (أناناس،فراولة،شوكوالتة) - 25 قطعة",
           "unit": "Plate",
           "size": "Small",
-          "price": 90.0,
-          "source": "360G"
+          "price": 90,
+          "source": "360G",
+          "rating": "90%",
+          "description": "Delicious Mini Danish (Pineapple, Strawberry, Chocolate) - 25 Pcs",
+          "prepTime": "15 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Breakfast Vegetables platter",
           "name_ar": "طبق خضار الإفطار - صغير",
           "unit": "Plate",
           "size": "Small",
-          "price": 100.0,
-          "source": "360G"
+          "price": 100,
+          "source": "360G",
+          "rating": "88%",
+          "description": "Hearty breakfast selection with traditional and international options",
+          "prepTime": "15 minutes",
+          "ingredients": [
+            "eggs",
+            "bread",
+            "cheese",
+            "vegetables"
+          ],
+          "allergens": [
+            "gluten",
+            "dairy",
+            "eggs"
+          ],
+          "dietary": [
+            "vegetarian"
+          ]
         },
         {
           "name_en": "Sesaonl Sliced Fruits Platter",
           "name_ar": "طبق شرائح الفواكه الموسمية - صغير",
           "unit": "Plate",
           "size": "Small",
-          "price": 300.0,
-          "source": "360G"
+          "price": 300,
+          "source": "360G",
+          "rating": "90%",
+          "description": "Delicious Sesaonl Sliced Fruits Platter",
+          "prepTime": "15 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Sesaonal Whole Fruits Basket",
           "name_ar": "سلة فواكه موسمية كاملة - صغير",
           "unit": "Basket",
           "size": "Small",
-          "price": 300.0,
-          "source": "360G"
+          "price": 300,
+          "source": "360G",
+          "rating": "90%",
+          "description": "Delicious Sesaonal Whole Fruits Basket",
+          "prepTime": "15 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Seasonal Fruit Salad",
           "name_ar": "سلطة فواكه موسمية - صغير",
           "unit": "Bowl",
           "size": "Small",
-          "price": 200.0,
-          "source": "360G"
+          "price": 200,
+          "source": "360G",
+          "rating": "89%",
+          "description": "Fresh garden salad with seasonal vegetables",
+          "prepTime": "10 minutes",
+          "ingredients": [
+            "lettuce",
+            "tomatoes",
+            "cucumbers",
+            "dressing"
+          ],
+          "allergens": [],
+          "dietary": [
+            "vegetarian",
+            "vegan"
+          ]
         },
         {
           "name_en": "Eggplant Makdous",
           "name_ar": "مسقعه الباذنجان - صغير",
           "unit": "Plate",
           "size": "Small",
-          "price": 150.0,
-          "source": "360G"
+          "price": 150,
+          "source": "360G",
+          "rating": "90%",
+          "description": "Delicious Eggplant Makdous",
+          "prepTime": "15 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Morning Cerels Bowl - Corn flakes, Choco Pops",
           "name_ar": "وعاء رقائق الصباح (رقائق الذرة،شوكو بوبس)",
           "unit": "Bowl",
           "size": "Small",
-          "price": 150.0,
-          "source": "360G"
+          "price": 150,
+          "source": "360G",
+          "rating": "90%",
+          "description": "Delicious Morning Cerels Bowl - Corn flakes, Choco Pops",
+          "prepTime": "15 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Granola Bowl with Berries",
           "name_ar": "وعاء الجرانوال مع التوت - صغير",
           "unit": "Bowl",
           "size": "Small",
-          "price": 250.0,
-          "source": "360G"
+          "price": 250,
+          "source": "360G",
+          "rating": "90%",
+          "description": "Delicious Granola Bowl with Berries",
+          "prepTime": "15 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Labneh Platter - Large",
           "name_ar": "طبق لبنه - كبير",
           "unit": "Plate",
           "size": "Large",
-          "price": 160.0,
-          "source": "360G"
+          "price": 160,
+          "source": "360G",
+          "rating": "90%",
+          "description": "Delicious Labneh Platter - Large",
+          "prepTime": "15 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Plain / Pistachio / Chocolate Hallawa - Large",
           "name_ar": "حالوة (ساده/فستق/شوكوالته) - كبير",
           "unit": "Plate",
           "size": "Large",
-          "price": 200.0,
-          "source": "360G"
+          "price": 200,
+          "source": "360G",
+          "rating": "90%",
+          "description": "Delicious Plain / Pistachio / Chocolate Hallawa - Large",
+          "prepTime": "15 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Labneh Balls - Large",
           "name_ar": "كرات اللبنه - كبير",
           "unit": "Bowl",
           "size": "Large",
-          "price": 250.0,
-          "source": "360G"
+          "price": 250,
+          "source": "360G",
+          "rating": "90%",
+          "description": "Delicious Labneh Balls - Large",
+          "prepTime": "15 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Olives / Kalamat, Green, Morroccan - Large",
           "name_ar": "زيتون (كلماتا/مغربي/أخضر) - كبير",
           "unit": "Bowl",
           "size": "Large",
-          "price": 150.0,
-          "source": "360G"
+          "price": 150,
+          "source": "360G",
+          "rating": "90%",
+          "description": "Delicious Olives / Kalamat, Green, Morroccan - Large",
+          "prepTime": "15 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Sliced Cheese (Cheddar White & Yellow) - Large",
           "name_ar": "شرائح جبن (شيدر أبيض وأصفر) - كبير",
           "unit": "Plate",
           "size": "Large",
-          "price": 300.0,
-          "source": "360G"
+          "price": 300,
+          "source": "360G",
+          "rating": "90%",
+          "description": "Delicious Sliced Cheese (Cheddar White & Yellow) - Large",
+          "prepTime": "15 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Arabic Cheese Plater (Hallumi, Feta, Kasshkoval) - Large",
           "name_ar": "جبن عربي عادي (حلومي,فيتا,قشقوان) - كبير",
           "unit": "Plate",
           "size": "Large",
-          "price": 300.0,
-          "source": "360G"
+          "price": 300,
+          "source": "360G",
+          "rating": "90%",
+          "description": "Delicious Arabic Cheese Plater (Hallumi, Feta, Kasshkoval) - Large",
+          "prepTime": "15 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Sliced Turkey / Smoked Beef - Large",
           "name_ar": "شرائح الديك الرومي/اللحم المدخن - كبير",
           "unit": "Plate",
           "size": "Large",
-          "price": 250.0,
-          "source": "360G"
+          "price": 250,
+          "source": "360G",
+          "rating": "90%",
+          "description": "Delicious Sliced Turkey / Smoked Beef - Large",
+          "prepTime": "15 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Sliced Smoked Norwegian Salmon - Large",
           "name_ar": "شرائح السلمون النرويجي المدخن - كبير",
           "unit": "Plate",
           "size": "Large",
-          "price": 400.0,
-          "source": "360G"
+          "price": 400,
+          "source": "360G",
+          "rating": "90%",
+          "description": "Delicious Sliced Smoked Norwegian Salmon - Large",
+          "prepTime": "15 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Fresh Keshta - Large",
           "name_ar": "قشطه طازجه - كبير",
           "unit": "Bowl",
           "size": "Large",
-          "price": 250.0,
-          "source": "360G"
+          "price": 250,
+          "source": "360G",
+          "rating": "90%",
+          "description": "Delicious Fresh Keshta - Large",
+          "prepTime": "15 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Honey Bowl & Butter Potions - Large",
           "name_ar": "وعاء عسل وقطع زبده - كبير",
           "unit": "Bowl",
           "size": "Large",
-          "price": 250.0,
-          "source": "360G"
+          "price": 250,
+          "source": "360G",
+          "rating": "90%",
+          "description": "Delicious Honey Bowl & Butter Potions - Large",
+          "prepTime": "15 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Jam Bowl / Berries, Strawberry, Apricot, Fig - Large",
           "name_ar": "وعاء مربى (توت/فراوله/تين/مشمش) - كبير",
           "unit": "Bowl",
           "size": "Large",
-          "price": 200.0,
-          "source": "360G"
+          "price": 200,
+          "source": "360G",
+          "rating": "90%",
+          "description": "Delicious Jam Bowl / Berries, Strawberry, Apricot, Fig - Large",
+          "prepTime": "15 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Mini Croissant (Chocolate, Cheese, Zaatar, Plain) - 50 pcs",
           "name_ar": "كروسان صغير (شوكالته,جبن,زعتر ساده) 50 قطعه",
           "unit": "Plate",
           "size": "Large",
-          "price": 180.0,
-          "source": "360G"
+          "price": 180,
+          "source": "360G",
+          "rating": "90%",
+          "description": "Delicious Mini Croissant (Chocolate, Cheese, Zaatar, Plain) - 50 pcs",
+          "prepTime": "15 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Mini Muffins (Chocolate, Vanilla, Blueberry) - 50 pcs",
           "name_ar": "مافن صغير (شوكالته,جبن,توت) 50 قطعه",
           "unit": "Plate",
           "size": "Large",
-          "price": 180.0,
-          "source": "360G"
+          "price": 180,
+          "source": "360G",
+          "rating": "90%",
+          "description": "Delicious Mini Muffins (Chocolate, Vanilla, Blueberry) - 50 pcs",
+          "prepTime": "15 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Sliced English Cake (Vanilla, Choclate, Fruit) - Large",
           "name_ar": "قطع الكيك الانجليزي (فانيليا شوكالته,فواكه) - كبير",
           "unit": "Plate",
           "size": "Large",
-          "price": 180.0,
-          "source": "360G"
+          "price": 180,
+          "source": "360G",
+          "rating": "94%",
+          "description": "Delightful sweet treat to end your meal",
+          "prepTime": "15 minutes",
+          "ingredients": [
+            "flour",
+            "sugar",
+            "eggs",
+            "butter"
+          ],
+          "allergens": [
+            "gluten",
+            "dairy",
+            "eggs"
+          ],
+          "dietary": [
+            "vegetarian"
+          ]
         },
         {
           "name_en": "Pancake with Maple Syrup - Round",
           "name_ar": "بانكيك مع شراب القيقب - دائري",
           "unit": "small",
           "size": null,
-          "price": 200.0,
-          "source": "360G"
+          "price": 200,
+          "source": "360G",
+          "rating": "94%",
+          "description": "Delightful sweet treat to end your meal",
+          "prepTime": "15 minutes",
+          "ingredients": [
+            "flour",
+            "sugar",
+            "eggs",
+            "butter"
+          ],
+          "allergens": [
+            "gluten",
+            "dairy",
+            "eggs"
+          ],
+          "dietary": [
+            "vegetarian"
+          ]
         },
         {
           "name_en": "Pancake with Maple Syrup - Rectangular (Medium)",
           "name_ar": "بانكيك مع شراب القيقب - مستطيل (وسط)",
           "unit": "Meduim",
           "size": null,
-          "price": 350.0,
-          "source": "360G"
+          "price": 350,
+          "source": "360G",
+          "rating": "94%",
+          "description": "Delightful sweet treat to end your meal",
+          "prepTime": "15 minutes",
+          "ingredients": [
+            "flour",
+            "sugar",
+            "eggs",
+            "butter"
+          ],
+          "allergens": [
+            "gluten",
+            "dairy",
+            "eggs"
+          ],
+          "dietary": [
+            "vegetarian"
+          ]
         },
         {
           "name_en": "Pancake with Maple Syrup - Rectangular (Large)",
           "name_ar": "بانكيك مع شراب القيقب - مستطيل (كبير)",
           "unit": "Large",
           "size": null,
-          "price": 350.0,
-          "source": "360G"
+          "price": 350,
+          "source": "360G",
+          "rating": "94%",
+          "description": "Delightful sweet treat to end your meal",
+          "prepTime": "15 minutes",
+          "ingredients": [
+            "flour",
+            "sugar",
+            "eggs",
+            "butter"
+          ],
+          "allergens": [
+            "gluten",
+            "dairy",
+            "eggs"
+          ],
+          "dietary": [
+            "vegetarian"
+          ]
         },
         {
           "name_en": "PanCake & Crepe Station",
           "name_ar": "ركن البانكيك والكريب",
           "unit": "Live Cooking",
           "size": null,
-          "price": 2000.0,
-          "source": "360G"
+          "price": 2000,
+          "source": "360G",
+          "rating": "94%",
+          "description": "Delightful sweet treat to end your meal",
+          "prepTime": "15 minutes",
+          "ingredients": [
+            "flour",
+            "sugar",
+            "eggs",
+            "butter"
+          ],
+          "allergens": [
+            "gluten",
+            "dairy",
+            "eggs"
+          ],
+          "dietary": [
+            "vegetarian"
+          ]
         },
         {
           "name_en": "Shrimp on Risotto Saffron Cake - Small",
           "name_ar": "روزيتو جمبري مع كيك الزعفران - صغير",
           "unit": "small",
           "size": null,
-          "price": 500.0,
-          "source": "360G"
+          "price": 500,
+          "source": "360G",
+          "rating": "93%",
+          "description": "Fresh seafood grilled to perfection with aromatic spices",
+          "prepTime": "30 minutes",
+          "ingredients": [
+            "fish",
+            "lemon",
+            "herbs",
+            "spices"
+          ],
+          "allergens": [
+            "fish",
+            "shellfish"
+          ],
+          "dietary": []
         },
         {
           "name_en": "Shrimp on Risotto Saffron Cake - Medium",
           "name_ar": "روزيتو جمبري مع كيك الزعفران - وسط",
           "unit": "Meduim",
           "size": null,
-          "price": 700.0,
-          "source": "360G"
+          "price": 700,
+          "source": "360G",
+          "rating": "93%",
+          "description": "Fresh seafood grilled to perfection with aromatic spices",
+          "prepTime": "30 minutes",
+          "ingredients": [
+            "fish",
+            "lemon",
+            "herbs",
+            "spices"
+          ],
+          "allergens": [
+            "fish",
+            "shellfish"
+          ],
+          "dietary": []
         },
         {
           "name_en": "Shrimp on Risotto Saffron Cake - Large",
           "name_ar": "روزيتو جمبري مع كيك الزعفران - كبير",
           "unit": "Large",
           "size": null,
-          "price": 900.0,
-          "source": "360G"
+          "price": 900,
+          "source": "360G",
+          "rating": "93%",
+          "description": "Fresh seafood grilled to perfection with aromatic spices",
+          "prepTime": "30 minutes",
+          "ingredients": [
+            "fish",
+            "lemon",
+            "herbs",
+            "spices"
+          ],
+          "allergens": [
+            "fish",
+            "shellfish"
+          ],
+          "dietary": []
         }
       ]
     },
@@ -1450,64 +3143,200 @@
           "name_en": "Cake With gazel el Banet - 25cm",
           "name_ar": "كيك مع غزل البنات 25 سم",
           "unit": "Cake 25 cm",
-          "price": 250.0,
-          "source": "360G"
+          "price": 250,
+          "source": "360G",
+          "rating": "94%",
+          "description": "Delightful sweet treat to end your meal",
+          "prepTime": "15 minutes",
+          "ingredients": [
+            "flour",
+            "sugar",
+            "eggs",
+            "butter"
+          ],
+          "allergens": [
+            "gluten",
+            "dairy",
+            "eggs"
+          ],
+          "dietary": [
+            "vegetarian"
+          ]
         },
         {
           "item_code": "493",
           "name_en": "Cake With gazel el Banet",
           "name_ar": "كيك مع غزل البنات 30 سم",
           "unit": "Cake 30 cm",
-          "price": 300.0,
-          "source": "360G"
+          "price": 300,
+          "source": "360G",
+          "rating": "94%",
+          "description": "Delightful sweet treat to end your meal",
+          "prepTime": "15 minutes",
+          "ingredients": [
+            "flour",
+            "sugar",
+            "eggs",
+            "butter"
+          ],
+          "allergens": [
+            "gluten",
+            "dairy",
+            "eggs"
+          ],
+          "dietary": [
+            "vegetarian"
+          ]
         },
         {
           "item_code": "494",
           "name_en": "Cake Chocolate caramel - Cake 25 cm",
           "name_ar": "كيك بالشوكوالو الكراميل 25 سم",
           "unit": "Cake 25 cm",
-          "price": 250.0,
-          "source": "360G"
+          "price": 250,
+          "source": "360G",
+          "rating": "94%",
+          "description": "Delightful sweet treat to end your meal",
+          "prepTime": "15 minutes",
+          "ingredients": [
+            "flour",
+            "sugar",
+            "eggs",
+            "butter"
+          ],
+          "allergens": [
+            "gluten",
+            "dairy",
+            "eggs"
+          ],
+          "dietary": [
+            "vegetarian"
+          ]
         },
         {
           "item_code": "495",
           "name_en": "Cake Chocolate caramel - Cake 30 cm",
           "name_ar": "كيك بالشوكوالو الكراميل 30 سم",
           "unit": "Cake 30 cm",
-          "price": 300.0,
-          "source": "360G"
+          "price": 300,
+          "source": "360G",
+          "rating": "94%",
+          "description": "Delightful sweet treat to end your meal",
+          "prepTime": "15 minutes",
+          "ingredients": [
+            "flour",
+            "sugar",
+            "eggs",
+            "butter"
+          ],
+          "allergens": [
+            "gluten",
+            "dairy",
+            "eggs"
+          ],
+          "dietary": [
+            "vegetarian"
+          ]
         },
         {
           "item_code": "506",
           "name_en": "Cake Red Velvet with mixed Berries - Cake 25 cm",
           "name_ar": "رد فيلفت مع الفاكهة الحمراء 25 سم",
           "unit": "Cake 25 cm",
-          "price": 250.0,
-          "source": "360G"
+          "price": 250,
+          "source": "360G",
+          "rating": "94%",
+          "description": "Delightful sweet treat to end your meal",
+          "prepTime": "15 minutes",
+          "ingredients": [
+            "flour",
+            "sugar",
+            "eggs",
+            "butter"
+          ],
+          "allergens": [
+            "gluten",
+            "dairy",
+            "eggs"
+          ],
+          "dietary": [
+            "vegetarian"
+          ]
         },
         {
           "item_code": "507",
           "name_en": "Cake Red Velvet with mixed Berries - Cake 30 cm",
           "name_ar": "رد فيلفت مع الفاكهة الحمراء 30 سم",
           "unit": "Cake 30 cm",
-          "price": 300.0,
-          "source": "360G"
+          "price": 300,
+          "source": "360G",
+          "rating": "94%",
+          "description": "Delightful sweet treat to end your meal",
+          "prepTime": "15 minutes",
+          "ingredients": [
+            "flour",
+            "sugar",
+            "eggs",
+            "butter"
+          ],
+          "allergens": [
+            "gluten",
+            "dairy",
+            "eggs"
+          ],
+          "dietary": [
+            "vegetarian"
+          ]
         },
         {
           "item_code": "510",
           "name_en": "Cheese cake - Cake 25 cm",
           "name_ar": "تشيز كيك 25 سم",
           "unit": "Cake 25 cm",
-          "price": 200.0,
-          "source": "360G"
+          "price": 200,
+          "source": "360G",
+          "rating": "94%",
+          "description": "Delightful sweet treat to end your meal",
+          "prepTime": "15 minutes",
+          "ingredients": [
+            "flour",
+            "sugar",
+            "eggs",
+            "butter"
+          ],
+          "allergens": [
+            "gluten",
+            "dairy",
+            "eggs"
+          ],
+          "dietary": [
+            "vegetarian"
+          ]
         },
         {
           "item_code": "511",
           "name_en": "Cheese cake - Cake 30 cm",
           "name_ar": "تشيز كيك 30 سم",
           "unit": "Cake 30 cm",
-          "price": 250.0,
-          "source": "360G"
+          "price": 250,
+          "source": "360G",
+          "rating": "94%",
+          "description": "Delightful sweet treat to end your meal",
+          "prepTime": "15 minutes",
+          "ingredients": [
+            "flour",
+            "sugar",
+            "eggs",
+            "butter"
+          ],
+          "allergens": [
+            "gluten",
+            "dairy",
+            "eggs"
+          ],
+          "dietary": [
+            "vegetarian"
+          ]
         }
       ]
     },
@@ -1519,56 +3348,175 @@
           "name_en": "Reguler Cake",
           "name_ar": "كيك عادي",
           "unit": "Per Portion",
-          "price": 10.0,
-          "source": "360G"
+          "price": 10,
+          "source": "360G",
+          "rating": "94%",
+          "description": "Delightful sweet treat to end your meal",
+          "prepTime": "15 minutes",
+          "ingredients": [
+            "flour",
+            "sugar",
+            "eggs",
+            "butter"
+          ],
+          "allergens": [
+            "gluten",
+            "dairy",
+            "eggs"
+          ],
+          "dietary": [
+            "vegetarian"
+          ]
         },
         {
           "item_code": "520",
           "name_en": "Design Cake (Picture on top)",
           "name_ar": "كعكه تصميم (الصوره في الاعلى)",
           "unit": "Per Portion",
-          "price": 18.0,
-          "source": "360G"
+          "price": 18,
+          "source": "360G",
+          "rating": "94%",
+          "description": "Delightful sweet treat to end your meal",
+          "prepTime": "15 minutes",
+          "ingredients": [
+            "flour",
+            "sugar",
+            "eggs",
+            "butter"
+          ],
+          "allergens": [
+            "gluten",
+            "dairy",
+            "eggs"
+          ],
+          "dietary": [
+            "vegetarian"
+          ]
         },
         {
           "item_code": "521",
           "name_en": "Design Cake (3 D)",
           "name_ar": "كعكه تصميم (3D)",
           "unit": "Per Portion",
-          "price": 25.0,
-          "source": "360G"
+          "price": 25,
+          "source": "360G",
+          "rating": "94%",
+          "description": "Delightful sweet treat to end your meal",
+          "prepTime": "15 minutes",
+          "ingredients": [
+            "flour",
+            "sugar",
+            "eggs",
+            "butter"
+          ],
+          "allergens": [
+            "gluten",
+            "dairy",
+            "eggs"
+          ],
+          "dietary": [
+            "vegetarian"
+          ]
         },
         {
           "item_code": "522",
           "name_en": "Wedding Cake As Per Design",
           "name_ar": "كعكه زفاف حسب التصميم",
           "unit": "Per Portion",
-          "price": 35.0,
-          "source": "360G"
+          "price": 35,
+          "source": "360G",
+          "rating": "94%",
+          "description": "Delightful sweet treat to end your meal",
+          "prepTime": "15 minutes",
+          "ingredients": [
+            "flour",
+            "sugar",
+            "eggs",
+            "butter"
+          ],
+          "allergens": [
+            "gluten",
+            "dairy",
+            "eggs"
+          ],
+          "dietary": [
+            "vegetarian"
+          ]
         },
         {
           "item_code": "536",
           "name_en": "Shot of Cheese Cake Blueberry",
           "name_ar": "تشيز كيك التوت الازرق قطعه صغيره",
           "unit": "Piece",
-          "price": 6.0,
-          "source": "360G"
+          "price": 6,
+          "source": "360G",
+          "rating": "94%",
+          "description": "Delightful sweet treat to end your meal",
+          "prepTime": "15 minutes",
+          "ingredients": [
+            "flour",
+            "sugar",
+            "eggs",
+            "butter"
+          ],
+          "allergens": [
+            "gluten",
+            "dairy",
+            "eggs"
+          ],
+          "dietary": [
+            "vegetarian"
+          ]
         },
         {
           "item_code": "537",
           "name_en": "Shot of Cheese Cake Strawberry",
           "name_ar": "تشيز كيك بالفراوله قطعه صغيره",
           "unit": "Piece",
-          "price": 6.0,
-          "source": "360G"
+          "price": 6,
+          "source": "360G",
+          "rating": "94%",
+          "description": "Delightful sweet treat to end your meal",
+          "prepTime": "15 minutes",
+          "ingredients": [
+            "flour",
+            "sugar",
+            "eggs",
+            "butter"
+          ],
+          "allergens": [
+            "gluten",
+            "dairy",
+            "eggs"
+          ],
+          "dietary": [
+            "vegetarian"
+          ]
         },
         {
           "item_code": "539",
           "name_en": "Mini Lazy Cake",
           "name_ar": "مني ليزي كيك",
           "unit": "Piece",
-          "price": 4.0,
-          "source": "360G"
+          "price": 4,
+          "source": "360G",
+          "rating": "94%",
+          "description": "Delightful sweet treat to end your meal",
+          "prepTime": "15 minutes",
+          "ingredients": [
+            "flour",
+            "sugar",
+            "eggs",
+            "butter"
+          ],
+          "allergens": [
+            "gluten",
+            "dairy",
+            "eggs"
+          ],
+          "dietary": [
+            "vegetarian"
+          ]
         },
         {
           "item_code": "648",
@@ -1576,7 +3524,24 @@
           "name_ar": "كعكة الشوكوالتة الرقيقة",
           "unit": "Piece",
           "price": 5.3,
-          "source": "360G"
+          "source": "360G",
+          "rating": "94%",
+          "description": "Delightful sweet treat to end your meal",
+          "prepTime": "15 minutes",
+          "ingredients": [
+            "flour",
+            "sugar",
+            "eggs",
+            "butter"
+          ],
+          "allergens": [
+            "gluten",
+            "dairy",
+            "eggs"
+          ],
+          "dietary": [
+            "vegetarian"
+          ]
         },
         {
           "item_code": "650",
@@ -1584,7 +3549,24 @@
           "name_ar": "تشيز كيك التوت الأزرق",
           "unit": "Piece",
           "price": 5.3,
-          "source": "360G"
+          "source": "360G",
+          "rating": "94%",
+          "description": "Delightful sweet treat to end your meal",
+          "prepTime": "15 minutes",
+          "ingredients": [
+            "flour",
+            "sugar",
+            "eggs",
+            "butter"
+          ],
+          "allergens": [
+            "gluten",
+            "dairy",
+            "eggs"
+          ],
+          "dietary": [
+            "vegetarian"
+          ]
         },
         {
           "item_code": "651",
@@ -1592,7 +3574,24 @@
           "name_ar": "كيك موس الشوكالته",
           "unit": "Piece",
           "price": 5.3,
-          "source": "360G"
+          "source": "360G",
+          "rating": "94%",
+          "description": "Delightful sweet treat to end your meal",
+          "prepTime": "15 minutes",
+          "ingredients": [
+            "flour",
+            "sugar",
+            "eggs",
+            "butter"
+          ],
+          "allergens": [
+            "gluten",
+            "dairy",
+            "eggs"
+          ],
+          "dietary": [
+            "vegetarian"
+          ]
         },
         {
           "item_code": "653",
@@ -1600,15 +3599,49 @@
           "name_ar": "ليزي كيك",
           "unit": "Piece",
           "price": 5.3,
-          "source": "360G"
+          "source": "360G",
+          "rating": "94%",
+          "description": "Delightful sweet treat to end your meal",
+          "prepTime": "15 minutes",
+          "ingredients": [
+            "flour",
+            "sugar",
+            "eggs",
+            "butter"
+          ],
+          "allergens": [
+            "gluten",
+            "dairy",
+            "eggs"
+          ],
+          "dietary": [
+            "vegetarian"
+          ]
         },
         {
           "item_code": "18",
           "name_en": "Cake",
           "name_ar": "كيكه",
           "unit": "Piece",
-          "price": 400.0,
-          "source": "360G"
+          "price": 400,
+          "source": "360G",
+          "rating": "94%",
+          "description": "Delightful sweet treat to end your meal",
+          "prepTime": "15 minutes",
+          "ingredients": [
+            "flour",
+            "sugar",
+            "eggs",
+            "butter"
+          ],
+          "allergens": [
+            "gluten",
+            "dairy",
+            "eggs"
+          ],
+          "dietary": [
+            "vegetarian"
+          ]
         }
       ]
     },
@@ -1619,127 +3652,329 @@
           "name_en": "Milk bread filling strawberry jam & peanut butter",
           "name_ar": "Milk bread filling strawberry jam & peanut butter",
           "unit": "PCS",
-          "price": 3.0,
-          "source": "360G"
+          "price": 3,
+          "source": "360G",
+          "rating": "90%",
+          "description": "Freshly baked bread served warm",
+          "prepTime": "20 minutes",
+          "ingredients": [
+            "flour",
+            "water",
+            "yeast",
+            "salt"
+          ],
+          "allergens": [
+            "gluten"
+          ],
+          "dietary": [
+            "vegetarian"
+          ]
         },
         {
           "name_en": "Wrap rolls bread filling feta cheese & zatar",
           "name_ar": "Wrap rolls bread filling feta cheese & zatar",
           "unit": "PCS",
           "price": 2.5,
-          "source": "360G"
+          "source": "360G",
+          "rating": "90%",
+          "description": "Freshly baked bread served warm",
+          "prepTime": "20 minutes",
+          "ingredients": [
+            "flour",
+            "water",
+            "yeast",
+            "salt"
+          ],
+          "allergens": [
+            "gluten"
+          ],
+          "dietary": [
+            "vegetarian"
+          ]
         },
         {
           "name_en": "White toast bread filling mix cheese",
           "name_ar": "White toast bread filling mix cheese",
           "unit": "PCS",
-          "price": 3.0,
-          "source": "360G"
+          "price": 3,
+          "source": "360G",
+          "rating": "90%",
+          "description": "Freshly baked bread served warm",
+          "prepTime": "20 minutes",
+          "ingredients": [
+            "flour",
+            "water",
+            "yeast",
+            "salt"
+          ],
+          "allergens": [
+            "gluten"
+          ],
+          "dietary": [
+            "vegetarian"
+          ]
         },
         {
           "name_en": "Milk bread filling fig jam & cheddar cheese",
           "name_ar": "Milk bread filling fig jam & cheddar cheese",
           "unit": "PCS",
-          "price": 3.0,
-          "source": "360G"
+          "price": 3,
+          "source": "360G",
+          "rating": "90%",
+          "description": "Freshly baked bread served warm",
+          "prepTime": "20 minutes",
+          "ingredients": [
+            "flour",
+            "water",
+            "yeast",
+            "salt"
+          ],
+          "allergens": [
+            "gluten"
+          ],
+          "dietary": [
+            "vegetarian"
+          ]
         },
         {
           "name_en": "Samoli bread filling labaneh with olives",
           "name_ar": "Samoli bread filling labaneh with olives",
           "unit": "PCS",
           "price": 2.5,
-          "source": "360G"
+          "source": "360G",
+          "rating": "90%",
+          "description": "Freshly baked bread served warm",
+          "prepTime": "20 minutes",
+          "ingredients": [
+            "flour",
+            "water",
+            "yeast",
+            "salt"
+          ],
+          "allergens": [
+            "gluten"
+          ],
+          "dietary": [
+            "vegetarian"
+          ]
         },
         {
           "name_en": "Arabic bread filling falafel and tahina sauce",
           "name_ar": "Arabic bread filling falafel and tahina sauce",
           "unit": "PCS",
-          "price": 3.0,
-          "source": "360G"
+          "price": 3,
+          "source": "360G",
+          "rating": "90%",
+          "description": "Freshly baked bread served warm",
+          "prepTime": "20 minutes",
+          "ingredients": [
+            "flour",
+            "water",
+            "yeast",
+            "salt"
+          ],
+          "allergens": [
+            "gluten"
+          ],
+          "dietary": [
+            "vegetarian"
+          ]
         },
         {
           "name_en": "Nutella with roasted nuts",
           "name_ar": "Nutella with roasted nuts",
           "unit": "PCS",
-          "price": 3.0,
-          "source": "360G"
+          "price": 3,
+          "source": "360G",
+          "rating": "90%",
+          "description": "Delicious Nutella with roasted nuts",
+          "prepTime": "15 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Mini Pizza Margherita",
           "name_ar": "Mini Pizza Margherita",
           "unit": "PCS",
-          "price": 3.0,
-          "source": "360G"
+          "price": 3,
+          "source": "360G",
+          "rating": "90%",
+          "description": "Delicious Mini Pizza Margherita",
+          "prepTime": "15 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Snack Mini cup cake",
           "name_ar": "Snack Mini cup cake",
           "unit": "PCS",
-          "price": 2.0,
-          "source": "360G"
+          "price": 2,
+          "source": "360G",
+          "rating": "94%",
+          "description": "Delightful sweet treat to end your meal",
+          "prepTime": "15 minutes",
+          "ingredients": [
+            "flour",
+            "sugar",
+            "eggs",
+            "butter"
+          ],
+          "allergens": [
+            "gluten",
+            "dairy",
+            "eggs"
+          ],
+          "dietary": [
+            "vegetarian"
+          ]
         },
         {
           "name_en": "Snack Mini Muffin",
           "name_ar": "Snack Mini Muffin",
           "unit": "PCS",
-          "price": 2.0,
-          "source": "360G"
+          "price": 2,
+          "source": "360G",
+          "rating": "87%",
+          "description": "Light bites and refreshing beverages",
+          "prepTime": "10 minutes",
+          "ingredients": [
+            "assorted snacks",
+            "fruits",
+            "beverages"
+          ],
+          "allergens": [],
+          "dietary": [
+            "vegetarian"
+          ]
         },
         {
           "name_en": "Manaqeesh Zaatar",
           "name_ar": "Manaqeesh Zaatar",
           "unit": "PCS",
-          "price": 2.0,
-          "source": "360G"
+          "price": 2,
+          "source": "360G",
+          "rating": "90%",
+          "description": "Delicious Manaqeesh Zaatar",
+          "prepTime": "15 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Manaqeesh cheese",
           "name_ar": "Manaqeesh cheese",
           "unit": "PCS",
-          "price": 2.0,
-          "source": "360G"
+          "price": 2,
+          "source": "360G",
+          "rating": "90%",
+          "description": "Delicious Manaqeesh cheese",
+          "prepTime": "15 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Manaqeesh cheese & Zaatar",
           "name_ar": "Manaqeesh cheese & Zaatar",
           "unit": "PCS",
-          "price": 2.0,
-          "source": "360G"
+          "price": 2,
+          "source": "360G",
+          "rating": "90%",
+          "description": "Delicious Manaqeesh cheese & Zaatar",
+          "prepTime": "15 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Snack Fruit two pcs",
           "name_ar": "Snack Fruit two pcs",
           "unit": "PCS",
-          "price": 3.0,
-          "source": "360G"
+          "price": 3,
+          "source": "360G",
+          "rating": "87%",
+          "description": "Light bites and refreshing beverages",
+          "prepTime": "10 minutes",
+          "ingredients": [
+            "assorted snacks",
+            "fruits",
+            "beverages"
+          ],
+          "allergens": [],
+          "dietary": [
+            "vegetarian"
+          ]
         },
         {
           "name_en": "Snack Granola bar",
           "name_ar": "Snack Granola bar",
           "unit": "PCS",
           "price": 2.5,
-          "source": "360G"
+          "source": "360G",
+          "rating": "87%",
+          "description": "Light bites and refreshing beverages",
+          "prepTime": "10 minutes",
+          "ingredients": [
+            "assorted snacks",
+            "fruits",
+            "beverages"
+          ],
+          "allergens": [],
+          "dietary": [
+            "vegetarian"
+          ]
         },
         {
           "name_en": "Snack Flavor English Cake",
           "name_ar": "Snack Flavor English Cake",
           "unit": "PCS",
-          "price": 3.0,
-          "source": "360G"
+          "price": 3,
+          "source": "360G",
+          "rating": "94%",
+          "description": "Delightful sweet treat to end your meal",
+          "prepTime": "15 minutes",
+          "ingredients": [
+            "flour",
+            "sugar",
+            "eggs",
+            "butter"
+          ],
+          "allergens": [
+            "gluten",
+            "dairy",
+            "eggs"
+          ],
+          "dietary": [
+            "vegetarian"
+          ]
         },
         {
           "name_en": "Milk",
           "name_ar": "Milk",
           "unit": "PCS",
           "price": 1.8,
-          "source": "360G"
+          "source": "360G",
+          "rating": "90%",
+          "description": "Delicious Milk",
+          "prepTime": "15 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Water 330ml - V2",
           "name_ar": "Water 330ml",
           "unit": "PCS",
-          "price": 1.0,
-          "source": "360G"
+          "price": 1,
+          "source": "360G",
+          "rating": "90%",
+          "description": "Delicious Water 330ml - V2",
+          "prepTime": "15 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         }
       ]
     },
@@ -1750,64 +3985,155 @@
           "name_en": "Date",
           "name_ar": "تمر",
           "unit": "Tray",
-          "price": 100.0,
-          "source": "360G"
+          "price": 100,
+          "source": "360G",
+          "rating": "90%",
+          "description": "Delicious Date",
+          "prepTime": "15 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Coffee Thermal",
           "name_ar": "براد قهوه",
           "unit": "Thermal",
-          "price": 150.0,
-          "source": "360G"
+          "price": 150,
+          "source": "360G",
+          "rating": "94%",
+          "description": "Premium coffee and tea station with various options",
+          "prepTime": "5 minutes",
+          "ingredients": [
+            "coffee beans",
+            "tea leaves",
+            "milk",
+            "sugar"
+          ],
+          "allergens": [
+            "dairy"
+          ],
+          "dietary": [
+            "vegetarian"
+          ]
         },
         {
           "name_en": "Speakers with microphone",
           "name_ar": "سماعات ومايكروفون",
           "unit": "PCS",
-          "price": 400.0,
-          "source": "360G"
+          "price": 400,
+          "source": "360G",
+          "rating": "90%",
+          "description": "Delicious Speakers with microphone",
+          "prepTime": "15 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Cake Vanilla fruit",
           "name_ar": "كيكه",
           "unit": "45*35 CM",
-          "price": 750.0,
-          "source": "360G"
+          "price": 750,
+          "source": "360G",
+          "rating": "94%",
+          "description": "Delightful sweet treat to end your meal",
+          "prepTime": "15 minutes",
+          "ingredients": [
+            "flour",
+            "sugar",
+            "eggs",
+            "butter"
+          ],
+          "allergens": [
+            "gluten",
+            "dairy",
+            "eggs"
+          ],
+          "dietary": [
+            "vegetarian"
+          ]
         },
         {
           "name_en": "Wedding custom menu",
           "name_ar": "منيو فرح معدل",
           "unit": "Pax",
-          "price": 157.0,
-          "source": "360G"
+          "price": 157,
+          "source": "360G",
+          "rating": "90%",
+          "description": "Delicious Wedding custom menu",
+          "prepTime": "15 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Food Truck",
           "name_ar": "فود ترك",
           "unit": "Truck",
-          "price": 750.0,
-          "source": "360G"
+          "price": 750,
+          "source": "360G",
+          "rating": "90%",
+          "description": "Delicious Food Truck",
+          "prepTime": "15 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Custom Breakfast Menu",
           "name_ar": "منيو فطور معدل",
           "unit": "PAX",
-          "price": 65.0,
-          "source": "360G"
+          "price": 65,
+          "source": "360G",
+          "rating": "88%",
+          "description": "Hearty breakfast selection with traditional and international options",
+          "prepTime": "15 minutes",
+          "ingredients": [
+            "eggs",
+            "bread",
+            "cheese",
+            "vegetables"
+          ],
+          "allergens": [
+            "gluten",
+            "dairy",
+            "eggs"
+          ],
+          "dietary": [
+            "vegetarian"
+          ]
         },
         {
           "name_en": "Snacks whole day",
           "name_ar": "سناك",
           "unit": "PAX",
-          "price": 55.0,
-          "source": "360G"
+          "price": 55,
+          "source": "360G",
+          "rating": "87%",
+          "description": "Light bites and refreshing beverages",
+          "prepTime": "10 minutes",
+          "ingredients": [
+            "assorted snacks",
+            "fruits",
+            "beverages"
+          ],
+          "allergens": [],
+          "dietary": [
+            "vegetarian"
+          ]
         },
         {
           "name_en": "Oriantal Menu",
           "name_ar": "منيو شرقي",
           "unit": "PAX",
-          "price": 140.0,
-          "source": "360G"
+          "price": 140,
+          "source": "360G",
+          "rating": "90%",
+          "description": "Delicious Oriantal Menu",
+          "prepTime": "15 minutes",
+          "ingredients": [],
+          "allergens": [],
+          "dietary": []
         }
       ]
     },
@@ -1818,36 +4144,109 @@
           "name_en": "Lunch Service one Salus OP 1",
           "name_ar": "غداء",
           "unit": "BOX",
-          "price": 16.0,
-          "source": "360G"
+          "price": 16,
+          "source": "360G",
+          "rating": "91%",
+          "description": "Complete meal with main course, sides, and accompaniments",
+          "prepTime": "30 minutes",
+          "ingredients": [
+            "protein",
+            "rice",
+            "vegetables",
+            "sauce"
+          ],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Breakfast Service Two OP 2-I Salus",
           "name_ar": "فطور",
           "unit": "BOX",
-          "price": 10.0,
-          "source": "360G"
+          "price": 10,
+          "source": "360G",
+          "rating": "88%",
+          "description": "Hearty breakfast selection with traditional and international options",
+          "prepTime": "15 minutes",
+          "ingredients": [
+            "eggs",
+            "bread",
+            "cheese",
+            "vegetables"
+          ],
+          "allergens": [
+            "gluten",
+            "dairy",
+            "eggs"
+          ],
+          "dietary": [
+            "vegetarian"
+          ]
         },
         {
           "name_en": "Lunch Service Two OP 2-II Salus",
           "name_ar": "غداء",
           "unit": "BOX",
-          "price": 21.0,
-          "source": "360G"
+          "price": 21,
+          "source": "360G",
+          "rating": "91%",
+          "description": "Complete meal with main course, sides, and accompaniments",
+          "prepTime": "30 minutes",
+          "ingredients": [
+            "protein",
+            "rice",
+            "vegetables",
+            "sauce"
+          ],
+          "allergens": [],
+          "dietary": []
         },
         {
           "name_en": "Lunch & Breakfast Service Two OP 2-III Salus",
           "name_ar": "فطور وغداء",
           "unit": "BOX",
-          "price": 28.0,
-          "source": "360G"
+          "price": 28,
+          "source": "360G",
+          "rating": "88%",
+          "description": "Hearty breakfast selection with traditional and international options",
+          "prepTime": "15 minutes",
+          "ingredients": [
+            "eggs",
+            "bread",
+            "cheese",
+            "vegetables"
+          ],
+          "allergens": [
+            "gluten",
+            "dairy",
+            "eggs"
+          ],
+          "dietary": [
+            "vegetarian"
+          ]
         },
         {
           "name_en": "Lunch & Breakfast Service Two OP 2-IIII Salus",
           "name_ar": "فطور وغداء",
           "unit": "BOX",
-          "price": 30.0,
-          "source": "360G"
+          "price": 30,
+          "source": "360G",
+          "rating": "88%",
+          "description": "Hearty breakfast selection with traditional and international options",
+          "prepTime": "15 minutes",
+          "ingredients": [
+            "eggs",
+            "bread",
+            "cheese",
+            "vegetables"
+          ],
+          "allergens": [
+            "gluten",
+            "dairy",
+            "eggs"
+          ],
+          "dietary": [
+            "vegetarian"
+          ]
         }
       ]
     }

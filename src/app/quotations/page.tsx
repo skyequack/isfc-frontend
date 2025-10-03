@@ -2,12 +2,22 @@
 
 import { useState, useEffect } from "react";
 import menuDataRaw from "../../../menu.json";
+import OrderCard from "@/components/menu/OrderCard";
 
 interface MenuItem {
   item: string;
   price: number;
   source: string;
   category: string;
+  name_en: string;
+  name_ar: string;
+  unit: string;
+  rating?: string;
+  description: string;
+  prepTime: string;
+  ingredients: string[];
+  allergens: string[];
+  dietary: string[];
 }
 
 interface MenuCategory {
@@ -28,9 +38,18 @@ function getFlatMenuItems(): MenuItem[] {
       .filter((i: MenuRawItem) => typeof i.name_en === "string" && typeof i.price === "number")
       .map((i: MenuRawItem) => ({
         item: i.name_en,
+        name_en: i.name_en,
+        name_ar: typeof i.name_ar === "string" ? i.name_ar : "",
         price: i.price,
+        unit: typeof i.unit === "string" ? i.unit : "",
         source: typeof i.source === "string" ? i.source : "",
-        category: cat.category
+        category: cat.category,
+        rating: typeof i.rating === "string" ? i.rating : undefined,
+        description: typeof i.description === "string" ? i.description : "",
+        prepTime: typeof i.prepTime === "string" ? i.prepTime : "",
+        ingredients: Array.isArray(i.ingredients) ? i.ingredients : [],
+        allergens: Array.isArray(i.allergens) ? i.allergens : [],
+        dietary: Array.isArray(i.dietary) ? i.dietary : []
       }))
   );
 }
@@ -60,6 +79,9 @@ export default function QuotationPage() {
   const [pickupTime, setPickupTime] = useState("");
 
   const [excelData, setExcelData] = useState<string | null>(null);
+  const [selectedItem, setSelectedItem] = useState<MenuItem | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalClosing, setIsModalClosing] = useState(false);
 
   const flatMenu = getFlatMenuItems();
   const categories = Array.from(new Set(flatMenu.map((item) => item.category)));
@@ -182,6 +204,21 @@ export default function QuotationPage() {
     }
   };
 
+  const handleInfoClick = (item: MenuItem) => {
+    setSelectedItem(item);
+    setIsModalOpen(true);
+    setIsModalClosing(false);
+  };
+
+  const closeModal = () => {
+    setIsModalClosing(true);
+    setTimeout(() => {
+      setIsModalOpen(false);
+      setSelectedItem(null);
+      setIsModalClosing(false);
+    }, 300);
+  };
+
   const errorClass = error ? "opacity-100 transition-opacity duration-500" : "opacity-0 transition-opacity duration-500";
 
   return (
@@ -282,10 +319,18 @@ export default function QuotationPage() {
                         >
                           <div className="flex items-start gap-3">
                             {/* Placeholder for image */}
-                            <div className="w-30 h-25 rounded-lg bg-gradient-to-br from-[#5e775a] to-[#4a5f47] flex-shrink-0 flex items-center justify-center text-white text-xs font-medium">
-                              <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                              </svg>
+                            <div className="relative">
+                              <div className="w-30 h-25 rounded-lg bg-gradient-to-br from-[#5e775a] to-[#4a5f47] flex-shrink-0 flex items-center justify-center text-white text-xs font-medium">
+                                <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                </svg>
+                              </div>
+                              <button
+                                onClick={() => handleInfoClick(item)}
+                                className="absolute top-1 right-1 w-6 h-6 rounded-full bg-white text-[#5e775a] hover:bg-[#5e775a] hover:text-white flex items-center justify-center shadow-md"
+                              >
+                                i
+                              </button>
                             </div>
                             
                             <div className="flex-1 min-w-0">
@@ -451,6 +496,46 @@ export default function QuotationPage() {
         )}
       </div>
 
+      {/* Item Info Modal */}
+      {isModalOpen && selectedItem && (
+        <div 
+          className={`fixed inset-0 bg-black/30 backdrop-blur-sm flex items-center justify-center z-50 p-4 ${
+            isModalClosing ? 'animate-fadeOut' : 'animate-fadeIn'
+          }`}
+          onClick={closeModal}
+        >
+          <div 
+            className={isModalClosing ? 'animate-scaleOut' : 'animate-scaleIn'}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="relative">
+              <OrderCard
+                name_en={selectedItem.name_en}
+                name_ar={selectedItem.name_ar}
+                source={selectedItem.source}
+                price={selectedItem.price}
+                unit={selectedItem.unit}
+                rating={selectedItem.rating}
+                description={selectedItem.description}
+                prepTime={selectedItem.prepTime}
+                ingredients={selectedItem.ingredients}
+                allergens={selectedItem.allergens}
+                dietary={selectedItem.dietary}
+              />
+              <button
+                onClick={closeModal}
+                className="absolute -top-3 -right-3 w-10 h-10 rounded-full bg-gray-400 hover:bg-red-500 text-white flex items-center justify-center shadow-lg transition-all duration-200 hover:scale-110"
+                aria-label="Close modal"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       <style jsx>{`
         .custom-scrollbar::-webkit-scrollbar {
           width: 6px;
@@ -465,6 +550,54 @@ export default function QuotationPage() {
         }
         .custom-scrollbar::-webkit-scrollbar-thumb:hover {
           background: #4a5f47;
+        }
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+          }
+          to {
+            opacity: 1;
+          }
+        }
+        @keyframes fadeOut {
+          from {
+            opacity: 1;
+          }
+          to {
+            opacity: 0;
+          }
+        }
+        @keyframes scaleIn {
+          from {
+            opacity: 0;
+            transform: scale(0.9);
+          }
+          to {
+            opacity: 1;
+            transform: scale(1);
+          }
+        }
+        @keyframes scaleOut {
+          from {
+            opacity: 1;
+            transform: scale(1);
+          }
+          to {
+            opacity: 0;
+            transform: scale(0.9);
+          }
+        }
+        .animate-fadeIn {
+          animation: fadeIn 0.2s ease-out;
+        }
+        .animate-fadeOut {
+          animation: fadeOut 0.2s ease-in;
+        }
+        .animate-scaleIn {
+          animation: scaleIn 0.3s ease-out;
+        }
+        .animate-scaleOut {
+          animation: scaleOut 0.3s ease-in;
         }
       `}</style>
     </div>
