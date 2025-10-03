@@ -71,6 +71,9 @@ export async function POST(req: Request) {
       };
     });
 
+    console.log('Received orderData:', orderData);
+    console.log('Processed items:', items);
+
     // Compute totals (unchanged logic): subtotal, VAT (15%), grand total
     const totalExcludeVAT = items.reduce((sum, r) => sum + r.total, 0);
     const vat = totalExcludeVAT * 0.15;
@@ -99,6 +102,7 @@ export async function POST(req: Request) {
       },
     });
   } catch (err: unknown) {
+    console.error('Error details:', err);
     return NextResponse.json(
       { error: (err as Error).message || "Failed to generate quotation" },
       { status: 500 }
@@ -303,6 +307,11 @@ function createWorkbook(
   // --- Summary block (labels merged A:G and amounts in H) ---
   // Helper to add a merged label at A:G and numeric in H
   function addSummaryLine(label: string, numericValue: number | null, labelFontSize = 11, labelBold = true, amountFontSize = 11, amountBold = true, amountFillARGB?: string, rowHeight = 25) {
+    console.log('Debugging addSummaryLine:', { currentRow, label, numericValue });
+    if (sheet.getCell(`A${currentRow}`).isMerged) {
+      console.error(`Row ${currentRow} is already merged. Skipping mergeCells.`);
+      return;
+    }
     sheet.mergeCells(`A${currentRow}:G${currentRow}`);
     const r = sheet.getRow(currentRow);
     const lblCell = r.getCell(1);
@@ -371,6 +380,12 @@ function createWorkbook(
     "This quotation is valid for 3 days from the date of sending the quotation, once approved 100% of the quotation total amount should be paid 3 days before the event.\nOnce booking is confirmed, the payment will not be refunded for any reason.";
   termsTextRow.getCell(1).font = { name: "Arial", size: 12 };
   termsTextRow.getCell(1).alignment = { horizontal: "left", vertical: "top", wrapText: true };
+  termsTextRow.getCell(1).border = {
+    top: { style: "thin" },
+    left: { style: "thin" },
+    bottom: { style: "thin" },
+    right: { style: "thin" },
+  };
   termsTextRow.height = 40;
   currentRow += 2;
 

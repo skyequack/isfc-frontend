@@ -3,7 +3,6 @@
 import { useState, useEffect } from "react";
 import menuDataRaw from "../../../menu.json";
 
-
 interface MenuItem {
   item: string;
   price: number;
@@ -47,12 +46,10 @@ interface OrderItem {
 
 export default function QuotationPage() {
   const [quotation, setQuotation] = useState<OrderItem[]>([]);
-  const [selectedSource, setSelectedSource] = useState<string>("");
   const [selectedCategory, setSelectedCategory] = useState<string>("");
-  const [selectedItem, setSelectedItem] = useState<string>("");
-  const [quantity, setQuantity] = useState<number>(1);
   const [grandTotal, setGrandTotal] = useState<number>(0);
   const [error, setError] = useState<string | null>(null);
+  const [itemQuantities, setItemQuantities] = useState<{ [key: string]: number }>({});
 
   const [clientName, setClientName] = useState("");
   const [mobileNumber, setMobileNumber] = useState("");
@@ -65,9 +62,8 @@ export default function QuotationPage() {
   const [excelData, setExcelData] = useState<string | null>(null);
 
   const flatMenu = getFlatMenuItems();
-  const sources = Array.from(new Set(flatMenu.map((item) => item.source)));
-  const categories = Array.from(new Set(flatMenu.filter((item) => item.source === selectedSource).map((item) => item.category)));
-  const items = flatMenu.filter((item) => item.source === selectedSource && item.category === selectedCategory);
+  const categories = Array.from(new Set(flatMenu.map((item) => item.category)));
+  const items = flatMenu.filter((item) => item.category === selectedCategory);
 
   useEffect(() => {
     setGrandTotal(quotation.reduce((sum, row) => sum + row.total, 0));
@@ -75,12 +71,7 @@ export default function QuotationPage() {
 
   useEffect(() => {
     setSelectedCategory("");
-    setSelectedItem("");
-  }, [selectedSource]);
-  
-  useEffect(() => {
-    setSelectedItem("");
-  }, [selectedCategory]);
+  }, []);
 
   useEffect(() => {
     if (error) {
@@ -89,12 +80,8 @@ export default function QuotationPage() {
     }
   }, [error]);
 
-  const handleConfirmAdd = () => {
-    const menuItem = items.find((m) => m.item === selectedItem);
-    if (!menuItem) {
-      setError("Invalid item selected.");
-      return;
-    }
+  const handleAddItem = (menuItem: MenuItem) => {
+    const quantity = itemQuantities[menuItem.item] || 1;
     if (quantity < 1) {
       setError("Quantity must be at least 1.");
       return;
@@ -110,12 +97,16 @@ export default function QuotationPage() {
         category: menuItem.category,
       },
     ]);
-    // Reset form after adding
-    setSelectedSource("");
-    setSelectedCategory("");
-    setSelectedItem("");
-    setQuantity(1);
+    setItemQuantities((prev) => ({ ...prev, [menuItem.item]: 1 }));
     setError(null);
+  };
+
+  const handleQuantityChange = (itemName: string, delta: number) => {
+    setItemQuantities((prev) => {
+      const current = prev[itemName] || 1;
+      const newValue = Math.max(1, current + delta);
+      return { ...prev, [itemName]: newValue };
+    });
   };
 
   const handleRemoveItem = (idx: number) => {
@@ -175,7 +166,6 @@ export default function QuotationPage() {
       });
   };
 
-  // Ensure error type is handled properly
   const handlePreviewExcel = async () => {
     try {
       const res = await fetch("/api/generate-quotation", { method: "POST" });
@@ -213,9 +203,9 @@ export default function QuotationPage() {
       <div className="w-full pl-64 pr-10">
 
         {/* Two Card Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
-          {/* Client/Event Details Card */}
-          <div className="lg:col-span-2 rounded-xl shadow-lg transition-all duration-300 p-6 md:p-8 hover:shadow-xl bg-white">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+          {/* Event Details Card */}
+          <div className="rounded-xl shadow-lg transition-all duration-300 p-6 md:p-8 hover:shadow-xl bg-white">
             <h2 className="text-xl font-semibold mb-6 flex items-center gap-2 transition-colors duration-300 text-[#3d3d3d]">
               <span className="w-1 h-6 rounded-full transition-colors duration-300 bg-[#5e775a]"></span>
               Event Details
@@ -254,35 +244,17 @@ export default function QuotationPage() {
               Add Item to Quotation
             </h2>
             <div className="space-y-5">
-              {/* Source Dropdown */}
-              <div className="space-y-2">
-                <label htmlFor="source-select" className="block text-sm font-medium transition-colors duration-300 text-[#3d3d3d]">
-                  Source
-                </label>
-                <select
-                  id="source-select"
-                  className="w-full border p-3 rounded-lg focus:ring-2 focus:border-transparent transition-all duration-200 bg-white border-slate-300 text-[#3d3d3d] focus:ring-[#5e775a] focus:ring-opacity-50 hover:border-[#5e775a]"
-                  value={selectedSource}
-                  onChange={(e) => setSelectedSource(e.target.value)}
-                >
-                  <option value="">Select Source</option>
-                  {sources.map((source) => (
-                    <option key={source} value={source}>{source}</option>
-                  ))}
-                </select>
-              </div>
 
               {/* Category Dropdown */}
               <div className="space-y-2">
                 <label htmlFor="category-select" className="block text-sm font-medium transition-colors duration-300 text-[#3d3d3d]">
-                  Category
+                  Select Category
                 </label>
                 <select
                   id="category-select"
-                  className="w-full border p-3 rounded-lg focus:ring-2 focus:border-transparent transition-all duration-200 disabled:cursor-not-allowed bg-white border-slate-300 text-[#3d3d3d] focus:ring-[#5e775a] focus:ring-opacity-50 hover:border-[#5e775a] disabled:bg-slate-100"
+                  className="w-full border p-3 rounded-lg focus:ring-2 focus:border-transparent transition-all duration-200 bg-white border-slate-300 text-[#3d3d3d] focus:ring-[#5e775a] focus:ring-opacity-50 hover:border-[#5e775a]"
                   value={selectedCategory}
                   onChange={(e) => setSelectedCategory(e.target.value)}
-                  disabled={!selectedSource}
                 >
                   <option value="">Select Category</option>
                   {categories.map((cat) => (
@@ -291,49 +263,88 @@ export default function QuotationPage() {
                 </select>
               </div>
 
-              {/* Item Name Dropdown */}
-              <div className="space-y-2">
-                <label htmlFor="item-select" className="block text-sm font-medium transition-colors duration-300 text-[#3d3d3d]">
-                  Item Name
-                </label>
-                <select
-                  id="item-select"
-                  className="w-full border p-3 rounded-lg focus:ring-2 focus:border-transparent transition-all duration-200 disabled:cursor-not-allowed bg-white border-slate-300 text-[#3d3d3d] focus:ring-[#5e775a] focus:ring-opacity-50 hover:border-[#5e775a] disabled:bg-slate-100"
-                  value={selectedItem}
-                  onChange={(e) => setSelectedItem(e.target.value)}
-                  disabled={!selectedCategory}
-                >
-                  <option value="">Select Item</option>
-                  {items.map((item) => (
-                    <option key={item.item} value={item.item}>{item.item}</option>
-                  ))}
-                </select>
-              </div>
+              {/* Food Cards Scrollable Area */}
+              {selectedCategory && items.length > 0 && (
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between">
+                    <label className="block text-sm font-medium transition-colors duration-300 text-[#3d3d3d]">
+                      Menu Items
+                    </label>
+                    <span className="text-xs text-slate-500">Scroll to see more</span>
+                  </div>
+                  <div className="max-h-96 overflow-y-auto space-y-3 pr-2 custom-scrollbar">
+                    {items.map((item) => {
+                      const quantity = itemQuantities[item.item] || 1;
+                      return (
+                        <div
+                          key={item.item}
+                          className="border border-slate-200 rounded-xl p-4 hover:shadow-lg transition-all duration-200 bg-white"
+                        >
+                          <div className="flex items-start gap-3">
+                            {/* Placeholder for image */}
+                            <div className="w-30 h-25 rounded-lg bg-gradient-to-br from-[#5e775a] to-[#4a5f47] flex-shrink-0 flex items-center justify-center text-white text-xs font-medium">
+                              <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                              </svg>
+                            </div>
+                            
+                            <div className="flex-1 min-w-0">
+                              <div className="flex items-start justify-between gap-2 mb-2">
+                                <div className="flex-1">
+                                  <h3 className="font-semibold text-sm text-[#3d3d3d] leading-tight mb-1">
+                                    {item.item}
+                                  </h3>
+                                  <p className="text-xs text-slate-500">{item.source}</p>
+                                </div>
+                                <div className="text-right flex-shrink-0">
+                                  <div className="text-sm font-bold text-[#5e775a]">SAR {item.price}</div>
+                                  <div className="text-xs text-slate-500">Per pax</div>
+                                </div>
+                              </div>
+                              <hr className="my-2 border-t border-slate-200" />
 
-              {/* Quantity Input */}
-              <div className="space-y-2">
-                <label htmlFor="quantity-input" className="block text-sm font-medium transition-colors duration-300 text-[#3d3d3d]">
-                  Quantity
-                </label>
-                <input
-                  id="quantity-input"
-                  type="number"
-                  min={1}
-                  className="w-full border p-3 rounded-lg focus:ring-2 focus:border-transparent transition-all duration-200 bg-white border-slate-300 text-[#3d3d3d] focus:ring-[#5e775a] focus:ring-opacity-50 hover:border-[#5e775a] placeholder-slate-400"
-                  value={quantity}
-                  onChange={(e) => setQuantity(Number(e.target.value))}
-                  placeholder="Enter quantity"
-                />
-              </div>
+                              <div className="flex items-center justify-between gap-2 mt-3">
+                                {/* Quantity Controls */}
+                                <div className="flex items-center gap-2 bg-slate-100 rounded-lg px-2 py-1">
+                                  <button
+                                    onClick={() => handleQuantityChange(item.item, -1)}
+                                    className="w-6 h-6 rounded flex items-center justify-center bg-white text-[#5e775a] hover:bg-[#5e775a] hover:text-white transition-all duration-200 font-bold"
+                                  >
+                                    −
+                                  </button>
+                                  <span className="w-8 text-center font-semibold text-sm text-[#3d3d3d]">
+                                    {quantity}
+                                  </span>
+                                  <button
+                                    onClick={() => handleQuantityChange(item.item, 1)}
+                                    className="w-6 h-6 rounded flex items-center justify-center bg-white text-[#5e775a] hover:bg-[#5e775a] hover:text-white transition-all duration-200 font-bold"
+                                  >
+                                    +
+                                  </button>
+                                </div>
+                                
+                                {/* Add Button */}
+                                <button
+                                  onClick={() => handleAddItem(item)}
+                                  className="w-7 h-7 flex items-center justify-center rounded-full bg-[#5e775a] hover:bg-[#4a5f47] focus:outline-none focus:ring-2 focus:ring-green-400"
+                                >
+                                  +
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
 
-              {/* Add Button */}
-              <button
-                className="w-full px-6 py-3 rounded-lg font-medium hover:scale-105 active:scale-95 transform transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 shadow-md bg-[#5e775a] hover:bg-[#4a5f47] text-white"
-                onClick={handleConfirmAdd}
-                disabled={!selectedItem || quantity < 1}
-              >
-                + Add Item
-              </button>
+              {selectedCategory && items.length === 0 && (
+                <div className="text-center py-8 text-slate-500">
+                  No items available in this category
+                </div>
+              )}
             </div>
           </div>
         </div>
@@ -438,9 +449,24 @@ export default function QuotationPage() {
             {error}
           </div>
         )}
-
-
       </div>
+
+      <style jsx>{`
+        .custom-scrollbar::-webkit-scrollbar {
+          width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+          background: #f1f5f9;
+          border-radius: 10px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+          background: #5e775a;
+          border-radius: 10px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+          background: #4a5f47;
+        }
+      `}</style>
     </div>
   );
 }
