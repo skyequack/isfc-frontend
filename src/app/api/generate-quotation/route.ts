@@ -490,6 +490,7 @@ function createWorkbook(
 
   // Total Exclude VAT row
   const totalExcVATRow = sheet.getRow(currentRow);
+  sheet.mergeCells(`C${currentRow}:H${currentRow}`);
   totalExcVATRow.getCell("C").value = "Total Exclude VAT";
   totalExcVATRow.getCell("C").font = { name: "Calibri", size: 11, bold: true };
   totalExcVATRow.getCell("C").alignment = { horizontal: "left", vertical: "middle" };
@@ -501,6 +502,7 @@ function createWorkbook(
 
   // VAT 15% row
   const vatRow = sheet.getRow(currentRow);
+  sheet.mergeCells(`C${currentRow}:H${currentRow}`);
   vatRow.getCell("C").value = "VAT 15%";
   vatRow.getCell("C").font = { name: "Calibri", size: 11, bold: true };
   vatRow.getCell("C").alignment = { horizontal: "left", vertical: "middle" };
@@ -512,6 +514,7 @@ function createWorkbook(
 
   // Total Amount row
   const totalAmtRow = sheet.getRow(currentRow);
+  sheet.mergeCells(`C${currentRow}:H${currentRow}`);
   totalAmtRow.getCell("C").value = "Total Amount";
   totalAmtRow.getCell("C").font = { name: "Calibri", size: 11, bold: true };
   totalAmtRow.getCell("C").alignment = { horizontal: "left", vertical: "middle" };
@@ -523,6 +526,7 @@ function createWorkbook(
 
   // Paid Amount row
   const paidAmtRow = sheet.getRow(currentRow);
+  sheet.mergeCells(`C${currentRow}:H${currentRow}`);
   paidAmtRow.getCell("C").value = "Paid Amount";
   paidAmtRow.getCell("C").font = { name: "Calibri", size: 11, bold: true };
   paidAmtRow.getCell("C").alignment = { horizontal: "left", vertical: "middle" };
@@ -533,6 +537,7 @@ function createWorkbook(
 
   // Remaining Amount (Balance) row
   const remainingAmtRow = sheet.getRow(currentRow);
+  sheet.mergeCells(`C${currentRow}:H${currentRow}`);
   remainingAmtRow.getCell("C").value = "Remaining Amount (Balance)";
   remainingAmtRow.getCell("C").font = { name: "Calibri", size: 11, bold: true };
   remainingAmtRow.getCell("C").alignment = { horizontal: "left", vertical: "middle" };
@@ -599,8 +604,179 @@ function createWorkbook(
   arabicTermsRow.height = 60;
   currentRow++;
 
-  // Signature space (optional)
-  sheet.getRow(currentRow).height = 30;
+  // --- Company's Bank Account Details section ---
+  // Spacer row
+  sheet.getRow(currentRow).height = 15;
+  currentRow++;
+
+  // Header row with two sections: Bank Account Details and Comments
+  const bankHeaderRow = sheet.getRow(currentRow);
+  
+  // Bank Account Details (left side - C to H merged)
+  sheet.mergeCells(`C${currentRow}:H${currentRow}`);
+  bankHeaderRow.getCell("C").value = "Company's Bank Account Details - تفاصيل البنك";
+  bankHeaderRow.getCell("C").font = { name: "Calibri", size: 12, bold: true };
+  bankHeaderRow.getCell("C").alignment = { horizontal: "center", vertical: "middle" };
+  bankHeaderRow.getCell("C").fill = {
+    type: "pattern",
+    pattern: "solid",
+    fgColor: { argb: "FFD3D3D3" },
+  };
+  
+  // Comments (right side - I to M merged)
+  sheet.mergeCells(`I${currentRow}:M${currentRow}`);
+  bankHeaderRow.getCell("I").value = "Comments - ملاحظات";
+  bankHeaderRow.getCell("I").font = { name: "Calibri", size: 12, bold: true };
+  bankHeaderRow.getCell("I").alignment = { horizontal: "center", vertical: "middle" };
+  bankHeaderRow.getCell("I").fill = {
+    type: "pattern",
+    pattern: "solid",
+    fgColor: { argb: "FFD3D3D3" },
+  };
+  
+  bankHeaderRow.height = 25;
+  currentRow++;
+
+  // Empty row
+  sheet.getRow(currentRow).height = 18;
+  currentRow++;
+
+  // Name of Account row
+  const nameOfAccountRow = sheet.getRow(currentRow);
+  sheet.mergeCells(`C${currentRow}:H${currentRow}`);
+  nameOfAccountRow.getCell("C").value = "Name of Account: International Specialized Foods Co.";
+  nameOfAccountRow.getCell("C").font = { name: "Calibri", size: 11 };
+  nameOfAccountRow.getCell("C").alignment = { horizontal: "left", vertical: "middle" };
+  nameOfAccountRow.height = 20;
+  currentRow++;
+
+  // Number of Account row
+  const numberAccountRow = sheet.getRow(currentRow);
+  sheet.mergeCells(`C${currentRow}:H${currentRow}`);
+  numberAccountRow.getCell("C").value = "Number of Account: #0108095304410014";
+  numberAccountRow.getCell("C").font = { name: "Calibri", size: 11 };
+  numberAccountRow.getCell("C").alignment = { horizontal: "left", vertical: "middle" };
+  numberAccountRow.height = 20;
+  currentRow++;
+
+  // IBAN row
+  const ibanRow = sheet.getRow(currentRow);
+  sheet.mergeCells(`C${currentRow}:H${currentRow}`);
+  ibanRow.getCell("C").value = "IBAN Bank of Account: #SA1230400108095304410014";
+  ibanRow.getCell("C").font = { name: "Calibri", size: 11 };
+  ibanRow.getCell("C").alignment = { horizontal: "left", vertical: "middle" };
+  // Right side: Comments (empty for now)
+  sheet.mergeCells(`I${currentRow}:M${currentRow}`);
+  ibanRow.getCell("I").value = "";
+  ibanRow.getCell("I").alignment = { horizontal: "left", vertical: "middle" };
+  ibanRow.height = 20;
+  currentRow++;
+
+  // Name of Bank row
+  const nameOfBankRow = sheet.getRow(currentRow);
+  sheet.mergeCells(`C${currentRow}:H${currentRow}`);
+  nameOfBankRow.getCell("C").value = "Name of Bank: Arab National Bank";
+  nameOfBankRow.getCell("C").font = { name: "Calibri", size: 11 };
+  nameOfBankRow.getCell("C").alignment = { horizontal: "left", vertical: "middle" };
+  nameOfBankRow.height = 20;
+  currentRow++;
+
+  // Country row
+  const countryRow = sheet.getRow(currentRow);
+  sheet.mergeCells(`C${currentRow}:H${currentRow}`);
+  countryRow.getCell("C").value = "Country: KSA- Riyadh";
+  countryRow.getCell("C").font = { name: "Calibri", size: 11 };
+  countryRow.getCell("C").alignment = { horizontal: "left", vertical: "middle" };
+  countryRow.height = 20;
+  currentRow++;
+
+  // Empty row
+  sheet.getRow(currentRow).height = 18;
+  currentRow++;
+
+  // --- Client's Accreditation section ---
+  sheet.mergeCells(`C${currentRow}:M${currentRow}`);
+  const clientAccreditationHeaderRow = sheet.getRow(currentRow);
+  clientAccreditationHeaderRow.getCell("C").value = "Client's Accreditation - تصديق العميل";
+  clientAccreditationHeaderRow.getCell("C").font = { name: "Calibri", size: 12, bold: true };
+  clientAccreditationHeaderRow.getCell("C").alignment = { horizontal: "center", vertical: "middle" };
+  clientAccreditationHeaderRow.getCell("C").fill = {
+    type: "pattern",
+    pattern: "solid",
+    fgColor: { argb: "FFD3D3D3" },
+  };
+  clientAccreditationHeaderRow.height = 25;
+  currentRow++;
+
+  // Empty row
+  sheet.getRow(currentRow).height = 18;
+  currentRow++;
+
+  // Name and Signature row
+  const nameSignatureRow = sheet.getRow(currentRow);
+  sheet.mergeCells(`C${currentRow}:G${currentRow}`);
+  nameSignatureRow.getCell("C").value = "Name";
+  nameSignatureRow.getCell("C").font = { name: "Calibri", size: 11 };
+  nameSignatureRow.getCell("C").alignment = { horizontal: "center", vertical: "middle" };
+  sheet.mergeCells(`H${currentRow}:M${currentRow}`);
+  nameSignatureRow.getCell("H").value = "Signature";
+  nameSignatureRow.getCell("H").font = { name: "Calibri", size: 11 };
+  nameSignatureRow.getCell("H").alignment = { horizontal: "center", vertical: "middle" };
+  nameSignatureRow.height = 20;
+  currentRow++;
+
+  // Empty signature space (3 rows)
+  for (let i = 0; i < 3; i++) {
+    sheet.getRow(currentRow).height = 25;
+    currentRow++;
+  }
+
+  // Empty row
+  sheet.getRow(currentRow).height = 18;
+  currentRow++;
+
+  // --- Accreditations section ---
+  sheet.mergeCells(`C${currentRow}:M${currentRow}`);
+  const accreditationsHeaderRow = sheet.getRow(currentRow);
+  accreditationsHeaderRow.getCell("C").value = "Accreditations - الاعتماد";
+  accreditationsHeaderRow.getCell("C").font = { name: "Calibri", size: 12, bold: true };
+  accreditationsHeaderRow.getCell("C").alignment = { horizontal: "center", vertical: "middle" };
+  accreditationsHeaderRow.getCell("C").fill = {
+    type: "pattern",
+    pattern: "solid",
+    fgColor: { argb: "FFD3D3D3" },
+  };
+  accreditationsHeaderRow.height = 25;
+  currentRow++;
+
+  // Empty row
+  sheet.getRow(currentRow).height = 18;
+  currentRow++;
+
+  // Accreditations positions row
+  const accreditationsRow = sheet.getRow(currentRow);
+  sheet.mergeCells(`C${currentRow}:E${currentRow}`);
+  accreditationsRow.getCell("C").value = "Vice Executive President";
+  accreditationsRow.getCell("C").font = { name: "Calibri", size: 11 };
+  accreditationsRow.getCell("C").alignment = { horizontal: "center", vertical: "middle" };
+  
+  sheet.mergeCells(`F${currentRow}:H${currentRow}`);
+  accreditationsRow.getCell("F").value = "Chief Finance Officer";
+  accreditationsRow.getCell("F").font = { name: "Calibri", size: 11 };
+  accreditationsRow.getCell("F").alignment = { horizontal: "center", vertical: "middle" };
+  
+  sheet.mergeCells(`I${currentRow}:M${currentRow}`);
+  accreditationsRow.getCell("I").value = "Chief Executive Officer";
+  accreditationsRow.getCell("I").font = { name: "Calibri", size: 11 };
+  accreditationsRow.getCell("I").alignment = { horizontal: "center", vertical: "middle" };
+  accreditationsRow.height = 20;
+  currentRow++;
+
+  // Empty signature space (3 rows)
+  for (let i = 0; i < 3; i++) {
+    sheet.getRow(currentRow).height = 25;
+    currentRow++;
+  }
 
   return workbook;
 }
