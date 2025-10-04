@@ -186,6 +186,7 @@ export default function QuotationPage() {
         Arabic: i.name_ar || "",
         Unit: i.unit || "pcs",
         Price: i.price,
+        description: i.description || "",
         source: i.source,
         category: c.category
       }))
@@ -704,8 +705,8 @@ export default function QuotationPage() {
                 onClick={() => window.print()}
                 className="px-4 py-2 rounded-lg bg-[#5e775a] text-white hover:bg-[#4a5f47] transition-all duration-200 hover:scale-105 active:scale-95 flex items-center gap-2 shadow-md"
               >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 17h2a2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
                 </svg>
                 Print Preview
               </button>

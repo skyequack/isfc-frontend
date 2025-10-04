@@ -8,6 +8,7 @@ interface MenuRow {
   Arabic?: string;
   Unit?: string;
   Price: number;
+  description?: string;
 }
 
 interface OrderRow {
@@ -19,6 +20,7 @@ interface OrderRow {
 interface ProcessedItem {
   item: string;
   arabicName: string;
+  description: string;
   unit: string;
   pricePerUnit: number;
   qty: number;
@@ -35,6 +37,7 @@ interface ClientInfo {
   location?: string;
   pickupTime?: string;
   serialNumber?: string;
+  validityDays?: string;
 }
 
 export async function POST(req: Request) {
@@ -60,11 +63,13 @@ export async function POST(req: Request) {
 
       const price = menuEntry?.Price || 0;
       const arabicName = menuEntry?.Arabic || "";
+      const description = menuEntry?.description || "";
       const unit = menuEntry?.Unit || "";
 
       return {
         item: itemName,
         arabicName,
+        description,
         unit,
         pricePerUnit: price,
         qty: quantity,
@@ -243,7 +248,7 @@ function createWorkbook(
   sheet.mergeCells("C6:M6");
   const companyRow = sheet.getRow(6);
   companyRow.getCell("C").value = "الشركة العالمية التخصصية للأغذية";
-  companyRow.getCell("C").font = { name: "Calibri", size: 12, bold: true, color: { argb: "FFFFFFFF" } };
+  companyRow.getCell("C").font = { name: "Calibri", size: 12, bold: true, color: { argb: "FF000000" } };
   companyRow.getCell("C").alignment = { horizontal: "center", vertical: "middle" };
   companyRow.height = 20.25;
 
@@ -324,12 +329,20 @@ function createWorkbook(
   row13.getCell("D").value = clientInfo?.mobileNumber || "";
   row13.getCell("D").font = { name: "Calibri", size: 9 };
   row13.getCell("D").alignment = { horizontal: "left", vertical: "middle" };
-  // Right side: Due Date (can be calculated or left empty)
+  // Right side: Due Date (calculated from current date + validity days)
   row13.getCell("I").value = "Due Date:";
   row13.getCell("I").font = { name: "Calibri", size: 9, bold: true };
   row13.getCell("I").alignment = { horizontal: "left", vertical: "middle" };
   sheet.mergeCells("J13:M13");
-  row13.getCell("J").value = "";
+  
+  // Calculate due date: current date + validity days
+  const validityDays = parseInt(clientInfo?.validityDays || "14", 10);
+  const dueDate = new Date(today);
+  dueDate.setDate(dueDate.getDate() + validityDays);
+  const formattedDueDate = `${String(dueDate.getDate()).padStart(2, '0')}/${String(dueDate.getMonth() + 1).padStart(2, '0')}/${dueDate.getFullYear()}`;
+  
+  row13.getCell("J").value = formattedDueDate;
+  row13.getCell("J").font = { name: "Calibri", size: 9 };
   row13.getCell("J").alignment = { horizontal: "left", vertical: "middle" };
   row13.height = 18;
 
@@ -521,7 +534,7 @@ function createWorkbook(
   currentRow = divider(sheet, currentRow);
 
   // Buffet details rows - filter items that have buffet details
-  const buffetItems = items.filter(item => item.arabicName && item.arabicName.trim() !== "");
+  const buffetItems = items.filter(item => item.description && item.description.trim() !== "");
   
   buffetItems.forEach((item) => {
     const buffetRow = sheet.getRow(currentRow);
@@ -532,9 +545,9 @@ function createWorkbook(
     buffetRow.getCell("C").font = { name: "Calibri", size: 9, bold: true };
     buffetRow.getCell("C").alignment = { horizontal: "center", vertical: "middle" };
     
-    // Arabic description in columns F-M (merged)
+    // Description in columns F-M (merged)
     sheet.mergeCells(`F${currentRow}:M${currentRow}`);
-    buffetRow.getCell("F").value = item.arabicName;
+    buffetRow.getCell("F").value = item.description;
     buffetRow.getCell("F").font = { name: "Calibri", size: 9 };
     buffetRow.getCell("F").alignment = { horizontal: "center", vertical: "middle" };
     

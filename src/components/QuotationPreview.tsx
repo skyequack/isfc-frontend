@@ -43,6 +43,12 @@ const QuotationPreview: React.FC<QuotationPreviewProps> = ({
   const today = new Date();
   const formattedDate = `${String(today.getDate()).padStart(2, '0')}/${String(today.getMonth() + 1).padStart(2, '0')}/${today.getFullYear()}`;
 
+  // Calculate due date: current date + validity days
+  const validityDaysNum = parseInt(validityDays || "14", 10);
+  const dueDate = new Date(today);
+  dueDate.setDate(dueDate.getDate() + validityDaysNum);
+  const formattedDueDate = `${String(dueDate.getDate()).padStart(2, '0')}/${String(dueDate.getMonth() + 1).padStart(2, '0')}/${dueDate.getFullYear()}`;
+
   return (
     <div className="quotation-preview w-full max-w-5xl mx-auto bg-white p-6 text-black" style={{ fontFamily: 'Calibri, Arial, sans-serif' }}>
       
@@ -100,7 +106,7 @@ const QuotationPreview: React.FC<QuotationPreviewProps> = ({
             </div>
             <div className="mb-3">
               <span className="font-bold text-black">Due Date: </span>
-              <span className="text-black"></span>
+              <span className="text-black">{formattedDueDate}</span>
             </div>
           </div>
         </div>
