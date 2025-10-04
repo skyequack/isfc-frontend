@@ -245,7 +245,7 @@ function createWorkbook(
   companyRow.getCell("C").value = "الشركة العالمية التخصصية للأغذية";
   companyRow.getCell("C").font = { name: "Calibri", size: 12, bold: true, color: { argb: "FFFFFFFF" } };
   companyRow.getCell("C").alignment = { horizontal: "center", vertical: "middle" };
-  companyRow.height = 28;
+  companyRow.height = 20.25;
 
   // Row 7: Quotation title
   sheet.mergeCells("C7:M7");

@@ -1,8 +1,10 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import menuDataRaw from "../../../menu.json";
 import OrderCard from "@/components/menu/OrderCard";
+import QuotationPreview from "@/components/QuotationPreview";
+import MenuItemCard from "@/components/menu/MenuItemCard";
 
 interface MenuItem {
   item: string;
@@ -66,26 +68,59 @@ interface OrderItem {
 export default function QuotationPage() {
   const [quotation, setQuotation] = useState<OrderItem[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<string>("");
+  const [selectedSource, setSelectedSource] = useState<string>("");
   const [grandTotal, setGrandTotal] = useState<number>(0);
   const [error, setError] = useState<string | null>(null);
   const [itemQuantities, setItemQuantities] = useState<{ [key: string]: number }>({});
 
   const [clientName, setClientName] = useState("");
-  const [mobileNumber, setMobileNumber] = useState("");
+  const [clientContact, setClientContact] = useState("");
   const [eventOrganizer, setEventOrganizer] = useState("");
+  const [customEventOrganizer, setCustomEventOrganizer] = useState("");
+  const [eventType, setEventType] = useState("");
   const [numberOfPeople, setNumberOfPeople] = useState("");
   const [eventDate, setEventDate] = useState("");
+  const [eventTime, setEventTime] = useState("");
   const [location, setLocation] = useState("");
-  const [pickupTime, setPickupTime] = useState("");
+  const [validityDays, setValidityDays] = useState("14");
+  const [referenceCode, setReferenceCode] = useState("");
+  const [brandCode, setBrandCode] = useState("ISFC");
 
-  const [excelData, setExcelData] = useState<string | null>(null);
   const [selectedItem, setSelectedItem] = useState<MenuItem | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isModalClosing, setIsModalClosing] = useState(false);
+  const [showPreview, setShowPreview] = useState(false);
+  
+  // Event organizer options
+  const eventOrganizers = [
+    "Select Organizer",
+    "Batoul Bassam",
+    "Said Chouaki",
+    "Mohammad Al-Hawamdeh",
+    "Custom"
+  ];
+  
+  // Event type options
+  const eventTypes = [
+    "Select Event Type",
+    "Wedding",
+    "Corporate Event",
+    "Birthday Party",
+    "Conference",
+    "Exhibition",
+    "Gala Dinner",
+    "Product Launch",
+    "Other"
+  ];
 
   const flatMenu = getFlatMenuItems();
-  const categories = Array.from(new Set(flatMenu.map((item) => item.category)));
-  const items = flatMenu.filter((item) => item.category === selectedCategory);
+
+  const generateReferenceCode = useCallback(() => {
+    const year = new Date().getFullYear();
+    const randomNum = Math.floor(Math.random() * 10000).toString().padStart(4, '0');
+    const code = `${brandCode}-${year}-${randomNum}`;
+    setReferenceCode(code);
+  }, [brandCode]);
 
   useEffect(() => {
     setGrandTotal(quotation.reduce((sum, row) => sum + row.total, 0));
@@ -93,7 +128,9 @@ export default function QuotationPage() {
 
   useEffect(() => {
     setSelectedCategory("");
-  }, []);
+    // Generate reference code on mount
+    generateReferenceCode();
+  }, [generateReferenceCode]);
 
   useEffect(() => {
     if (error) {
@@ -157,14 +194,18 @@ export default function QuotationPage() {
       Item: q.item,
       Quantity: q.quantity
     }));
+    const finalEventOrganizer = eventOrganizer === "Custom" ? customEventOrganizer : eventOrganizer;
     const clientInfo = {
       clientName,
-      mobileNumber,
-      eventOrganizer,
+      clientContact,
+      eventOrganizer: finalEventOrganizer,
+      eventType,
       numberOfPeople,
       eventDate,
+      eventTime,
       location,
-      pickupTime
+      validityDays,
+      referenceCode
     };
     fetch("/api/generate-quotation", {
       method: "POST",
@@ -186,22 +227,6 @@ export default function QuotationPage() {
       .catch((err) => {
         setError(err.message || "Failed to download Excel");
       });
-  };
-
-  const handlePreviewExcel = async () => {
-    try {
-      const res = await fetch("/api/generate-quotation", { method: "POST" });
-      if (!res.ok) throw new Error("Failed to generate Excel");
-      const blob = await res.blob();
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        setExcelData(e.target?.result as string);
-      };
-      reader.readAsDataURL(blob);
-    } catch (err) {
-      const errorMessage = err instanceof Error ? err.message : "Failed to preview Excel";
-      setError(errorMessage);
-    }
   };
 
   const handleInfoClick = (item: MenuItem) => {
@@ -243,167 +268,344 @@ export default function QuotationPage() {
       <div className="w-full pl-64 pr-10">
 
         {/* Two Card Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
-          {/* Event Details Card */}
-          <div className="rounded-xl shadow-lg transition-all duration-300 p-6 md:p-8 hover:shadow-xl bg-white">
+        <div className="grid grid-cols-1 lg:grid-cols-10 gap-8 mb-8">
+          {/* Event Details Card - Takes 4 columns (40% width) */}
+          <div className="lg:col-span-3 rounded-xl shadow-lg transition-all duration-300 p-6 md:p-8 hover:shadow-xl bg-white">
             <h2 className="text-xl font-semibold mb-6 flex items-center gap-2 transition-colors duration-300 text-[#3d3d3d]">
               <span className="w-1 h-6 rounded-full transition-colors duration-300 bg-[#5e775a]"></span>
               Event Details
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {[
-                { label: "Client Name", value: clientName, setValue: setClientName, type: "text", placeholder: "Enter client name" },
-                { label: "Mobile Number", value: mobileNumber, setValue: setMobileNumber, type: "text", placeholder: "Enter mobile number" },
-                { label: "Event Organizer", value: eventOrganizer, setValue: setEventOrganizer, type: "text", placeholder: "Enter organizer name" },
-                { label: "Number of People", value: numberOfPeople, setValue: setNumberOfPeople, type: "number", placeholder: "0" },
-                { label: "Date of Event", value: eventDate, setValue: setEventDate, type: "date", placeholder: "" },
-                { label: "Location", value: location, setValue: setLocation, type: "text", placeholder: "Enter event location" },
-                { label: "Pickup Time", value: pickupTime, setValue: setPickupTime, type: "time", placeholder: "" }
-              ].map((field, idx) => (
-                <div key={idx} className="space-y-2">
-                  <label className="block text-sm font-medium transition-colors duration-300 text-[#3d3d3d]">
-                    {field.label}
-                  </label>
-                  <input 
-                    type={field.type}
-                    min={field.type === "number" ? 1 : undefined}
-                    className="w-full border rounded-lg px-4 py-2.5 focus:ring-2 focus:border-transparent transition-all duration-200 bg-white border-slate-300 text-[#3d3d3d] focus:ring-[#5e775a] focus:ring-opacity-50 hover:border-[#5e775a] placeholder-slate-400"
-                    value={field.value} 
-                    onChange={e => field.setValue(e.target.value)}
-                    placeholder={field.placeholder}
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
 
-          {/* Add Item Card */}
-          <div className="rounded-xl shadow-lg transition-all duration-300 p-6 md:p-8 hover:shadow-xl bg-white">
-            <h2 className="text-xl font-semibold mb-6 flex items-center gap-2 transition-colors duration-300 text-[#3d3d3d]">
-              <span className="w-1 h-6 rounded-full transition-colors duration-300 bg-[#5e775a]"></span>
-              Add Item to Quotation
-            </h2>
-            <div className="space-y-5">
+              {/* Client Name */}
+              <div className="space-y-2 md:col-span-2">
+                <label className="block text-sm font-medium transition-colors duration-300 text-[#3d3d3d]">
+                  Client Name
+                </label>
+                <input 
+                  type="text"
+                  className="w-full border rounded-lg px-4 py-2.5 focus:ring-2 focus:border-transparent transition-all duration-200 bg-white border-slate-300 text-[#3d3d3d] focus:ring-[#5e775a] focus:ring-opacity-50 hover:border-[#5e775a] placeholder-slate-400"
+                  value={clientName} 
+                  onChange={e => setClientName(e.target.value)}
+                  placeholder="Enter client name"
+                />
+              </div>
 
-              {/* Category Dropdown */}
-              <div className="space-y-2">
-                <label htmlFor="category-select" className="block text-sm font-medium transition-colors duration-300 text-[#3d3d3d]">
-                  Select Category
+              {/* Client Contact */}
+              <div className="space-y-2 md:col-span-2">
+                <label className="block text-sm font-medium transition-colors duration-300 text-[#3d3d3d]">
+                  Client Contact
+                </label>
+                <input 
+                  type="text"
+                  className="w-full border rounded-lg px-4 py-2.5 focus:ring-2 focus:border-transparent transition-all duration-200 bg-white border-slate-300 text-[#3d3d3d] focus:ring-[#5e775a] focus:ring-opacity-50 hover:border-[#5e775a] placeholder-slate-400"
+                  value={clientContact} 
+                  onChange={e => setClientContact(e.target.value)}
+                  placeholder="Enter contact number/email"
+                />
+              </div>
+
+              {/* Event Organizer - Dropdown with Custom option */}
+              <div className="space-y-2 md:col-span-2">
+                <label className="block text-sm font-medium transition-colors duration-300 text-[#3d3d3d]">
+                  Event Organizer
                 </label>
                 <select
-                  id="category-select"
-                  className="w-full border p-3 rounded-lg focus:ring-2 focus:border-transparent transition-all duration-200 bg-white border-slate-300 text-[#3d3d3d] focus:ring-[#5e775a] focus:ring-opacity-50 hover:border-[#5e775a]"
-                  value={selectedCategory}
-                  onChange={(e) => setSelectedCategory(e.target.value)}
+                  className="w-full border rounded-lg px-4 py-2.5 focus:ring-2 focus:border-transparent transition-all duration-200 bg-white border-slate-300 text-[#3d3d3d] focus:ring-[#5e775a] focus:ring-opacity-50 hover:border-[#5e775a]"
+                  value={eventOrganizer}
+                  onChange={e => setEventOrganizer(e.target.value)}
                 >
-                  <option value="">Select Category</option>
-                  {categories.map((cat) => (
-                    <option key={cat} value={cat}>{cat}</option>
+                  {eventOrganizers.map(org => (
+                    <option key={org} value={org}>{org}</option>
                   ))}
                 </select>
               </div>
 
-              {/* Food Cards Scrollable Area */}
-              {selectedCategory && items.length > 0 && (
-                <div className="space-y-3">
-                  <div className="flex items-center justify-between">
-                    <label className="block text-sm font-medium transition-colors duration-300 text-[#3d3d3d]">
-                      Menu Items
-                    </label>
-                    <span className="text-xs text-slate-500">Scroll to see more</span>
-                  </div>
-                  <div className="max-h-96 overflow-y-auto space-y-3 pr-2 custom-scrollbar">
-                    {items.map((item) => {
-                      const quantity = itemQuantities[item.item] || 1;
-                      return (
-                        <div
-                          key={item.item}
-                          className="border border-slate-200 rounded-xl p-4 hover:shadow-lg transition-all duration-200 bg-white"
-                        >
-                          <div className="flex items-start gap-3">
-                            {/* Placeholder for image */}
-                            <div className="relative">
-                              <div className="w-30 h-25 rounded-lg bg-gradient-to-br from-[#5e775a] to-[#4a5f47] flex-shrink-0 flex items-center justify-center text-white text-xs font-medium">
-                                <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                                </svg>
-                              </div>
-                              <button
-                                onClick={() => handleInfoClick(item)}
-                                className="absolute top-1 right-1 w-6 h-6 rounded-full bg-white text-[#5e775a] hover:bg-[#5e775a] hover:text-white flex items-center justify-center shadow-md"
-                              >
-                                i
-                              </button>
-                            </div>
-                            
-                            <div className="flex-1 min-w-0">
-                              <div className="flex items-start justify-between gap-2 mb-2">
-                                <div className="flex-1">
-                                  <h3 className="font-semibold text-sm text-[#3d3d3d] leading-tight mb-1">
-                                    {item.item}
-                                  </h3>
-                                  <p className="text-xs text-slate-500">{item.source}</p>
-                                </div>
-                                <div className="text-right flex-shrink-0">
-                                  <div className="text-sm font-bold text-[#5e775a]">SAR {item.price}</div>
-                                  <div className="text-xs text-slate-500">Per pax</div>
-                                </div>
-                              </div>
-                              <hr className="my-2 border-t border-slate-200" />
-
-                              <div className="flex items-center justify-between gap-2 mt-3">
-                                {/* Quantity Controls */}
-                                <div className="flex items-center gap-2 bg-slate-100 rounded-lg px-2 py-1">
-                                  <button
-                                    onClick={() => handleQuantityChange(item.item, -1)}
-                                    className="w-6 h-6 rounded flex items-center justify-center bg-white text-[#5e775a] hover:bg-[#5e775a] hover:text-white transition-all duration-200 font-bold"
-                                  >
-                                    −
-                                  </button>
-                                  <span className="w-8 text-center font-semibold text-sm text-[#3d3d3d]">
-                                    {quantity}
-                                  </span>
-                                  <button
-                                    onClick={() => handleQuantityChange(item.item, 1)}
-                                    className="w-6 h-6 rounded flex items-center justify-center bg-white text-[#5e775a] hover:bg-[#5e775a] hover:text-white transition-all duration-200 font-bold"
-                                  >
-                                    +
-                                  </button>
-                                </div>
-                                
-                                {/* Add Button */}
-                                <button
-                                  onClick={() => handleAddItem(item)}
-                                  className="w-7 h-7 flex items-center justify-center rounded-full bg-[#5e775a] hover:bg-[#4a5f47] focus:outline-none focus:ring-2 focus:ring-green-400"
-                                >
-                                  +
-                                </button>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      );
-                    })}
-                  </div>
+              {/* Custom Event Organizer - Show only if "Custom" is selected */}
+              {eventOrganizer === "Custom" && (
+                <div className="space-y-2 md:col-span-2">
+                  <label className="block text-sm font-medium transition-colors duration-300 text-[#3d3d3d]">
+                    Custom Organizer Name
+                  </label>
+                  <input 
+                    type="text"
+                    className="w-full border rounded-lg px-4 py-2.5 focus:ring-2 focus:border-transparent transition-all duration-200 bg-white border-slate-300 text-[#3d3d3d] focus:ring-[#5e775a] focus:ring-opacity-50 hover:border-[#5e775a] placeholder-slate-400"
+                    value={customEventOrganizer} 
+                    onChange={e => setCustomEventOrganizer(e.target.value)}
+                    placeholder="Enter organizer name"
+                  />
                 </div>
               )}
 
-              {selectedCategory && items.length === 0 && (
-                <div className="text-center py-8 text-slate-500">
-                  No items available in this category
-                </div>
-              )}
+              {/* Event Type - Dropdown */}
+              <div className="space-y-2 md:col-span-2">
+                <label className="block text-sm font-medium transition-colors duration-300 text-[#3d3d3d]">
+                  Event Type
+                </label>
+                <select
+                  className="w-full border rounded-lg px-4 py-2.5 focus:ring-2 focus:border-transparent transition-all duration-200 bg-white border-slate-300 text-[#3d3d3d] focus:ring-[#5e775a] focus:ring-opacity-50 hover:border-[#5e775a]"
+                  value={eventType}
+                  onChange={e => setEventType(e.target.value)}
+                >
+                  {eventTypes.map(type => (
+                    <option key={type} value={type}>{type}</option>
+                  ))}
+                </select>
+              </div>
+
+              {/* Number of People */}
+              <div className="space-y-2 md:col-span-2">
+                <label className="block text-sm font-medium transition-colors duration-300 text-[#3d3d3d]">
+                  Number of People
+                </label>
+                <input 
+                  type="number"
+                  min={1}
+                  className="w-full border rounded-lg px-4 py-2.5 focus:ring-2 focus:border-transparent transition-all duration-200 bg-white border-slate-300 text-[#3d3d3d] focus:ring-[#5e775a] focus:ring-opacity-50 hover:border-[#5e775a] placeholder-slate-400"
+                  value={numberOfPeople} 
+                  onChange={e => setNumberOfPeople(e.target.value)}
+                  placeholder="0"
+                />
+              </div>
+
+              {/* Event Date */}
+              <div className="space-y-2">
+                <label className="block text-sm font-medium transition-colors duration-300 text-[#3d3d3d]">
+                  Event Date
+                </label>
+                <input 
+                  type="date"
+                  className="w-full border rounded-lg px-4 py-2.5 focus:ring-2 focus:border-transparent transition-all duration-200 bg-white border-slate-300 text-[#3d3d3d] focus:ring-[#5e775a] focus:ring-opacity-50 hover:border-[#5e775a] placeholder-slate-400"
+                  value={eventDate} 
+                  onChange={e => setEventDate(e.target.value)}
+                />
+              </div>
+
+              {/* Event Time */}
+              <div className="space-y-2">
+                <label className="block text-sm font-medium transition-colors duration-300 text-[#3d3d3d]">
+                  Event Time
+                </label>
+                <input 
+                  type="time"
+                  className="w-full border rounded-lg px-4 py-2.5 focus:ring-2 focus:border-transparent transition-all duration-200 bg-white border-slate-300 text-[#3d3d3d] focus:ring-[#5e775a] focus:ring-opacity-50 hover:border-[#5e775a] placeholder-slate-400"
+                  value={eventTime} 
+                  onChange={e => setEventTime(e.target.value)}
+                />
+              </div>
+
+              {/* Location */}
+              <div className="space-y-2 md:col-span-2">
+                <label className="block text-sm font-medium transition-colors duration-300 text-[#3d3d3d]">
+                  Location
+                </label>
+                <input 
+                  type="text"
+                  className="w-full border rounded-lg px-4 py-2.5 focus:ring-2 focus:border-transparent transition-all duration-200 bg-white border-slate-300 text-[#3d3d3d] focus:ring-[#5e775a] focus:ring-opacity-50 hover:border-[#5e775a] placeholder-slate-400"
+                  value={location} 
+                  onChange={e => setLocation(e.target.value)}
+                  placeholder="Enter event location"
+                />
+              </div>
+              {/* Validity Days */}
+              <div className="space-y-2 md:col-span-2">
+                <label className="block text-sm font-medium transition-colors duration-300 text-[#3d3d3d]">
+                  Validity (Days)
+                </label>
+                <input 
+                  type="number"
+                  min={1}
+                  className="w-full border rounded-lg px-4 py-2.5 focus:ring-2 focus:border-transparent transition-all duration-200 bg-white border-slate-300 text-[#3d3d3d] focus:ring-[#5e775a] focus:ring-opacity-50 hover:border-[#5e775a] placeholder-slate-400"
+                  value={validityDays} 
+                  onChange={e => setValidityDays(e.target.value)}
+                  placeholder="14"
+                />
+              </div>
             </div>
           </div>
+
+          {/* Redesigned Add Item to Quotation Section - Takes 4 columns (67% width) */}
+          <div className="lg:col-span-7 w-full max-w mx-auto">
+            {/* White Card Container */}
+            <div className="bg-white rounded-xl shadow-lg transition-all duration-300 p-6 md:p-8 hover:shadow-xl">
+              {/* Header Section */}
+              <header className="flex items-center justify-between mb-6">
+                <h2 className="text-xl font-semibold flex items-center gap-2 transition-colors duration-300 text-[#3d3d3d]">
+                  <span className="w-1 h-6 rounded-full transition-colors duration-300 bg-[#5e775a]"></span>
+                  Add Item to Quotation
+                </h2>
+                <button
+                  type="button"
+                  className="px-6 py-2 bg-[#6B8E6F] hover:bg-[#5a7a5e] text-white font-bold text-sm uppercase rounded-lg transition-colors duration-200"
+                  onClick={() => {
+                    // Add navigation to next step
+                    console.log('Navigate to next step');
+                  }}
+                >
+                  NEXT
+                </button>
+              </header>
+
+              {/* Source Dropdown Section */}
+              <div className="space-y-2">
+                <label htmlFor="source-select" className="block text-sm font-medium transition-colors duration-300 text-[#3d3d3d]">
+                  Source
+                </label>
+                <div className="relative">
+                  <select
+                    id="source-select"
+                    className="w-full border rounded-lg px-4 py-2.5 focus:ring-2 focus:border-transparent transition-all duration-200 bg-white border-slate-300 text-[#3d3d3d] focus:ring-[#5e775a] focus:ring-opacity-50 hover:border-[#5e775a] appearance-none cursor-pointer"
+                    value={selectedSource}
+                    onChange={(e) => setSelectedSource(e.target.value)}
+                  >
+                    <option value="">Select Source</option>
+                    <option value="360G">360G</option>
+                    <option value="ISFC">ISFC</option>
+                    <option value="DW">DW</option>
+                  </select>
+                  {/* Chevron Down Icon */}
+                  <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none">
+                    <svg className="w-5 h-5 text-[#4A4A4A]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+
+              {/* Green Category Section */}
+              <div className="bg-[#6B8E6F] rounded-2xl p-6 mt-6">
+                {/* Category Selector */}
+                <div className="space-y-2 mb-6">
+                  <label htmlFor="category-select" className="block text-sm font-medium text-white">
+                    Select Category
+                  </label>
+                  <div className="relative">
+                    <select
+                      id="category-select"
+                      className="w-full bg-white rounded-xl px-4 py-4 text-[#4A4A4A] appearance-none focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50 transition-all duration-200 cursor-pointer"
+                      value={selectedCategory}
+                      onChange={(e) => setSelectedCategory(e.target.value)}
+                    >
+                      <option value="">All Categories</option>
+                      {Array.from(new Set(flatMenu.map(item => item.category))).sort().map((category) => (
+                        <option key={category} value={category}>
+                          {category}
+                        </option>
+                      ))}
+                    </select>
+                    {/* Chevron Down Icon */}
+                    <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none">
+                      <svg className="w-5 h-5 text-[#4A4A4A]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Scrollable Menu Area */}
+                {selectedSource && (() => {
+                  const filteredItems = flatMenu.filter(
+                    item => item.source === selectedSource && (selectedCategory === "" || item.category === selectedCategory)
+                  );
+                  
+                  if (filteredItems.length === 0) {
+                    return (
+                      <div className="text-center py-8 text-white/70">
+                        <p>No items found{selectedCategory ? ' for this category' : ''}</p>
+                      </div>
+                    );
+                  }
+
+                  return (
+                    <div className="max-h-[500px] overflow-y-auto pr-2 space-y-4 menu-scrollbar">
+                      {filteredItems.map((item) => (
+                        <MenuItemCard
+                          key={item.item}
+                          name={item.name_en}
+                          source={item.source}
+                          category={item.category}
+                          price={item.price}
+                          unit={item.unit}
+                          rating={item.rating}
+                          description={item.description}
+                          imageUrl={undefined}
+                          quantity={itemQuantities[item.item] || 1}
+                          onQuantityChange={(delta) => handleQuantityChange(item.item, delta)}
+                          onAdd={() => handleAddItem(item)}
+                          onMoreInfo={() => handleInfoClick(item)}
+                        />
+                      ))}
+                    </div>
+                  );
+                })()}
+              </div>
+            </div>
+          </div>
+
         </div>
 
-        {/* Quotation Table */}
-        <div className="mb-8 rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 bg-white opacity-100 animate-fade-in">
+        {/* Error Message */}
+        {error && (
+          <div className={`mt-6 bg-red-50 border border-red-200 rounded-lg p-4 text-red-700 font-medium animate-fadeIn ${errorClass}`}>
+            {error}
+          </div>
+        )}
+      </div>
+
+      {/* Quotation Table - Full Width Outside Grid */}
+      <div className="w-full pl-64 pr-10 mb-8">
+        <div className="rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 bg-white opacity-100 animate-fade-in">
           <div className="p-6 border-b transition-colors duration-300 border-slate-200">
-            <h2 className="text-xl font-semibold flex items-center gap-2 transition-colors duration-300 text-[#3d3d3d]">
-              <span className="w-1 h-6 rounded-full transition-colors duration-300 bg-[#5e775a]"></span>
-              Quotation Items
-            </h2>
+            <div className="flex items-start justify-between gap-6 mb-4">
+              <h2 className="text-xl font-semibold flex items-center gap-2 transition-colors duration-300 text-[#3d3d3d]">
+                <span className="w-1 h-6 rounded-full transition-colors duration-300 bg-[#5e775a]"></span>
+                Quotation Items
+              </h2>
+              
+              <div className="flex gap-4">
+                {/* Brand Code */}
+                <div className="space-y-2 min-w-[10px]">
+                  <label className="block text-sm font-medium transition-colors duration-300 text-[#3d3d3d]">
+                    Brand Code
+                  </label>
+                  <select
+                    className="w-full border rounded-lg px-4 py-2.5 bg-white border-slate-300 text-[#3d3d3d] text-sm focus:ring-2 focus:ring-[#5e775a] focus:border-transparent transition-all duration-200"
+                    value={brandCode}
+                    onChange={e => {
+                      setBrandCode(e.target.value);
+                      generateReferenceCode();
+                    }}
+                  >
+                    <option value="ISFC">ISFC</option>
+                    <option value="G360">G360</option>
+                    <option value="DW">DW</option>
+                  </select>
+                </div>
+
+                {/* Reference Code */}
+                <div className="space-y-2 min-w-[300px]">
+                  <label className="block text-sm font-medium transition-colors duration-300 text-[#3d3d3d]">
+                    Reference Code
+                  </label>
+                  <div className="flex gap-2">
+                    <input 
+                      type="text"
+                      className="flex-1 border rounded-lg px-4 py-2.5 bg-slate-50 border-slate-300 text-[#3d3d3d] text-sm"
+                      value={referenceCode} 
+                      readOnly
+                    />
+                    <button
+                      onClick={generateReferenceCode}
+                      className="px-3 py-3 rounded-lg bg-[#5e775a] text-white hover:bg-[#4a5f47] transition-colors text-sm flex-shrink-0"
+                      type="button"
+                      title="Regenerate code"
+                    >
+                      ↻
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
           <div className="overflow-x-auto">
             <table className="w-full border-collapse">
@@ -456,48 +658,77 @@ export default function QuotationPage() {
             </table>
           </div>
           {/* Action Buttons inside the table card */}
-          <div className="p-6 border-t flex flex-wrap gap-3 justify-end border-slate-200">
+          <div className="p-6 border-t flex flex-wrap gap-3 justify-between border-slate-200">
             <button
-              className="px-6 py-3 rounded-lg font-medium hover:scale-105 active:scale-95 transform transition-all duration-200 shadow-md bg-[#a47149] text-white hover:bg-[#8b5d3e]"
-              onClick={handleReset}
+              className="px-6 py-3 rounded-lg font-medium hover:scale-105 active:scale-95 transform transition-all duration-200 shadow-md disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 bg-blue-600 text-white hover:bg-blue-700 flex items-center gap-2"
+              onClick={() => setShowPreview(!showPreview)}
+              disabled={quotation.length === 0}
               type="button"
             >
-              Reset
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+              </svg>
+              {showPreview ? 'Hide Preview' : 'Preview Excel'}
             </button>
-            <button
-              className="px-6 py-3 rounded-lg shadow-lg font-medium hover:scale-105 active:scale-95 transform transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 bg-[#5e775a] hover:bg-[#4a5f47] text-white"
-              onClick={handleDownloadExcel}
-              disabled={quotation.length === 0}
-            >
-              Download Excel
-            </button>
+            <div className="flex gap-3">
+              <button
+                className="px-6 py-3 rounded-lg font-medium hover:scale-105 active:scale-95 transform transition-all duration-200 shadow-md bg-[#a47149] text-white hover:bg-[#8b5d3e]"
+                onClick={handleReset}
+                type="button"
+              >
+                Reset
+              </button>
+              <button
+                className="px-6 py-3 rounded-lg shadow-lg font-medium hover:scale-105 active:scale-95 transform transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 bg-[#5e775a] hover:bg-[#4a5f47] text-white"
+                onClick={handleDownloadExcel}
+                disabled={quotation.length === 0}
+              >
+                Download Excel
+              </button>
+            </div>
           </div>
         </div>
-
-        {/* Excel Preview Pane */}
-        <div className="mt-6">
-          <button
-            className="px-6 py-3 rounded-lg shadow-lg font-medium hover:scale-105 active:scale-95 transform transition-all duration-200 bg-[#5e775a] hover:bg-[#4a5f47] text-white"
-            onClick={handlePreviewExcel}
-          >
-            Preview Excel
-          </button>
-          {excelData && (
-            <iframe
-              src={excelData}
-              className="w-full h-96 mt-4 border border-gray-300 rounded-lg"
-              title="Excel Preview"
-            ></iframe>
-          )}
-        </div>
-
-        {/* Error Message */}
-        {error && (
-          <div className={`mt-6 bg-red-50 border border-red-200 rounded-lg p-4 text-red-700 font-medium animate-fadeIn ${errorClass}`}>
-            {error}
-          </div>
-        )}
       </div>
+
+      {/* Live A4 Quotation Preview - Full Width Outside Grid */}
+      {showPreview && (
+        <div className="w-full pl-64 pr-10 mb-8">
+          <div className="rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 bg-white animate-fadeIn">
+            <div className="p-6 border-b transition-colors duration-300 border-slate-200 flex justify-between items-center">
+              <h2 className="text-xl font-semibold flex items-center gap-2 transition-colors duration-300 text-[#3d3d3d]">
+                <span className="w-1 h-6 rounded-full transition-colors duration-300 bg-[#5e775a]"></span>
+                Live A4 Preview
+              </h2>
+              <button
+                onClick={() => window.print()}
+                className="px-4 py-2 rounded-lg bg-[#5e775a] text-white hover:bg-[#4a5f47] transition-all duration-200 hover:scale-105 active:scale-95 flex items-center gap-2 shadow-md"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 17h2a2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
+                </svg>
+                Print Preview
+              </button>
+            </div>
+            <div className="p-2 overflow-x-auto bg-gray-100 min-h-[800px] flex items-center justify-center" id="quotation-preview">
+              <QuotationPreview
+                clientName={clientName}
+                clientContact={clientContact}
+                eventOrganizer={eventOrganizer === "Custom" ? customEventOrganizer : eventOrganizer}
+                eventType={eventType}
+                numberOfPeople={numberOfPeople}
+                eventDate={eventDate}
+                eventTime={eventTime}
+                location={location}
+                validityDays={validityDays}
+                referenceCode={referenceCode}
+                quotationItems={quotation}
+                grandTotal={grandTotal}
+              />
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Item Info Modal */}
       {isModalOpen && selectedItem && (
@@ -608,6 +839,19 @@ export default function QuotationPage() {
         .animate-scaleOut {
           animation: scaleOut 0.3s ease-in;
           animation-fill-mode: forwards;
+        }
+        @media print {
+          body * {
+            visibility: hidden;
+          }
+          #quotation-preview, #quotation-preview * {
+            visibility: visible;
+          }
+          #quotation-preview {
+            position: absolute;
+            left: 0;
+            top: 0;
+          }
         }
       `}</style>
     </div>
