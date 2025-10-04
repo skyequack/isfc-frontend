@@ -30,21 +30,21 @@ export default function MenuItemCard({
   onMoreInfo,
 }: MenuItemCardProps) {
   return (
-    <div className="bg-white rounded-3xl border border-slate-200 p-5 hover:shadow-md transition-all duration-200">
-      <div className="flex gap-6">
+    <div className="bg-white rounded-xl border border-slate-200 p-3 hover:shadow-md transition-all duration-200">
+      <div className="flex gap-3">
         {/* Left side - Source logo and item info */}
         <div className="flex-1 min-w-0 flex flex-col">
           {/* Top section: Logo and title */}
-          <div className="flex items-start gap-3 mb-3">
+          <div className="flex items-start gap-2 mb-2">
             {/* Source logo */}
-            <div className="w-20 h-14 flex-shrink-0 bg-white border border-slate-200 rounded-xl flex items-center justify-center overflow-hidden">
+            <div className="w-16 h-12 flex-shrink-0 bg-white border border-slate-200 rounded-lg flex items-center justify-center overflow-hidden">
               {imageUrl ? (
                 <Image
                   src={imageUrl}
                   alt={source}
-                  width={56}
-                  height={56}
-                  className="w-full h-full object-contain p-1.5"
+                  width={48}
+                  height={48}
+                  className="w-full h-full object-contain p-1"
                 />
               ) : (
                 <span className="text-xs font-bold text-slate-600">{source}</span>
@@ -95,17 +95,17 @@ export default function MenuItemCard({
         {/* Right side - Image and controls */}
         <div className="flex flex-col items-end gap-3">
           {/* Price and Image side by side */}
-          <div className="flex items-start gap-4">
+          <div className="flex items-start gap-3">
             {/* Price section */}
-            <div className="flex flex-col items-end justify-start h-40">
-              <span className="text-sm font-medium text-slate-600 mb-1">
+            <div className="flex flex-col items-end justify-start h-24">
+              <span className="text-xs font-medium text-slate-600 mb-1">
                 Per {unit.toLowerCase()}
               </span>
-              <span className="text-2xl font-bold text-slate-900">
+              <span className="text-xl font-bold text-slate-900">
                 SAR {price}
               </span>
               {rating && (
-                <div className="text-sm text-amber-500 flex items-center gap-0.5 mt-2">
+                <div className="text-xs text-amber-500 flex items-center gap-0.5 mt-1">
                   <span>⭐</span>
                   <span className="font-medium">{rating}</span>
                 </div>
@@ -113,18 +113,18 @@ export default function MenuItemCard({
             </div>
             
             {/* Food image */}
-            <div className="w-72 h-40 rounded-2xl overflow-hidden bg-slate-100 flex-shrink-0">
+            <div className="w-56 h-24 rounded-xl overflow-hidden bg-slate-100 flex-shrink-0">
             {imageUrl ? (
               <Image
                 src={imageUrl}
                 alt={name}
-                width={288}
-                height={160}
+                width={224}
+                height={96}
                 className="w-full h-full object-cover"
               />
             ) : (
               <div className="w-full h-full bg-gradient-to-br from-slate-200 to-slate-300 flex items-center justify-center">
-                <svg className="w-16 h-16 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-8 h-8 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                 </svg>
               </div>
