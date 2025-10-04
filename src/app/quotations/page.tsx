@@ -212,11 +212,14 @@ export default function QuotationPage() {
 
   const closeModal = () => {
     setIsModalClosing(true);
-    setTimeout(() => {
+  };
+
+  const handleAnimationEnd = () => {
+    if (isModalClosing) {
       setIsModalOpen(false);
       setSelectedItem(null);
       setIsModalClosing(false);
-    }, 300);
+    }
   };
 
   const errorClass = error ? "opacity-100 transition-opacity duration-500" : "opacity-0 transition-opacity duration-500";
@@ -503,6 +506,11 @@ export default function QuotationPage() {
             isModalClosing ? 'animate-fadeOut' : 'animate-fadeIn'
           }`}
           onClick={closeModal}
+          onAnimationEnd={(e) => {
+            if (e.target === e.currentTarget) {
+              handleAnimationEnd();
+            }
+          }}
         >
           <div 
             className={isModalClosing ? 'animate-scaleOut' : 'animate-scaleIn'}
@@ -588,16 +596,18 @@ export default function QuotationPage() {
           }
         }
         .animate-fadeIn {
-          animation: fadeIn 0.2s ease-out;
+          animation: fadeIn 0.3s ease-out;
         }
         .animate-fadeOut {
-          animation: fadeOut 0.2s ease-in;
+          animation: fadeOut 0.3s ease-in;
+          animation-fill-mode: forwards;
         }
         .animate-scaleIn {
           animation: scaleIn 0.3s ease-out;
         }
         .animate-scaleOut {
           animation: scaleOut 0.3s ease-in;
+          animation-fill-mode: forwards;
         }
       `}</style>
     </div>
