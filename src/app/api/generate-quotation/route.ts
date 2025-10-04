@@ -111,6 +111,36 @@ export async function POST(req: Request) {
 }
 
 /**
+ * Creates a 3-row divider with alternating gray-white-gray colors.
+ * @param sheet - The worksheet to add the divider to
+ * @param currentRow - The row number where the divider starts
+ * @returns The next row number after the divider
+ */
+function divider(sheet: ExcelJS.Worksheet, currentRow: number): number {
+  const colors = ["D9D9D9", "FFFFFF", "D9D9D9"]; // gray, white, gray
+  const columnLetters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O"];
+  
+  for (let i = 0; i < 3; i++) {
+    const row = sheet.getRow(currentRow);
+    row.height = 5;
+    
+    // Apply fill color to cells A through O
+    for (const col of columnLetters) {
+      const cell = row.getCell(col);
+      cell.fill = {
+        type: "pattern",
+        pattern: "solid",
+        fgColor: { argb: colors[i] },
+      };
+    }
+    
+    currentRow++;
+  }
+  
+  return currentRow;
+}
+
+/**
  * Centralized workbook creation.
  * signature:
  * (items, menuData, clientInfo, totals) => ExcelJS.Workbook
@@ -151,18 +181,36 @@ function createWorkbook(
   // Set first row height and fill
   const firstRow = sheet.getRow(1);
   firstRow.height = 2.25;
-  firstRow.eachCell({ includeEmpty: true }, (cell, colNumber) => {
-    if (colNumber <= 15) { // A=1 → O=15
-      cell.fill = {
-        type: "pattern",
-        pattern: "solid",
-        fgColor: { argb: "D9D9D9" }, // light gray (Excel default gray)
-      };
-    }
-  });
+  
+  // Apply gray fill to all columns A to O in row 1
+  const row1Columns = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O"];
+  for (const col of row1Columns) {
+    const cell = firstRow.getCell(col);
+    cell.fill = {
+      type: "pattern",
+      pattern: "solid",
+      fgColor: { argb: "D9D9D9" }, // light gray (Excel default gray)
+    };
+  }
 
-  // Merge rows 2 and 3 from A to O
-  sheet.mergeCells("A2:O3");
+  // Merge rows 2 and 3 from B to N
+  sheet.mergeCells("B2:N3");
+
+  // Row 4: Spacer row
+  sheet.getRow(4).height = 40;
+
+  // Row 5: Gray spacer row
+  const row5 = sheet.getRow(5);
+  row5.height = 5;
+  const row5Columns = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O"];
+  for (const col of row5Columns) {
+    const cell = row5.getCell(col);
+    cell.fill = {
+      type: "pattern",
+      pattern: "solid",
+      fgColor: { argb: "D9D9D9" },
+    };
+  }
 
   // --- HEADER SECTION (Starting at Row 6) ---
   // Row 6: Company name in Arabic
@@ -190,8 +238,17 @@ function createWorkbook(
   introRow.height = 20;
 
   // Row 9: Spacer row
-  sheet.mergeCells("C9:N9");
-  sheet.getRow(9).height = 10;
+  const row9 = sheet.getRow(9);
+  row9.height = 5;
+  const row9Columns = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O"];
+  for (const col of row9Columns) {
+    const cell = row9.getCell(col);
+    cell.fill = {
+      type: "pattern",
+      pattern: "solid",
+      fgColor: { argb: "D9D9D9" },
+    };
+  }
 
   // --- CLIENT / EVENT DETAILS BLOCK ---
   // Left block (Client info) - rows 10-14
@@ -216,7 +273,7 @@ function createWorkbook(
   row12.getCell("C").value = "A:";
   row12.getCell("C").font = { name: "Calibri", size: 11, bold: true };
   row12.getCell("C").alignment = { horizontal: "left", vertical: "middle" };
-  sheet.mergeCells("D12:E12");
+  sheet.mergeCells("D12:H12");
   row12.getCell("D").value = clientInfo?.location || "";
   row12.getCell("D").font = { name: "Calibri", size: 11 };
   row12.getCell("D").alignment = { horizontal: "left", vertical: "middle" };
@@ -235,7 +292,7 @@ function createWorkbook(
   row13.getCell("C").value = "P:";
   row13.getCell("C").font = { name: "Calibri", size: 11, bold: true };
   row13.getCell("C").alignment = { horizontal: "left", vertical: "middle" };
-  sheet.mergeCells("D13:E13");
+  sheet.mergeCells("D13:H13");
   row13.getCell("D").value = clientInfo?.mobileNumber || "";
   row13.getCell("D").font = { name: "Calibri", size: 11 };
   row13.getCell("D").alignment = { horizontal: "left", vertical: "middle" };
@@ -248,7 +305,17 @@ function createWorkbook(
   row13.height = 18;
 
   // Row 14: Spacer row
-  sheet.getRow(14).height = 5;
+  const row14 = sheet.getRow(14);
+  row14.height = 5;
+  const row14Columns = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O"];
+  for (const col of row14Columns) {
+    const cell = row14.getCell(col);
+    cell.fill = {
+      type: "pattern",
+      pattern: "solid",
+      fgColor: { argb: "D9D9D9" },
+    };
+  }
 
   // --- EVENT DETAILS (Rows 15-17) ---
   // Row 15: Event Organizer
@@ -304,7 +371,17 @@ function createWorkbook(
   row17.height = 18;
 
   // Row 18: Empty spacer
-  sheet.getRow(18).height = 10;
+  const row18 = sheet.getRow(18);
+  row18.height = 10;
+  const row18Columns = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O"];
+  for (const col of row18Columns) {
+    const cell = row18.getCell(col);
+    cell.fill = {
+      type: "pattern",
+      pattern: "solid",
+      fgColor: { argb: "D9D9D9" },
+    };
+  }
 
   // --- TABLE HEADER (Row 19) ---
   const headerRow = sheet.getRow(19);
@@ -325,24 +402,20 @@ function createWorkbook(
   headerRow.alignment = { horizontal: "center", vertical: "middle", wrapText: true };
   headerRow.height = 25;
 
-  // Apply borders and fill to header cells (C to M)
-  for (const col of ["C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M"]) {
+  // Apply fill to header cells (B to N)
+  for (const col of ["B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N"]) {
     const cell = headerRow.getCell(col);
     cell.fill = {
       type: "pattern",
       pattern: "solid",
-      fgColor: { argb: "FFD3D3D3" },
-    };
-    cell.border = {
-      top: { style: "thin" },
-      left: { style: "thin" },
-      bottom: { style: "thin" },
-      right: { style: "thin" },
+      fgColor: { argb: "FFBFBFBF" },
     };
   }
 
-  // --- DYNAMIC PRODUCT ROWS (Starting Row 20) ---
-  let currentRow = 20;
+  // Add divider after header
+  let currentRow = divider(sheet, 20);
+
+  // --- DYNAMIC PRODUCT ROWS ---
 
   // --- Table data rows ---
   items.forEach((item, idx) => {
@@ -391,40 +464,31 @@ function createWorkbook(
     r.height = 20;
     r.font = { name: "Calibri", size: 11 };
 
-    // Apply borders to all cells C to M
-    for (const colName of ["C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M"]) {
-      const cell = r.getCell(colName);
-      cell.border = {
-        top: { style: "thin" },
-        left: { style: "thin" },
-        bottom: { style: "thin" },
-        right: { style: "thin" },
-      };
-    }
-
     currentRow++;
+    
+    // Add divider between items
+    currentRow = divider(sheet, currentRow);
   });
 
-
-
   // --- Buffet - Banquet Details section ---
-  // Spacer row
-  sheet.getRow(currentRow).height = 15;
-  currentRow++;
-
   // Header row for Buffet - Banquet Details
-  sheet.mergeCells(`C${currentRow}:M${currentRow}`);
+  sheet.mergeCells(`B${currentRow}:N${currentRow}`);
   const buffetHeaderRow = sheet.getRow(currentRow);
-  buffetHeaderRow.getCell("C").value = "Buffets - Banquet Details - التفاصيل";
-  buffetHeaderRow.getCell("C").font = { name: "Calibri", size: 12, bold: true };
-  buffetHeaderRow.getCell("C").alignment = { horizontal: "center", vertical: "middle" };
-  buffetHeaderRow.getCell("C").fill = {
-    type: "pattern",
-    pattern: "solid",
-    fgColor: { argb: "FFD3D3D3" },
-  };
+  buffetHeaderRow.getCell("B").value = "Buffets - Banquet Details - التفاصيل";
+  buffetHeaderRow.getCell("B").font = { name: "Calibri", size: 12, bold: true };
+  buffetHeaderRow.getCell("B").alignment = { horizontal: "center", vertical: "middle" };
+  for (const col of ["B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N"]) {
+    buffetHeaderRow.getCell(col).fill = {
+      type: "pattern",
+      pattern: "solid",
+      fgColor: { argb: "FFBFBFBF" },
+    };
+  }
   buffetHeaderRow.height = 25;
   currentRow++;
+
+  // Add divider after buffet header
+  currentRow = divider(sheet, currentRow);
 
   // Buffet details rows - filter items that have buffet details
   const buffetItems = items.filter(item => item.arabicName && item.arabicName.trim() !== "");
@@ -446,13 +510,12 @@ function createWorkbook(
     
     buffetRow.height = 20;
     currentRow++;
+    
+    // Add divider after each buffet entry
+    currentRow = divider(sheet, currentRow);
   });
 
   // --- Invoice Details section ---
-  // Spacer row
-  sheet.getRow(currentRow).height = 15;
-  currentRow++;
-
   // Header row with two sections: Invoice Details and Status of Quotation
   const invoiceHeaderRow = sheet.getRow(currentRow);
   
@@ -461,29 +524,27 @@ function createWorkbook(
   invoiceHeaderRow.getCell("C").value = "Invoice Details";
   invoiceHeaderRow.getCell("C").font = { name: "Calibri", size: 12, bold: true };
   invoiceHeaderRow.getCell("C").alignment = { horizontal: "center", vertical: "middle" };
-  invoiceHeaderRow.getCell("C").fill = {
-    type: "pattern",
-    pattern: "solid",
-    fgColor: { argb: "FFD3D3D3" },
-  };
   
   // Status of Quotation (right side - J to M merged)
   sheet.mergeCells(`J${currentRow}:M${currentRow}`);
   invoiceHeaderRow.getCell("J").value = "Status of Quotation- حاله العرض";
   invoiceHeaderRow.getCell("J").font = { name: "Calibri", size: 12, bold: true };
   invoiceHeaderRow.getCell("J").alignment = { horizontal: "center", vertical: "middle" };
-  invoiceHeaderRow.getCell("J").fill = {
-    type: "pattern",
-    pattern: "solid",
-    fgColor: { argb: "FFD3D3D3" },
-  };
+  
+  // Apply fill to all header cells (B to N)
+  for (const col of ["B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N"]) {
+    invoiceHeaderRow.getCell(col).fill = {
+      type: "pattern",
+      pattern: "solid",
+      fgColor: { argb: "FFBFBFBF" },
+    };
+  }
   
   invoiceHeaderRow.height = 25;
   currentRow++;
 
-  // Empty row
-  sheet.getRow(currentRow).height = 18;
-  currentRow++;
+  // Add divider after invoice header
+  currentRow = divider(sheet, currentRow);
 
   // Store the starting row for the vertical merge
   const invoiceDetailsStartRow = currentRow;
@@ -558,27 +619,27 @@ function createWorkbook(
   
   currentRow++;
 
-  // Empty row
-  sheet.getRow(currentRow).height = 18;
-  currentRow++;
-
   // --- Terms & Conditions block ---
-  // Spacer row
-  sheet.getRow(currentRow).height = 15;
-  currentRow++;
+  // Add divider above terms header
+  currentRow = divider(sheet, currentRow);
 
-  sheet.mergeCells(`C${currentRow}:M${currentRow}`);
+  sheet.mergeCells(`B${currentRow}:N${currentRow}`);
   const termsHeaderRow = sheet.getRow(currentRow);
-  termsHeaderRow.getCell("C").value = "Terms & Conditions - الشروط والاحكام";
-  termsHeaderRow.getCell("C").font = { name: "Calibri", size: 12, bold: true };
-  termsHeaderRow.getCell("C").alignment = { horizontal: "center", vertical: "middle" };
-  termsHeaderRow.getCell("C").fill = {
-    type: "pattern",
-    pattern: "solid",
-    fgColor: { argb: "FFD3D3D3" },
-  };
+  termsHeaderRow.getCell("B").value = "Terms & Conditions - الشروط والاحكام";
+  termsHeaderRow.getCell("B").font = { name: "Calibri", size: 12, bold: true };
+  termsHeaderRow.getCell("B").alignment = { horizontal: "center", vertical: "middle" };
+  for (const col of ["B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N"]) {
+    termsHeaderRow.getCell(col).fill = {
+      type: "pattern",
+      pattern: "solid",
+      fgColor: { argb: "FFBFBFBF" },
+    };
+  }
   termsHeaderRow.height = 25;
   currentRow++;
+
+  // Add divider below terms header
+  currentRow = divider(sheet, currentRow);
 
   // Terms text - English (merged into one row with line breaks)
   sheet.mergeCells(`C${currentRow}:M${currentRow}`);
@@ -588,10 +649,6 @@ function createWorkbook(
   termsTextRow.getCell("C").font = { name: "Calibri", size: 10 };
   termsTextRow.getCell("C").alignment = { horizontal: "left", vertical: "top", wrapText: true };
   termsTextRow.height = 60;
-  currentRow++;
-
-  // Empty row separator
-  sheet.getRow(currentRow).height = 10;
   currentRow++;
 
   // Arabic terms (merged into one row with line breaks)
@@ -605,9 +662,8 @@ function createWorkbook(
   currentRow++;
 
   // --- Company's Bank Account Details section ---
-  // Spacer row
-  sheet.getRow(currentRow).height = 15;
-  currentRow++;
+  // Add divider above bank header
+  currentRow = divider(sheet, currentRow);
 
   // Header row with two sections: Bank Account Details and Comments
   const bankHeaderRow = sheet.getRow(currentRow);
@@ -617,29 +673,27 @@ function createWorkbook(
   bankHeaderRow.getCell("C").value = "Company's Bank Account Details - تفاصيل البنك";
   bankHeaderRow.getCell("C").font = { name: "Calibri", size: 12, bold: true };
   bankHeaderRow.getCell("C").alignment = { horizontal: "center", vertical: "middle" };
-  bankHeaderRow.getCell("C").fill = {
-    type: "pattern",
-    pattern: "solid",
-    fgColor: { argb: "FFD3D3D3" },
-  };
   
   // Comments (right side - I to M merged)
   sheet.mergeCells(`I${currentRow}:M${currentRow}`);
   bankHeaderRow.getCell("I").value = "Comments - ملاحظات";
   bankHeaderRow.getCell("I").font = { name: "Calibri", size: 12, bold: true };
   bankHeaderRow.getCell("I").alignment = { horizontal: "center", vertical: "middle" };
-  bankHeaderRow.getCell("I").fill = {
-    type: "pattern",
-    pattern: "solid",
-    fgColor: { argb: "FFD3D3D3" },
-  };
+  
+  // Apply fill to all header cells (B to N)
+  for (const col of ["B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N"]) {
+    bankHeaderRow.getCell(col).fill = {
+      type: "pattern",
+      pattern: "solid",
+      fgColor: { argb: "FFBFBFBF" },
+    };
+  }
   
   bankHeaderRow.height = 25;
   currentRow++;
 
-  // Empty row
-  sheet.getRow(currentRow).height = 18;
-  currentRow++;
+  // Add divider below bank header
+  currentRow = divider(sheet, currentRow);
 
   // Name of Account row
   const nameOfAccountRow = sheet.getRow(currentRow);
@@ -690,27 +744,27 @@ function createWorkbook(
   countryRow.height = 20;
   currentRow++;
 
-  // Empty row
-  sheet.getRow(currentRow).height = 18;
-  currentRow++;
-
   // --- Client's Accreditation section ---
-  sheet.mergeCells(`C${currentRow}:M${currentRow}`);
+  // Add divider above client accreditation header
+  currentRow = divider(sheet, currentRow);
+
+  sheet.mergeCells(`B${currentRow}:N${currentRow}`);
   const clientAccreditationHeaderRow = sheet.getRow(currentRow);
-  clientAccreditationHeaderRow.getCell("C").value = "Client's Accreditation - تصديق العميل";
-  clientAccreditationHeaderRow.getCell("C").font = { name: "Calibri", size: 12, bold: true };
-  clientAccreditationHeaderRow.getCell("C").alignment = { horizontal: "center", vertical: "middle" };
-  clientAccreditationHeaderRow.getCell("C").fill = {
-    type: "pattern",
-    pattern: "solid",
-    fgColor: { argb: "FFD3D3D3" },
-  };
+  clientAccreditationHeaderRow.getCell("B").value = "Client's Accreditation - تصديق العميل";
+  clientAccreditationHeaderRow.getCell("B").font = { name: "Calibri", size: 12, bold: true };
+  clientAccreditationHeaderRow.getCell("B").alignment = { horizontal: "center", vertical: "middle" };
+  for (const col of ["B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N"]) {
+    clientAccreditationHeaderRow.getCell(col).fill = {
+      type: "pattern",
+      pattern: "solid",
+      fgColor: { argb: "FFBFBFBF" },
+    };
+  }
   clientAccreditationHeaderRow.height = 25;
   currentRow++;
 
-  // Empty row
-  sheet.getRow(currentRow).height = 18;
-  currentRow++;
+  // Add divider below client accreditation header
+  currentRow = divider(sheet, currentRow);
 
   // Name and Signature row
   const nameSignatureRow = sheet.getRow(currentRow);
@@ -731,27 +785,27 @@ function createWorkbook(
     currentRow++;
   }
 
-  // Empty row
-  sheet.getRow(currentRow).height = 18;
-  currentRow++;
-
   // --- Accreditations section ---
-  sheet.mergeCells(`C${currentRow}:M${currentRow}`);
+  // Add divider above accreditations header
+  currentRow = divider(sheet, currentRow);
+
+  sheet.mergeCells(`B${currentRow}:N${currentRow}`);
   const accreditationsHeaderRow = sheet.getRow(currentRow);
-  accreditationsHeaderRow.getCell("C").value = "Accreditations - الاعتماد";
-  accreditationsHeaderRow.getCell("C").font = { name: "Calibri", size: 12, bold: true };
-  accreditationsHeaderRow.getCell("C").alignment = { horizontal: "center", vertical: "middle" };
-  accreditationsHeaderRow.getCell("C").fill = {
-    type: "pattern",
-    pattern: "solid",
-    fgColor: { argb: "FFD3D3D3" },
-  };
+  accreditationsHeaderRow.getCell("B").value = "Accreditations - الاعتماد";
+  accreditationsHeaderRow.getCell("B").font = { name: "Calibri", size: 12, bold: true };
+  accreditationsHeaderRow.getCell("B").alignment = { horizontal: "center", vertical: "middle" };
+  for (const col of ["B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N"]) {
+    accreditationsHeaderRow.getCell(col).fill = {
+      type: "pattern",
+      pattern: "solid",
+      fgColor: { argb: "FFBFBFBF" },
+    };
+  }
   accreditationsHeaderRow.height = 25;
   currentRow++;
 
-  // Empty row
-  sheet.getRow(currentRow).height = 18;
-  currentRow++;
+  // Add divider below accreditations header
+  currentRow = divider(sheet, currentRow);
 
   // Accreditations positions row
   const accreditationsRow = sheet.getRow(currentRow);
@@ -772,10 +826,49 @@ function createWorkbook(
   accreditationsRow.height = 20;
   currentRow++;
 
-  // Empty signature space (3 rows)
-  for (let i = 0; i < 3; i++) {
-    sheet.getRow(currentRow).height = 25;
+  // Empty signature space (3 rows of gap + 1 border row = 4 rows total)
+  for (let i = 0; i < 4; i++) {
+    if (i === 3) {
+      // Fourth row (3 rows below Vice Executive President) - bottom border with light grey fill
+      const bottomBorderRow = sheet.getRow(currentRow);
+      bottomBorderRow.height = 5;
+      // Apply light grey fill to cells B through N
+      for (const col of ["B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N"]) {
+        const cell = bottomBorderRow.getCell(col);
+        cell.fill = {
+          type: "pattern",
+          pattern: "solid",
+          fgColor: { argb: "D9D9D9" },
+        };
+      }
+    } else {
+      sheet.getRow(currentRow).height = 25;
+    }
     currentRow++;
+  }
+
+  // Store the final row number (the gray bottom border row)
+  const finalRow = currentRow - 1;
+
+  // Apply light gray fill to columns A and O from row 1 to final row
+  for (let rowNum = 1; rowNum <= finalRow; rowNum++) {
+    const row = sheet.getRow(rowNum);
+    
+    // Column A
+    const cellA = row.getCell("A");
+    cellA.fill = {
+      type: "pattern",
+      pattern: "solid",
+      fgColor: { argb: "D9D9D9" },
+    };
+    
+    // Column O
+    const cellO = row.getCell("O");
+    cellO.fill = {
+      type: "pattern",
+      pattern: "solid",
+      fgColor: { argb: "D9D9D9" },
+    };
   }
 
   return workbook;
