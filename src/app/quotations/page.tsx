@@ -253,7 +253,7 @@ export default function QuotationPage() {
     <div className="min-h-screen transition-colors duration-300 bg-gradient-to-br from-[#a47149] via-[#a47149] to-[#a47149] pl-0 pr-0 pt-4 md:pt-8 pb-4 md:pb-8">
       {/* Full-width header bar */}
       <div className="-mr-0 -mt-4 md:-mt-8 mb-8 bg-[#5e775a] pr-0 py-6 pl-0">
-        <div className="max-w-7xl mx-auto flex justify-between items-start">
+        <div className="w-full pl-64 pr-10">
           <div>
             <h1 className="text-3xl md:text-4xl font-bold mb-2 transition-colors duration-300 text-white">
               Quotation Generator
