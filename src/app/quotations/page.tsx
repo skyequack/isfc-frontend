@@ -219,7 +219,7 @@ export default function QuotationPage() {
         const url = window.URL.createObjectURL(blob);
         const a = document.createElement("a");
         a.href = url;
-        a.download = "quotation.xlsx";
+        a.download = `${referenceCode}.xlsx`;
         document.body.appendChild(a);
         a.click();
         a.remove();
