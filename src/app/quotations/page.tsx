@@ -464,11 +464,17 @@ export default function QuotationPage() {
               </header>
 
               {/* Carousel Content */}
-              {currentCarouselView === 'items' ? (
-                // Item Selection View
-                <div className="animate-fadeIn">
-                  {/* Source Dropdown Section */}
-                  <div className="space-y-2">
+              <div className="relative overflow-hidden">
+                <div 
+                  className="flex transition-transform duration-500 ease-in-out"
+                  style={{ 
+                    transform: `translateX(${currentCarouselView === 'items' ? '0%' : '-100%'})`
+                  }}
+                >
+                  {/* Item Selection View */}
+                  <div className="w-full flex-shrink-0">
+                    {/* Source Dropdown Section */}
+                    <div className="space-y-2">
                 <label htmlFor="source-select" className="block text-sm font-medium transition-colors duration-300 text-[#3d3d3d]">
                   Source
                 </label>
@@ -559,122 +565,125 @@ export default function QuotationPage() {
                     </div>
                   );
                 })()}
-                  </div>
-                </div>
-              ) : (
-                // Quotation Items View - Full Table Implementation
-                <div className="space-y-4 animate-fadeIn">
-                  {/* Brand Code and Reference Code */}
-                  <div className="flex gap-4 mb-6">
-                    {/* Brand Code */}
-                    <div className="space-y-2 min-w-[120px]">
-                      <label className="block text-sm font-medium text-[#3d3d3d]">
-                        Brand Code
-                      </label>
-                      <select
-                        className="w-full border rounded-lg px-4 py-2.5 bg-white border-slate-300 text-[#3d3d3d] text-sm focus:ring-2 focus:ring-[#5e775a] focus:border-transparent transition-all duration-200"
-                        value={brandCode}
-                        onChange={e => {
-                          setBrandCode(e.target.value);
-                          generateReferenceCode();
-                        }}
-                      >
-                        <option value="ISFC">ISFC</option>
-                        <option value="G360">G360</option>
-                        <option value="DW">DW</option>
-                      </select>
                     </div>
+                  </div>
 
-                    {/* Reference Code */}
-                    <div className="space-y-2 flex-1">
-                      <label className="block text-sm font-medium text-[#3d3d3d]">
-                        Reference Code
-                      </label>
-                      <div className="flex gap-2">
-                        <input 
-                          type="text"
-                          className="flex-1 border rounded-lg px-4 py-2.5 bg-slate-50 border-slate-300 text-[#3d3d3d] text-sm"
-                          value={referenceCode} 
-                          readOnly
-                        />
+                  {/* Quotation Items View */}
+                  <div className="w-full flex-shrink-0 pl-6">
+                    <div className="space-y-4">
+                      {/* Brand Code and Reference Code */}
+                      <div className="flex gap-4 mb-6">
+                        {/* Brand Code */}
+                        <div className="space-y-2 min-w-[120px]">
+                          <label className="block text-sm font-medium text-[#3d3d3d]">
+                            Brand Code
+                          </label>
+                          <select
+                            className="w-full border rounded-lg px-4 py-2.5 bg-white border-slate-300 text-[#3d3d3d] text-sm focus:ring-2 focus:ring-[#5e775a] focus:border-transparent transition-all duration-200"
+                            value={brandCode}
+                            onChange={e => {
+                              setBrandCode(e.target.value);
+                              generateReferenceCode();
+                            }}
+                          >
+                            <option value="ISFC">ISFC</option>
+                            <option value="G360">G360</option>
+                            <option value="DW">DW</option>
+                          </select>
+                        </div>
+
+                        {/* Reference Code */}
+                        <div className="space-y-2 flex-1">
+                          <label className="block text-sm font-medium text-[#3d3d3d]">
+                            Reference Code
+                          </label>
+                          <div className="flex gap-2">
+                            <input 
+                              type="text"
+                              className="flex-1 border rounded-lg px-4 py-2.5 bg-slate-50 border-slate-300 text-[#3d3d3d] text-sm"
+                              value={referenceCode} 
+                              readOnly
+                            />
+                            <button
+                              onClick={generateReferenceCode}
+                              className="px-3 py-3 rounded-lg bg-[#5e775a] text-white hover:bg-[#4a5f47] transition-colors text-sm flex-shrink-0"
+                              type="button"
+                              title="Regenerate code"
+                            >
+                              ↻
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Quotation Items Table */}
+                      <div className="overflow-x-auto rounded-lg border border-slate-200">
+                        <table className="w-full border-collapse">
+                          <thead>
+                            <tr className="bg-[#5e775a] text-white">
+                              <th className="p-3 text-left font-semibold text-sm">Item</th>
+                              <th className="p-3 text-left font-semibold text-sm">Sub Category</th>
+                              <th className="p-3 text-left font-semibold text-sm">Source</th>
+                              <th className="p-3 text-left font-semibold text-sm">Qty</th>
+                              <th className="p-3 text-left font-semibold text-sm">Unit Price (SAR)</th>
+                              <th className="p-3 text-left font-semibold text-sm">Total (SAR)</th>
+                              <th className="p-3 text-center font-semibold text-sm">Remove</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {quotation.length > 0 ? (
+                              quotation.map((row, idx) => (
+                                <tr 
+                                  key={idx} 
+                                  className="border-b border-slate-200 hover:bg-[#f9f9f9] transition-colors duration-150"
+                                >
+                                  <td className="p-3 text-[#3d3d3d] text-sm">{row.item}</td>
+                                  <td className="p-3 text-[#666666] text-sm">{row.category}</td>
+                                  <td className="p-3 text-[#666666] text-sm">{row.source}</td>
+                                  <td className="p-3 font-medium text-[#3d3d3d] text-sm">{row.quantity}</td>
+                                  <td className="p-3 text-[#3d3d3d] text-sm">{row.price} SAR</td>
+                                  <td className="p-3 font-semibold text-[#3d3d3d] text-sm">{row.total} SAR</td>
+                                  <td className="p-3 text-center">
+                                    <button
+                                      className="w-6 h-6 rounded-full bg-red-100 text-red-600 hover:bg-red-600 hover:text-white hover:scale-110 transform transition-all duration-200 flex items-center justify-center mx-auto text-xs font-bold"
+                                      onClick={() => handleRemoveItem(idx)}
+                                      aria-label={`Remove ${row.item}`}
+                                    >
+                                      ×
+                                    </button>
+                                  </td>
+                                </tr>
+                              ))
+                            ) : (
+                              <tr>
+                                <td colSpan={7} className="p-6 text-center text-gray-500">No items in the quotation</td>
+                              </tr>
+                            )}
+                            {quotation.length > 0 && (
+                              <tr className="bg-[#5e775a] text-white">
+                                <td colSpan={5} className="p-3 text-right font-bold text-sm border-t border-slate-300">Grand Total</td>
+                                <td className="p-3 font-bold text-sm border-t border-slate-300">{grandTotal} SAR</td>
+                                <td className="p-3 border-t border-slate-300"></td>
+                              </tr>
+                            )}
+                          </tbody>
+                        </table>
+                      </div>
+
+                      {/* Action Buttons */}
+                      <div className="flex gap-3 justify-end pt-4">
                         <button
-                          onClick={generateReferenceCode}
-                          className="px-3 py-3 rounded-lg bg-[#5e775a] text-white hover:bg-[#4a5f47] transition-colors text-sm flex-shrink-0"
+                          className="px-4 py-2 rounded-lg font-medium hover:scale-105 active:scale-95 transform transition-all duration-200 shadow-md bg-[#a47149] text-white hover:bg-[#8b5d3e] text-sm"
+                          onClick={handleReset}
                           type="button"
-                          title="Regenerate code"
                         >
-                          ↻
+                          Reset
                         </button>
                       </div>
                     </div>
                   </div>
-
-                  {/* Quotation Items Table */}
-                  <div className="overflow-x-auto rounded-lg border border-slate-200">
-                    <table className="w-full border-collapse">
-                      <thead>
-                        <tr className="bg-[#5e775a] text-white">
-                          <th className="p-3 text-left font-semibold text-sm">Item</th>
-                          <th className="p-3 text-left font-semibold text-sm">Sub Category</th>
-                          <th className="p-3 text-left font-semibold text-sm">Source</th>
-                          <th className="p-3 text-left font-semibold text-sm">Qty</th>
-                          <th className="p-3 text-left font-semibold text-sm">Unit Price (SAR)</th>
-                          <th className="p-3 text-left font-semibold text-sm">Total (SAR)</th>
-                          <th className="p-3 text-center font-semibold text-sm">Remove</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {quotation.length > 0 ? (
-                          quotation.map((row, idx) => (
-                            <tr 
-                              key={idx} 
-                              className="border-b border-slate-200 hover:bg-[#f9f9f9] transition-colors duration-150"
-                            >
-                              <td className="p-3 text-[#3d3d3d] text-sm">{row.item}</td>
-                              <td className="p-3 text-[#666666] text-sm">{row.category}</td>
-                              <td className="p-3 text-[#666666] text-sm">{row.source}</td>
-                              <td className="p-3 font-medium text-[#3d3d3d] text-sm">{row.quantity}</td>
-                              <td className="p-3 text-[#3d3d3d] text-sm">{row.price} SAR</td>
-                              <td className="p-3 font-semibold text-[#3d3d3d] text-sm">{row.total} SAR</td>
-                              <td className="p-3 text-center">
-                                <button
-                                  className="w-6 h-6 rounded-full bg-red-100 text-red-600 hover:bg-red-600 hover:text-white hover:scale-110 transform transition-all duration-200 flex items-center justify-center mx-auto text-xs font-bold"
-                                  onClick={() => handleRemoveItem(idx)}
-                                  aria-label={`Remove ${row.item}`}
-                                >
-                                  ×
-                                </button>
-                              </td>
-                            </tr>
-                          ))
-                        ) : (
-                          <tr>
-                            <td colSpan={7} className="p-6 text-center text-gray-500">No items in the quotation</td>
-                          </tr>
-                        )}
-                        {quotation.length > 0 && (
-                          <tr className="bg-[#5e775a] text-white">
-                            <td colSpan={5} className="p-3 text-right font-bold text-sm border-t border-slate-300">Grand Total</td>
-                            <td className="p-3 font-bold text-sm border-t border-slate-300">{grandTotal} SAR</td>
-                            <td className="p-3 border-t border-slate-300"></td>
-                          </tr>
-                        )}
-                      </tbody>
-                    </table>
-                  </div>
-
-                  {/* Action Buttons */}
-                  <div className="flex gap-3 justify-end pt-4">
-                    <button
-                      className="px-4 py-2 rounded-lg font-medium hover:scale-105 active:scale-95 transform transition-all duration-200 shadow-md bg-[#a47149] text-white hover:bg-[#8b5d3e] text-sm"
-                      onClick={handleReset}
-                      type="button"
-                    >
-                      Reset
-                    </button>
-                  </div>
                 </div>
-              )}
+              </div>
             </div>
           </div>
 
