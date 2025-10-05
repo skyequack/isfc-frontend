@@ -3,8 +3,52 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { UserButton } from '@clerk/nextjs'
+import { useState, useEffect, createContext, useContext } from 'react'
 
+// Create context for sidebar visibility
+const SidebarContext = createContext<{
+  isVisible: boolean;
+  setIsVisible: (visible: boolean) => void;
+  isPinned: boolean;
+  setIsPinned: (pinned: boolean) => void;
+}>({
+  isVisible: false,
+  setIsVisible: () => {},
+  isPinned: false,
+  setIsPinned: () => {}
+});
 
+export const useSidebar = () => useContext(SidebarContext);
+
+export function SidebarProvider({ children }: { children: React.ReactNode }) {
+  const [isVisible, setIsVisible] = useState(false);
+  const [isPinned, setIsPinned] = useState(false);
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      // Show sidebar when mouse is within 50px of left edge, but only if not pinned
+      if (e.clientX <= 50 && !isPinned) {
+        setIsVisible(true);
+      }
+    };
+
+    document.addEventListener('mousemove', handleMouseMove);
+    return () => document.removeEventListener('mousemove', handleMouseMove);
+  }, [isPinned]);
+
+  // Keep sidebar visible when pinned
+  useEffect(() => {
+    if (isPinned) {
+      setIsVisible(true);
+    }
+  }, [isPinned]);
+
+  return (
+    <SidebarContext.Provider value={{ isVisible, setIsVisible, isPinned, setIsPinned }}>
+      {children}
+    </SidebarContext.Provider>
+  );
+}
 
 interface NavigationItem {
   name: string
@@ -72,17 +116,65 @@ const navigationItems: NavigationItem[] = [
 
 export default function Navigation() {
   const pathname = usePathname()
+  const { isVisible, setIsVisible, isPinned, setIsPinned } = useSidebar()
+
+  const handleMouseLeave = () => {
+    if (!isPinned) {
+      setIsVisible(false)
+    }
+  }
+
+  const togglePin = () => {
+    setIsPinned(!isPinned)
+    if (!isPinned) {
+      setIsVisible(true) // Ensure sidebar is visible when pinning
+    }
+  }
 
   return (
-    <nav className="fixed left-0 top-0 h-full w-56 shadow-lg bg-white">
+    <>
+      {/* Invisible trigger zone */}
+      <div className="fixed left-0 top-0 w-4 h-full z-40" />
+      
+      <nav 
+        className={`fixed left-0 top-0 h-full w-56 shadow-lg bg-white z-50 transition-transform duration-300 ease-out ${
+          isVisible ? 'translate-x-0' : '-translate-x-full'
+        }`}
+        onMouseLeave={handleMouseLeave}
+      >
       <div className="flex flex-col h-full">
         {/* Logo Header */}
-        <div className="px-6 py-8">
+        <div className="px-6 py-8 relative">
           <Link href="/dashboard" className="flex items-center space-x-3">
             <div className="w-40 h-20 mx-auto">
               <img src="/images/isfc-logo.png" alt="ISFC Logo" className="w-full h-full object-contain" />
             </div>
           </Link>
+          
+          {/* Pin Button */}
+          <button
+            onClick={togglePin}
+            className={`absolute top-4 right-4 p-2 rounded-lg transition-all duration-200 ${
+              isPinned 
+                ? 'bg-[#5e775a] text-white shadow-md' 
+                : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+            }`}
+            title={isPinned ? "Unpin sidebar" : "Pin sidebar"}
+          >
+            <svg 
+              className="w-4 h-4" 
+              fill="currentColor" 
+              viewBox="0 0 24 24"
+            >
+              {isPinned ? (
+                // Filled pin icon when pinned
+                <path d="M16 12V4a1 1 0 00-1-1H9a1 1 0 00-1 1v8a3 3 0 003 3h1v5a1 1 0 102 0v-5h1a3 3 0 003-3z"/>
+              ) : (
+                // Outline pin icon when unpinned
+                <path fillRule="evenodd" d="M16 12V4a1 1 0 00-1-1H9a1 1 0 00-1 1v8a3 3 0 003 3h1v5a1 1 0 102 0v-5h1a3 3 0 003-3zM10 4h4v8a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z" clipRule="evenodd"/>
+              )}
+            </svg>
+          </button>
         </div>
 
         {/* Navigation Links */}
@@ -144,5 +236,6 @@ export default function Navigation() {
         </div>
       </div>
     </nav>
+    </>
   )
 }

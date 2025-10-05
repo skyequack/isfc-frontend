@@ -6,7 +6,7 @@ import {
   SignedIn,
   SignedOut,
 } from "@clerk/nextjs";
-import Navigation from "@/components/Navigation/Navigation";
+import Navigation, { SidebarProvider } from "@/components/Navigation/Navigation";
 import "./globals.css";
 
 export const dynamic = 'force-dynamic'
@@ -79,7 +79,12 @@ export default function RootLayout({
           className={`${geistSans.variable} ${geistMono.variable} ${poppins.variable} antialiased`}
         >
           <SignedIn>
-            <Navigation />
+            <SidebarProvider>
+              <Navigation />
+              <main className="min-h-screen">
+                {children}
+              </main>
+            </SidebarProvider>
           </SignedIn>
           <SignedOut>
             <header className="bg-dark shadow-sm border-b border-dark sticky top-0 z-50">
@@ -101,9 +106,6 @@ export default function RootLayout({
               </div>
             </header>
           </SignedOut>
-          <main className="min-h-screen">
-            {children}
-          </main>
         </body>
       </html>
     </ClerkProvider>

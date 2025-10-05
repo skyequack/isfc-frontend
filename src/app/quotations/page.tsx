@@ -5,6 +5,7 @@ import menuDataRaw from "../../../menu.json";
 import OrderCard from "@/components/menu/OrderCard";
 import QuotationPreview from "@/components/QuotationPreview";
 import MenuItemCard from "@/components/menu/MenuItemCard";
+import { useSidebar } from "@/components/Navigation/Navigation";
 
 interface MenuItem {
   item: string;
@@ -66,12 +67,20 @@ interface OrderItem {
 }
 
 export default function QuotationPage() {
+  const { isVisible: isSidebarVisible, isPinned } = useSidebar();
   const [quotation, setQuotation] = useState<OrderItem[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<string>("");
-  const [selectedSource, setSelectedSource] = useState<string>("");
+  
+  // Dynamic padding based on sidebar visibility (including pinned state) with smooth transitions
+  const shouldShowSidebar = isSidebarVisible || isPinned;
+  const containerClass = `w-full pr-10 transition-all duration-300 ease-out ${shouldShowSidebar ? "pl-64" : "pl-10"}`;
+  const [selectedSource, setSelectedSource] = useState<string>("360G");
   const [grandTotal, setGrandTotal] = useState<number>(0);
   const [error, setError] = useState<string | null>(null);
   const [itemQuantities, setItemQuantities] = useState<{ [key: string]: number }>({});
+  
+  // Carousel state for switching between item selection and quotation view
+  const [currentCarouselView, setCurrentCarouselView] = useState<'items' | 'quotation'>('items');
 
   const [clientName, setClientName] = useState("");
   const [clientContact, setClientContact] = useState("");
@@ -89,7 +98,7 @@ export default function QuotationPage() {
   const [selectedItem, setSelectedItem] = useState<MenuItem | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isModalClosing, setIsModalClosing] = useState(false);
-  const [showPreview, setShowPreview] = useState(false);
+
   
   // Event organizer options
   const eventOrganizers = [
@@ -254,7 +263,7 @@ export default function QuotationPage() {
     <div className="min-h-screen transition-colors duration-300 bg-gradient-to-br from-[#a47149] via-[#a47149] to-[#a47149] pl-0 pr-0 pt-4 md:pt-8 pb-4 md:pb-8">
       {/* Full-width header bar */}
       <div className="-mr-0 -mt-4 md:-mt-8 mb-8 bg-[#5e775a] pr-0 py-6 pl-0">
-        <div className="w-full pl-64 pr-10">
+        <div className={containerClass}>
           <div>
             <h1 className="text-3xl md:text-4xl font-bold mb-2 transition-colors duration-300 text-white">
               Quotation Generator
@@ -266,13 +275,13 @@ export default function QuotationPage() {
         </div>
       </div>
       
-      <div className="w-full pl-64 pr-10">
+      <div className={containerClass}>
 
-        {/* Two Card Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-10 gap-8 mb-8">
-          {/* Event Details Card - Takes 4 columns (40% width) */}
-          <div className="lg:col-span-3 rounded-xl shadow-lg transition-all duration-300 p-6 md:p-8 hover:shadow-xl bg-white">
-            <h2 className="text-xl font-semibold mb-6 flex items-center gap-2 transition-colors duration-300 text-[#3d3d3d]">
+        {/* Three Card Layout */}
+        <div className="grid grid-cols-1 xl:grid-cols-12 gap-6 mb-8">
+          {/* Event Details Card - Takes 3 columns */}
+          <div className="xl:col-span-3 h-fit rounded-xl shadow-lg transition-all duration-300 p-6 hover:shadow-xl bg-white">
+            <h2 className="text-xl font-semibold mb-6 my-3 flex items-center gap-2 transition-colors duration-300 text-[#3d3d3d]">
               <span className="w-1 h-6 rounded-full transition-colors duration-300 bg-[#5e775a]"></span>
               Event Details
             </h2>
@@ -425,30 +434,41 @@ export default function QuotationPage() {
             </div>
           </div>
 
-          {/* Redesigned Add Item to Quotation Section - Takes 4 columns (67% width) */}
-          <div className="lg:col-span-7 w-full max-w mx-auto">
+          {/* Add Item to Quotation Carousel - Takes 6 columns */}
+          <div className="xl:col-span-5 w-full max-w mx-auto">
             {/* White Card Container */}
             <div className="bg-white rounded-xl shadow-lg transition-all duration-300 p-6 md:p-8 hover:shadow-xl">
               {/* Header Section */}
               <header className="flex items-center justify-between mb-6">
                 <h2 className="text-xl font-semibold flex items-center gap-2 transition-colors duration-300 text-[#3d3d3d]">
                   <span className="w-1 h-6 rounded-full transition-colors duration-300 bg-[#5e775a]"></span>
-                  Add Item to Quotation
+                  {currentCarouselView === 'items' ? 'Add Item to Quotation' : 'Quotation Items'}
                 </h2>
-                <button
-                  type="button"
-                  className="px-6 py-2 bg-[#6B8E6F] hover:bg-[#5a7a5e] text-white font-bold text-sm uppercase rounded-lg transition-colors duration-200"
-                  onClick={() => {
-                    // Add navigation to next step
-                    console.log('Navigate to next step');
-                  }}
-                >
-                  NEXT
-                </button>
+                {currentCarouselView === 'items' ? (
+                  <button
+                    type="button"
+                    className="px-6 py-2 bg-[#6B8E6F] hover:bg-[#5a7a5e] text-white font-bold text-sm uppercase rounded-lg transition-colors duration-200"
+                    onClick={() => setCurrentCarouselView('quotation')}
+                  >
+                    NEXT
+                  </button>
+                ) : (
+                  <button
+                    type="button"
+                    className="px-6 py-2 bg-[#a47149] hover:bg-[#8b5d3f] text-white font-bold text-sm uppercase rounded-lg transition-colors duration-200"
+                    onClick={() => setCurrentCarouselView('items')}
+                  >
+                    BACK
+                  </button>
+                )}
               </header>
 
-              {/* Source Dropdown Section */}
-              <div className="space-y-2">
+              {/* Carousel Content */}
+              {currentCarouselView === 'items' ? (
+                // Item Selection View
+                <div className="animate-fadeIn">
+                  {/* Source Dropdown Section */}
+                  <div className="space-y-2">
                 <label htmlFor="source-select" className="block text-sm font-medium transition-colors duration-300 text-[#3d3d3d]">
                   Source
                 </label>
@@ -539,9 +559,170 @@ export default function QuotationPage() {
                     </div>
                   );
                 })()}
-              </div>
+                  </div>
+                </div>
+              ) : (
+                // Quotation Items View - Full Table Implementation
+                <div className="space-y-4 animate-fadeIn">
+                  {/* Brand Code and Reference Code */}
+                  <div className="flex gap-4 mb-6">
+                    {/* Brand Code */}
+                    <div className="space-y-2 min-w-[120px]">
+                      <label className="block text-sm font-medium text-[#3d3d3d]">
+                        Brand Code
+                      </label>
+                      <select
+                        className="w-full border rounded-lg px-4 py-2.5 bg-white border-slate-300 text-[#3d3d3d] text-sm focus:ring-2 focus:ring-[#5e775a] focus:border-transparent transition-all duration-200"
+                        value={brandCode}
+                        onChange={e => {
+                          setBrandCode(e.target.value);
+                          generateReferenceCode();
+                        }}
+                      >
+                        <option value="ISFC">ISFC</option>
+                        <option value="G360">G360</option>
+                        <option value="DW">DW</option>
+                      </select>
+                    </div>
+
+                    {/* Reference Code */}
+                    <div className="space-y-2 flex-1">
+                      <label className="block text-sm font-medium text-[#3d3d3d]">
+                        Reference Code
+                      </label>
+                      <div className="flex gap-2">
+                        <input 
+                          type="text"
+                          className="flex-1 border rounded-lg px-4 py-2.5 bg-slate-50 border-slate-300 text-[#3d3d3d] text-sm"
+                          value={referenceCode} 
+                          readOnly
+                        />
+                        <button
+                          onClick={generateReferenceCode}
+                          className="px-3 py-3 rounded-lg bg-[#5e775a] text-white hover:bg-[#4a5f47] transition-colors text-sm flex-shrink-0"
+                          type="button"
+                          title="Regenerate code"
+                        >
+                          ↻
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Quotation Items Table */}
+                  <div className="overflow-x-auto rounded-lg border border-slate-200">
+                    <table className="w-full border-collapse">
+                      <thead>
+                        <tr className="bg-[#5e775a] text-white">
+                          <th className="p-3 text-left font-semibold text-sm">Item</th>
+                          <th className="p-3 text-left font-semibold text-sm">Sub Category</th>
+                          <th className="p-3 text-left font-semibold text-sm">Source</th>
+                          <th className="p-3 text-left font-semibold text-sm">Qty</th>
+                          <th className="p-3 text-left font-semibold text-sm">Unit Price (SAR)</th>
+                          <th className="p-3 text-left font-semibold text-sm">Total (SAR)</th>
+                          <th className="p-3 text-center font-semibold text-sm">Remove</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {quotation.length > 0 ? (
+                          quotation.map((row, idx) => (
+                            <tr 
+                              key={idx} 
+                              className="border-b border-slate-200 hover:bg-[#f9f9f9] transition-colors duration-150"
+                            >
+                              <td className="p-3 text-[#3d3d3d] text-sm">{row.item}</td>
+                              <td className="p-3 text-[#666666] text-sm">{row.category}</td>
+                              <td className="p-3 text-[#666666] text-sm">{row.source}</td>
+                              <td className="p-3 font-medium text-[#3d3d3d] text-sm">{row.quantity}</td>
+                              <td className="p-3 text-[#3d3d3d] text-sm">{row.price} SAR</td>
+                              <td className="p-3 font-semibold text-[#3d3d3d] text-sm">{row.total} SAR</td>
+                              <td className="p-3 text-center">
+                                <button
+                                  className="w-6 h-6 rounded-full bg-red-100 text-red-600 hover:bg-red-600 hover:text-white hover:scale-110 transform transition-all duration-200 flex items-center justify-center mx-auto text-xs font-bold"
+                                  onClick={() => handleRemoveItem(idx)}
+                                  aria-label={`Remove ${row.item}`}
+                                >
+                                  ×
+                                </button>
+                              </td>
+                            </tr>
+                          ))
+                        ) : (
+                          <tr>
+                            <td colSpan={7} className="p-6 text-center text-gray-500">No items in the quotation</td>
+                          </tr>
+                        )}
+                        {quotation.length > 0 && (
+                          <tr className="bg-[#5e775a] text-white">
+                            <td colSpan={5} className="p-3 text-right font-bold text-sm border-t border-slate-300">Grand Total</td>
+                            <td className="p-3 font-bold text-sm border-t border-slate-300">{grandTotal} SAR</td>
+                            <td className="p-3 border-t border-slate-300"></td>
+                          </tr>
+                        )}
+                      </tbody>
+                    </table>
+                  </div>
+
+                  {/* Action Buttons */}
+                  <div className="flex gap-3 justify-end pt-4">
+                    <button
+                      className="px-4 py-2 rounded-lg font-medium hover:scale-105 active:scale-95 transform transition-all duration-200 shadow-md bg-[#a47149] text-white hover:bg-[#8b5d3e] text-sm"
+                      onClick={handleReset}
+                      type="button"
+                    >
+                      Reset
+                    </button>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
+
+          {/* Live A4 Quotation Preview - Takes 3 columns */}
+          <div className="xl:col-span-4 rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 bg-white">
+  <div className="p-6 border-b transition-colors duration-300 border-slate-200 flex justify-between items-center">
+    <h2 className="text-xl font-semibold flex items-center gap-2 transition-colors duration-300 text-[#3d3d3d]">
+      <span className="w-1 h-6 rounded-full transition-colors duration-300 bg-[#5e775a]"></span>
+      Quotation
+    </h2>
+    <div className="flex gap-3">
+      <button
+        onClick={() => window.print()}
+        className="p-3 rounded-lg bg-[#5e775a] text-white hover:bg-[#4a5f47] transition-all duration-200 hover:scale-105 active:scale-95 flex items-center justify-center shadow-md"
+        title="Print Preview"
+      >
+        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
+        </svg>
+      </button>
+      <button
+        className="px-4 py-2 rounded-lg bg-[#5e775a] text-white hover:bg-[#4a5f47] transition-all duration-200 hover:scale-105 active:scale-95 flex items-center gap-2 shadow-md disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+        onClick={handleDownloadExcel}
+        disabled={quotation.length === 0}
+      >
+        Download Excel
+      </button>
+    </div>
+  </div>
+  <div className="p-4 overflow-auto bg-gray-100" style={{ height: 'calc(100vh - 300px)', minHeight: '500px' }} id="quotation-preview">
+    <div className="transform scale-75 origin-top-left" style={{ width: '133.33%', height: '133.33%' }}>
+      <QuotationPreview
+        clientName={clientName}
+        clientContact={clientContact}
+        eventOrganizer={eventOrganizer === "Custom" ? customEventOrganizer : eventOrganizer}
+        eventType={eventType}
+        numberOfPeople={numberOfPeople}
+        location={location}
+        eventDate={eventDate}
+        eventTime={eventTime}
+        validityDays={validityDays}
+        quotationItems={quotation}
+        referenceCode={referenceCode}
+        grandTotal={grandTotal}
+      />
+    </div>
+  </div>
+</div>
 
         </div>
 
@@ -552,184 +733,6 @@ export default function QuotationPage() {
           </div>
         )}
       </div>
-
-      {/* Quotation Table - Full Width Outside Grid */}
-      <div className="w-full pl-64 pr-10 mb-8">
-        <div className="rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 bg-white opacity-100 animate-fade-in">
-          <div className="p-6 border-b transition-colors duration-300 border-slate-200">
-            <div className="flex items-start justify-between gap-6 mb-4">
-              <h2 className="text-xl font-semibold flex items-center gap-2 transition-colors duration-300 text-[#3d3d3d]">
-                <span className="w-1 h-6 rounded-full transition-colors duration-300 bg-[#5e775a]"></span>
-                Quotation Items
-              </h2>
-              
-              <div className="flex gap-4">
-                {/* Brand Code */}
-                <div className="space-y-2 min-w-[10px]">
-                  <label className="block text-sm font-medium transition-colors duration-300 text-[#3d3d3d]">
-                    Brand Code
-                  </label>
-                  <select
-                    className="w-full border rounded-lg px-4 py-2.5 bg-white border-slate-300 text-[#3d3d3d] text-sm focus:ring-2 focus:ring-[#5e775a] focus:border-transparent transition-all duration-200"
-                    value={brandCode}
-                    onChange={e => {
-                      setBrandCode(e.target.value);
-                      generateReferenceCode();
-                    }}
-                  >
-                    <option value="ISFC">ISFC</option>
-                    <option value="G360">G360</option>
-                    <option value="DW">DW</option>
-                  </select>
-                </div>
-
-                {/* Reference Code */}
-                <div className="space-y-2 min-w-[300px]">
-                  <label className="block text-sm font-medium transition-colors duration-300 text-[#3d3d3d]">
-                    Reference Code
-                  </label>
-                  <div className="flex gap-2">
-                    <input 
-                      type="text"
-                      className="flex-1 border rounded-lg px-4 py-2.5 bg-slate-50 border-slate-300 text-[#3d3d3d] text-sm"
-                      value={referenceCode} 
-                      readOnly
-                    />
-                    <button
-                      onClick={generateReferenceCode}
-                      className="px-3 py-3 rounded-lg bg-[#5e775a] text-white hover:bg-[#4a5f47] transition-colors text-sm flex-shrink-0"
-                      type="button"
-                      title="Regenerate code"
-                    >
-                      ↻
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="overflow-x-auto">
-            <table className="w-full border-collapse">
-              <thead>
-                <tr className="transition-colors duration-300 bg-[#5e775a] text-white">
-                  <th className="p-4 text-left font-semibold border-b border-slate-300">Item</th>
-                  <th className="p-4 text-left font-semibold border-b border-slate-300">Sub Category</th>
-                  <th className="p-4 text-left font-semibold border-b border-slate-300">Source</th>
-                  <th className="p-4 text-left font-semibold border-b border-slate-300">Qty</th>
-                  <th className="p-4 text-left font-semibold border-b border-slate-300">Unit Price (SAR)</th>
-                  <th className="p-4 text-left font-semibold border-b border-slate-300">Total (SAR)</th>
-                  <th className="p-4 text-center font-semibold border-b border-slate-300">Remove</th>
-                </tr>
-              </thead>
-              <tbody>
-                {quotation.length > 0 ? (
-                  quotation.map((row, idx) => (
-                    <tr 
-                      key={idx} 
-                      className="border-b transition-colors duration-150 border-slate-200 hover:bg-[#f9f9f9]"
-                    >
-                      <td className="p-4 transition-colors duration-300 text-[#3d3d3d]">{row.item}</td>
-                      <td className="p-4 transition-colors duration-300 text-[#666666]">{row.category}</td>
-                      <td className="p-4 transition-colors duration-300 text-[#666666]">{row.source}</td>
-                      <td className="p-4 font-medium transition-colors duration-300 text-[#3d3d3d]">{row.quantity}</td>
-                      <td className="p-4 transition-colors duration-300 text-[#3d3d3d]">{row.price} SAR</td>
-                      <td className="p-4 font-semibold transition-colors duration-300 text-[#3d3d3d]">{row.total} SAR</td>
-                      <td className="p-4 text-center">
-                        <button
-                          className="w-8 h-8 rounded-full bg-red-100 text-red-600 hover:bg-red-600 hover:text-white hover:scale-110 transform transition-all duration-200 flex items-center justify-center mx-auto font-bold"
-                          onClick={() => handleRemoveItem(idx)}
-                          aria-label={`Remove ${row.item}`}
-                        >
-                          ×
-                        </button>
-                      </td>
-                    </tr>
-                  ))
-                ) : (
-                  <tr>
-                    <td colSpan={7} className="p-4 text-center text-gray-500">No items in the quotation</td>
-                  </tr>
-                )}
-                <tr className="transition-colors duration-300 bg-[#5e775a] text-white">
-                  <td colSpan={5} className="p-4 text-right font-bold text-lg border-t border-slate-300">Grand Total</td>
-                  <td className="p-4 font-bold text-lg border-t border-slate-300">{grandTotal} SAR</td>
-                  <td className="p-4 border-t border-slate-300"></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          {/* Action Buttons inside the table card */}
-          <div className="p-6 border-t flex flex-wrap gap-3 justify-between border-slate-200">
-            <button
-              className="px-6 py-3 rounded-lg font-medium hover:scale-105 active:scale-95 transform transition-all duration-200 shadow-md disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 bg-blue-600 text-white hover:bg-blue-700 flex items-center gap-2"
-              onClick={() => setShowPreview(!showPreview)}
-              disabled={quotation.length === 0}
-              type="button"
-            >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-              </svg>
-              {showPreview ? 'Hide Preview' : 'Preview Excel'}
-            </button>
-            <div className="flex gap-3">
-              <button
-                className="px-6 py-3 rounded-lg font-medium hover:scale-105 active:scale-95 transform transition-all duration-200 shadow-md bg-[#a47149] text-white hover:bg-[#8b5d3e]"
-                onClick={handleReset}
-                type="button"
-              >
-                Reset
-              </button>
-              <button
-                className="px-6 py-3 rounded-lg shadow-lg font-medium hover:scale-105 active:scale-95 transform transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 bg-[#5e775a] hover:bg-[#4a5f47] text-white"
-                onClick={handleDownloadExcel}
-                disabled={quotation.length === 0}
-              >
-                Download Excel
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Live A4 Quotation Preview - Full Width Outside Grid */}
-      {showPreview && (
-        <div className="w-full pl-64 pr-10 mb-8">
-          <div className="rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 bg-white animate-fadeIn">
-            <div className="p-6 border-b transition-colors duration-300 border-slate-200 flex justify-between items-center">
-              <h2 className="text-xl font-semibold flex items-center gap-2 transition-colors duration-300 text-[#3d3d3d]">
-                <span className="w-1 h-6 rounded-full transition-colors duration-300 bg-[#5e775a]"></span>
-                Live A4 Preview
-              </h2>
-              <button
-                onClick={() => window.print()}
-                className="px-4 py-2 rounded-lg bg-[#5e775a] text-white hover:bg-[#4a5f47] transition-all duration-200 hover:scale-105 active:scale-95 flex items-center gap-2 shadow-md"
-              >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
-                </svg>
-                Print Preview
-              </button>
-            </div>
-            <div className="p-2 overflow-x-auto bg-gray-100 min-h-[800px] flex items-center justify-center" id="quotation-preview">
-              <QuotationPreview
-                clientName={clientName}
-                clientContact={clientContact}
-                eventOrganizer={eventOrganizer === "Custom" ? customEventOrganizer : eventOrganizer}
-                eventType={eventType}
-                numberOfPeople={numberOfPeople}
-                eventDate={eventDate}
-                eventTime={eventTime}
-                location={location}
-                validityDays={validityDays}
-                referenceCode={referenceCode}
-                quotationItems={quotation}
-                grandTotal={grandTotal}
-              />
-            </div>
-          </div>
-        </div>
-      )}
 
       {/* Item Info Modal */}
       {isModalOpen && selectedItem && (
@@ -794,17 +797,21 @@ export default function QuotationPage() {
         @keyframes fadeIn {
           from {
             opacity: 0;
+            transform: translateX(20px);
           }
           to {
             opacity: 1;
+            transform: translateX(0);
           }
         }
         @keyframes fadeOut {
           from {
             opacity: 1;
+            transform: translateX(0);
           }
           to {
             opacity: 0;
+            transform: translateX(-20px);
           }
         }
         @keyframes scaleIn {
