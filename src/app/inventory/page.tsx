@@ -1,7 +1,5 @@
 'use client'
 
-import { useUser } from '@clerk/nextjs'
-import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import InventoryCard, { InventoryItem } from '@/components/Inventory/InventoryCard'
 
@@ -122,8 +120,6 @@ const getMockInventory = (): InventoryItem[] => [
 ]
 
 export default function InventoryPage() {
-  const { isLoaded, isSignedIn } = useUser()
-  const router = useRouter()
   const [inventory, setInventory] = useState<InventoryItem[]>([])
   const [filteredInventory, setFilteredInventory] = useState<InventoryItem[]>([])
   const [searchTerm, setSearchTerm] = useState('')
@@ -138,21 +134,13 @@ export default function InventoryPage() {
   const [showDetailsModal, setShowDetailsModal] = useState(false)
 
   useEffect(() => {
-    if (isLoaded && !isSignedIn) {
-      router.push('/sign-in')
-    }
-  }, [isLoaded, isSignedIn, router])
-
-  useEffect(() => {
-    if (isSignedIn) {
-      // Simulate API call
-      setTimeout(() => {
-        const mockData = getMockInventory()
-        setInventory(mockData)
-        setFilteredInventory(mockData)
-      }, 500)
-    }
-  }, [isSignedIn])
+    // Simulate API call
+    setTimeout(() => {
+      const mockData = getMockInventory()
+      setInventory(mockData)
+      setFilteredInventory(mockData)
+    }, 500)
+  }, [])
 
   useEffect(() => {
     let filtered = [...inventory]
@@ -228,20 +216,6 @@ export default function InventoryPage() {
 
     setFilteredInventory(filtered)
   }, [inventory, searchTerm, filters])
-
-  if (!isLoaded) {
-    return (
-      <div className="container mx-auto px-4 py-8">
-        <div className="flex items-center justify-center min-h-64">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-orange-600"></div>
-        </div>
-      </div>
-    )
-  }
-
-  if (!isSignedIn) {
-    return null
-  }
 
   const handleRestockItem = async (itemId: string) => {
     // Simulate API call

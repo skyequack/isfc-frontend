@@ -1,7 +1,5 @@
 'use client'
 
-import { useUser } from '@clerk/nextjs'
-import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import AnalyticsCard from '@/components/Dashboard/AnalyticsCard'
@@ -100,26 +98,16 @@ const getDashboardData = (): DashboardData => ({
 })
 
 export default function DashboardPage() {
-  const { isLoaded, isSignedIn } = useUser()
-  const router = useRouter()
   const [dashboardData, setDashboardData] = useState<DashboardData | null>(null)
   
   useEffect(() => {
-    if (isLoaded && !isSignedIn) {
-      router.push('/sign-in')
-    }
-  }, [isLoaded, isSignedIn, router])
+    // Simulate API call
+    setTimeout(() => {
+      setDashboardData(getDashboardData())
+    }, 500)
+  }, [])
 
-  useEffect(() => {
-    if (isSignedIn) {
-      // Simulate API call
-      setTimeout(() => {
-        setDashboardData(getDashboardData())
-      }, 500)
-    }
-  }, [isSignedIn])
-
-  if (!isLoaded) {
+  if (!dashboardData) {
     return (
       <div className="container mx-auto px-4 py-8">
                   <div className="flex items-center justify-center min-h-64">
@@ -127,10 +115,6 @@ export default function DashboardPage() {
           </div>
       </div>
     )
-  }
-
-  if (!isSignedIn) {
-    return null
   }
 
   const getPriorityColor = (priority: string) => {

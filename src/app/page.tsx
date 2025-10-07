@@ -1,6 +1,3 @@
-import { SignedIn, SignedOut } from '@clerk/nextjs'
-import Link from 'next/link'
-
 export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-orange-50 to-red-100">
@@ -21,34 +18,6 @@ export default function Home() {
               Streamline your catering operations with our comprehensive management platform. 
               From order tracking to quality control, we&apos;ve got your business covered.
             </p>
-            
-            <SignedOut>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-                <Link 
-                  href="/sign-up"
-                  className="bg-orange-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-orange-700 transition-colors shadow-lg"
-                >
-                  Get Started
-                </Link>
-                <Link 
-                  href="/sign-in" 
-                  className="border-2 border-orange-600 text-orange-600 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-orange-50 transition-colors"
-                >
-                  Sign In
-                </Link>
-              </div>
-            </SignedOut>
-
-            <SignedIn>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-                <Link 
-                  href="/dashboard" 
-                  className="bg-orange-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-orange-700 transition-colors shadow-lg"
-                >
-                  Go to Dashboard
-                </Link>
-              </div>
-            </SignedIn>
           </div>
 
           {/* Feature Cards */}
@@ -78,36 +47,6 @@ export default function Home() {
             </div>
           </div>
 
-          <SignedIn>
-            {/* Quick Access for Signed In Users */}
-            <div className="bg-white rounded-xl shadow-lg border border-orange-200 p-8">
-              <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">Quick Access</h3>
-              <div className="grid md:grid-cols-3 gap-6">
-                <Link href="/dashboard" className="group">
-                  <div className="bg-orange-50 p-6 rounded-lg border-2 border-transparent group-hover:border-orange-300 transition-all">
-                    <div className="text-3xl mb-3">📊</div>
-                    <h4 className="font-semibold text-gray-900 group-hover:text-orange-600">Dashboard</h4>
-                    <p className="text-sm text-gray-600">Overview & Analytics</p>
-                  </div>
-                </Link>
-                <Link href="/checklists" className="group">
-                  <div className="bg-orange-50 p-6 rounded-lg border-2 border-transparent group-hover:border-orange-300 transition-all">
-                    <div className="text-3xl mb-3">📋</div>
-                    <h4 className="font-semibold text-gray-900 group-hover:text-orange-600">Orders</h4>
-                    <p className="text-sm text-gray-600">Manage Catering Orders</p>
-                  </div>
-                </Link>
-                <Link href="/escalations" className="group">
-                  <div className="bg-orange-50 p-6 rounded-lg border-2 border-transparent group-hover:border-orange-300 transition-all">
-                    <div className="text-3xl mb-3">⚠️</div>
-                    <h4 className="font-semibold text-gray-900 group-hover:text-orange-600">Issues</h4>
-                    <p className="text-sm text-gray-600">Track & Resolve Issues</p>
-                  </div>
-                </Link>
-              </div>
-            </div>
-          </SignedIn>
-
           {/* Statistics Section */}
           <div className="mt-16 bg-orange-600 rounded-xl text-white p-8">
             <h3 className="text-2xl font-bold mb-8 text-center">Why Choose ISFC?</h3>
@@ -133,5 +72,5 @@ export default function Home() {
         </div>
       </div>
     </div>
-  )
+  );
 }

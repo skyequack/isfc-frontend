@@ -1,7 +1,5 @@
 'use client'
 
-import { useUser } from '@clerk/nextjs'
-import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 
 interface MenuItem {
@@ -74,8 +72,6 @@ const getMockMenuItems = (): MenuItem[] => [
 ]
 
 export default function MenuPage() {
-  const { isLoaded, isSignedIn } = useUser()
-  const router = useRouter()
   const [menuItems, setMenuItems] = useState<MenuItem[]>([])
   const [filteredItems, setFilteredItems] = useState<MenuItem[]>([])
   const [categoryFilter, setCategoryFilter] = useState<string>('all')
@@ -83,20 +79,12 @@ export default function MenuPage() {
   const [showAddModal, setShowAddModal] = useState(false)
 
   useEffect(() => {
-    if (isLoaded && !isSignedIn) {
-      router.push('/sign-in')
-    }
-  }, [isLoaded, isSignedIn, router])
-
-  useEffect(() => {
-    if (isSignedIn) {
-      setTimeout(() => {
-        const mockData = getMockMenuItems()
-        setMenuItems(mockData)
-        setFilteredItems(mockData)
-      }, 500)
-    }
-  }, [isSignedIn])
+    setTimeout(() => {
+      const mockData = getMockMenuItems()
+      setMenuItems(mockData)
+      setFilteredItems(mockData)
+    }, 500)
+  }, [])
 
   useEffect(() => {
     let filtered = [...menuItems]
@@ -117,20 +105,6 @@ export default function MenuPage() {
 
     setFilteredItems(filtered)
   }, [menuItems, searchTerm, categoryFilter])
-
-  if (!isLoaded) {
-    return (
-      <div className="container mx-auto px-4 py-8">
-        <div className="flex items-center justify-center min-h-64">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-orange-600"></div>
-        </div>
-      </div>
-    )
-  }
-
-  if (!isSignedIn) {
-    return null
-  }
 
   const categoryIcons = {
     appetizer: '🥗',
