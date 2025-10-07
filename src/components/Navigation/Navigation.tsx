@@ -2,7 +2,6 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { UserButton } from '@clerk/nextjs'
 import { useState, useEffect, createContext, useContext } from 'react'
 
 // Create context for sidebar visibility
@@ -222,14 +221,9 @@ export default function Navigation() {
         <div className="p-4 border-t border-gray-200">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3">
-              <UserButton 
-                afterSignOutUrl="/login"
-                appearance={{
-                  elements: {
-                    avatarBox: "w-8 h-8 rounded-lg"
-                  }
-                }}
-              />
+              <div className="w-8 h-8 rounded-lg bg-[#5e775a] flex items-center justify-center text-white font-semibold text-sm">
+                U
+              </div>
               <span className="text-gray-600 text-sm font-medium">Account</span>
             </div>
           </div>

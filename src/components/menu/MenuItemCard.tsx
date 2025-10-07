@@ -13,6 +13,7 @@ interface MenuItemCardProps {
   onQuantityChange: (delta: number) => void;
   onAdd: () => void;
   onMoreInfo: () => void;
+  isRecentlyAdded?: boolean;
 }
 
 export default function MenuItemCard({
@@ -28,6 +29,7 @@ export default function MenuItemCard({
   onQuantityChange,
   onAdd,
   onMoreInfo,
+  isRecentlyAdded = false,
 }: MenuItemCardProps) {
   return (
     <div className="bg-white rounded-xl border border-slate-200 p-3 hover:shadow-md transition-all duration-200">
@@ -157,12 +159,22 @@ export default function MenuItemCard({
             
             <button
               onClick={onAdd}
-              className="w-14 h-14 rounded-full bg-[#5e775a] hover:bg-[#4a5f47] text-white flex items-center justify-center transition-all duration-200 hover:scale-105 active:scale-95 shadow-lg ml-2"
+              className={`w-14 h-14 rounded-full text-white flex items-center justify-center transition-all duration-200 shadow-lg ml-2 ${
+                isRecentlyAdded 
+                  ? 'bg-green-500 scale-110' 
+                  : 'bg-[#5e775a] hover:bg-[#4a5f47] hover:scale-105 active:scale-95'
+              }`}
               aria-label="Add to quotation"
             >
-              <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-              </svg>
+              {isRecentlyAdded ? (
+                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={3}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+              ) : (
+                <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                </svg>
+              )}
             </button>
           </div>
         </div>

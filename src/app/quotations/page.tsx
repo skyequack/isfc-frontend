@@ -98,6 +98,7 @@ export default function QuotationPage() {
   const [selectedItem, setSelectedItem] = useState<MenuItem | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isModalClosing, setIsModalClosing] = useState(false);
+  const [recentlyAddedItem, setRecentlyAddedItem] = useState<string | null>(null);
 
   
   // Event organizer options
@@ -167,6 +168,12 @@ export default function QuotationPage() {
     ]);
     setItemQuantities((prev) => ({ ...prev, [menuItem.item]: 1 }));
     setError(null);
+    
+    // Show success indicator
+    setRecentlyAddedItem(menuItem.item);
+    setTimeout(() => {
+      setRecentlyAddedItem(null);
+    }, 1500);
   };
 
   const handleQuantityChange = (itemName: string, delta: number) => {
@@ -560,6 +567,7 @@ export default function QuotationPage() {
                           onQuantityChange={(delta) => handleQuantityChange(item.item, delta)}
                           onAdd={() => handleAddItem(item)}
                           onMoreInfo={() => handleInfoClick(item)}
+                          isRecentlyAdded={recentlyAddedItem === item.item}
                         />
                       ))}
                     </div>
